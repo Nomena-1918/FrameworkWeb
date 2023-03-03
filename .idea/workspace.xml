@@ -4,11 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e4cbbed9-f5ce-4235-90b2-784dd3bb87e0" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/servlet/FrontServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/servlet/FrontServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/utilPerso/Utilitaire.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/utilPerso/Utilitaire.java" afterDir="false" />
-    </list>
+    <list default="true" id="e4cbbed9-f5ce-4235-90b2-784dd3bb87e0" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -46,7 +42,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "java.suggest.annotation.dependency": "false",
-    "last_opened_file_path": "/home/nomena/Documents/S4/Web_Dynamique/FrameworkWeb",
+    "last_opened_file_path": "/home/nomena/Documents/S4/Web_Dynamique/FrameworkWeb/FrameworkWeb-webapp/WEB-INF/classes",
     "project.structure.last.edited": "Libraries",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2"
@@ -54,6 +50,7 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/FrameworkWeb-webapp/WEB-INF/classes" />
       <recent name="$PROJECT_DIR$" />
     </key>
   </component>
