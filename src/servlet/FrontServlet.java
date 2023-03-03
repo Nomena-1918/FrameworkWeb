@@ -7,7 +7,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.Arrays;
 import java.util.List;
 
 public class FrontServlet extends HttpServlet {
@@ -15,18 +14,17 @@ public class FrontServlet extends HttpServlet {
     public void ProcessRequest(HttpServletRequest req, HttpServletResponse res) throws IOException {
         res.setContentType("text/plain");
         PrintWriter out = res.getWriter();
-        out.println("Tous les chemins menent a moi : \n"+this.getClass().getName());
+        out.println("Tous les chemins menent a moi : "+this.getClass().getName());
 
         String url = req.getServletPath();
         out.println("URL : "+url);
 
-        List<String> params = Utilitaire.getInfoURL(url);
+        List<String> params = Utilitaire.getInfoURL(req);
         out.println("\n\nApres decomposition : ");
 
         for (String s : params) {
             out.println(s);
         }
-
     }
     public void doGet(HttpServletRequest req, HttpServletResponse res) throws IOException {
         ProcessRequest(req, res);
