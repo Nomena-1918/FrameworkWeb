@@ -4,7 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e4cbbed9-f5ce-4235-90b2-784dd3bb87e0" name="Changes" comment="" />
+    <list default="true" id="e4cbbed9-f5ce-4235-90b2-784dd3bb87e0" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FrameworkWeb.iml" beforeDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -31,15 +35,18 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">
-    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
-    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/FrameworkWeb-webapp/WEB-INF/classes" />
-    <property name="project.structure.last.edited" value="Project" />
-    <property name="project.structure.proportion" value="0.15" />
-    <property name="project.structure.side.proportion" value="0.0" />
-  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$" />
@@ -53,7 +60,6 @@
   <component name="RunManager">
     <configuration name="Main" type="Application" factoryName="Application">
       <option name="ALTERNATIVE_JRE_PATH" value="1.8" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
       <option name="MAIN_CLASS_NAME" value="main.Main" />
       <module name="FrameworkWeb" />
       <method v="2">
@@ -61,7 +67,7 @@
       </method>
     </configuration>
   </component>
-  <component name="SpellCheckerSettings" BundledDictionaries="0" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" Dictionaries="0" CorrectionsLimit="5" DefaultDictionary="application-level" UseSingleDictionary="true" />
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -76,55 +82,9 @@
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
-    <option name="version" value="2" />
+    <option name="version" value="3" />
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-  </component>
-  <component name="WindowStateProjectService">
-    <state x="516" y="108" key="#Main" timestamp="1678188924500">
-      <screen x="0" y="23" width="1680" height="1027" />
-    </state>
-    <state x="516" y="108" key="#Main/0.23.1680.1027@0.23.1680.1027" timestamp="1678188924500" />
-    <state x="328" y="87" key="#Project_Structure" timestamp="1678188859954">
-      <screen x="0" y="23" width="1680" height="1027" />
-    </state>
-    <state x="328" y="87" key="#Project_Structure/0.23.1680.1027@0.23.1680.1027" timestamp="1678188859954" />
-    <state x="304" y="167" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1678188966588">
-      <screen x="0" y="23" width="1680" height="1027" />
-    </state>
-    <state x="304" y="167" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.23.1680.1027@0.23.1680.1027" timestamp="1678188966588" />
-    <state x="577" y="302" key="#com.intellij.ide.util.TreeClassChooserDialog" timestamp="1678188914448">
-      <screen x="0" y="23" width="1680" height="1027" />
-    </state>
-    <state x="577" y="302" key="#com.intellij.ide.util.TreeClassChooserDialog/0.23.1680.1027@0.23.1680.1027" timestamp="1678188914448" />
-    <state width="1358" height="265" key="GridCell.Tab.0.bottom" timestamp="1678189692692">
-      <screen x="0" y="23" width="1680" height="1027" />
-    </state>
-    <state width="1358" height="265" key="GridCell.Tab.0.bottom/0.23.1680.1027@0.23.1680.1027" timestamp="1678189692692" />
-    <state width="1358" height="265" key="GridCell.Tab.0.center" timestamp="1678189692691">
-      <screen x="0" y="23" width="1680" height="1027" />
-    </state>
-    <state width="1358" height="265" key="GridCell.Tab.0.center/0.23.1680.1027@0.23.1680.1027" timestamp="1678189692691" />
-    <state width="1358" height="265" key="GridCell.Tab.0.left" timestamp="1678189692690">
-      <screen x="0" y="23" width="1680" height="1027" />
-    </state>
-    <state width="1358" height="265" key="GridCell.Tab.0.left/0.23.1680.1027@0.23.1680.1027" timestamp="1678189692690" />
-    <state width="1358" height="265" key="GridCell.Tab.0.right" timestamp="1678189692691">
-      <screen x="0" y="23" width="1680" height="1027" />
-    </state>
-    <state width="1358" height="265" key="GridCell.Tab.0.right/0.23.1680.1027@0.23.1680.1027" timestamp="1678189692691" />
-    <state x="328" y="87" key="SettingsEditor" timestamp="1678188981449">
-      <screen x="0" y="23" width="1680" height="1027" />
-    </state>
-    <state x="328" y="87" key="SettingsEditor/0.23.1680.1027@0.23.1680.1027" timestamp="1678188981449" />
-    <state x="440" y="255" key="Vcs.Push.Dialog.v2" timestamp="1678192391443">
-      <screen x="0" y="23" width="1680" height="1027" />
-    </state>
-    <state x="440" y="255" key="Vcs.Push.Dialog.v2/0.23.1680.1027@0.23.1680.1027" timestamp="1678192391443" />
-    <state x="538" y="151" width="604" height="729" key="find.popup" timestamp="1678192077174">
-      <screen x="0" y="23" width="1680" height="1027" />
-    </state>
-    <state x="538" y="151" width="604" height="729" key="find.popup/0.23.1680.1027@0.23.1680.1027" timestamp="1678192077174" />
   </component>
 </project>
