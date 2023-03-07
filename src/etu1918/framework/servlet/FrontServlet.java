@@ -1,5 +1,6 @@
 package etu1918.framework.servlet;
 
+import etu1918.framework.Mapping;
 import utilPerso.Utilitaire;
 
 import javax.servlet.http.HttpServlet;
@@ -7,9 +8,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.HashMap;
 import java.util.List;
 
 public class FrontServlet extends HttpServlet {
+
+    HashMap<String, Mapping> MappingUrls;
 
     public void ProcessRequest(HttpServletRequest req, HttpServletResponse res) throws IOException {
         res.setContentType("text/plain");
