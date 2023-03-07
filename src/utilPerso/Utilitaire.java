@@ -1,11 +1,11 @@
 package utilPerso;
 
-import org.jetbrains.annotations.Unmodifiable;
 import javax.servlet.http.HttpServletRequest;
+import java.util.Arrays;
 import java.util.List;
 
 public class Utilitaire {
-    public static @Unmodifiable List<String> getInfoURL(HttpServletRequest req) {
-        return List.of(req.getServletPath().split("/"));
+    public static List<String> getInfoURL(HttpServletRequest req) {
+        return Arrays.asList(req.getServletPath().split("/"));
     }
 }

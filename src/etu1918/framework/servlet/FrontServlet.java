@@ -1,4 +1,4 @@
-package servlet;
+package etu1918.framework.servlet;
 
 import utilPerso.Utilitaire;
 
