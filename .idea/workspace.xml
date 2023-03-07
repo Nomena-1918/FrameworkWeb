@@ -4,10 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e4cbbed9-f5ce-4235-90b2-784dd3bb87e0" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/etu1918/framework/Mapping.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-    </list>
+    <list default="true" id="e4cbbed9-f5ce-4235-90b2-784dd3bb87e0" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -117,6 +114,10 @@
       <screen x="0" y="23" width="1680" height="1027" />
     </state>
     <state x="328" y="87" key="SettingsEditor/0.23.1680.1027@0.23.1680.1027" timestamp="1678188981449" />
+    <state x="440" y="255" key="Vcs.Push.Dialog.v2" timestamp="1678192391443">
+      <screen x="0" y="23" width="1680" height="1027" />
+    </state>
+    <state x="440" y="255" key="Vcs.Push.Dialog.v2/0.23.1680.1027@0.23.1680.1027" timestamp="1678192391443" />
     <state x="538" y="151" width="604" height="729" key="find.popup" timestamp="1678192077174">
       <screen x="0" y="23" width="1680" height="1027" />
     </state>
