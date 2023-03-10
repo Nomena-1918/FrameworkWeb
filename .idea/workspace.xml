@@ -4,7 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e4cbbed9-f5ce-4235-90b2-784dd3bb87e0" name="Changes" comment="" />
+    <list default="true" id="e4cbbed9-f5ce-4235-90b2-784dd3bb87e0" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/src/etu1918/framework/servlet/FrontServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/etu1918/framework/servlet/FrontServlet.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
