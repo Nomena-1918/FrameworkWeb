@@ -14,7 +14,7 @@ import java.util.List;
 public class FrontServlet extends HttpServlet {
 
     HashMap<String, Mapping> MappingUrls;
-    
+
 
     public void ProcessRequest(HttpServletRequest req, HttpServletResponse res) throws IOException {
         res.setContentType("text/plain");
