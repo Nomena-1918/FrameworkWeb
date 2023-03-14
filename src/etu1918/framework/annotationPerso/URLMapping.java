@@ -1,10 +1,9 @@
-package etu1918.framework.annotation;
+package etu1918.framework.annotationPerso;
 
 import java.lang.annotation.*;
 
-@Documented
 @Target(ElementType.METHOD)
 @Retention(RetentionPolicy.RUNTIME)
 public @interface URLMapping {
-    String valeur() default "\\";
+    String valeur() default "/";
 }
