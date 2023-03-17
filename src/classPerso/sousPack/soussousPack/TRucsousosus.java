@@ -8,6 +8,5 @@ public class TRucsousosus {
 
     @URLMapping()
     public void aff() {
-
     }
 }

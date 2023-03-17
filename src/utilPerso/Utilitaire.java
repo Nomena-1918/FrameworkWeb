@@ -60,9 +60,17 @@ public class Utilitaire {
         return classes;
     }
 
-    public static HashMap<String, Mapping> initHashMap() throws Exception {
-        String pack = "classPerso";
-        List<Class> listClass = Utilitaire.getClasses(pack);
+    // initPram : Lister des packages à scanner (dans web.xml)
+    // Nouvel argument : String[] listPackages
+    // ET on a ensuite la liste de toutes les classes dans tous les packages
+    public static HashMap<String, Mapping> initHashMap(String[] listPack) throws Exception {
+
+        // Lasa boucler-na par liste
+        List<Class> listClass = new ArrayList<>();
+
+        for (String pack : listPack)
+            listClass.addAll(Utilitaire.getClasses(pack));
+
         Method[] meths;
 
         HashMap<String, Mapping> mappingUrls = new HashMap<>();
@@ -88,9 +96,7 @@ public class Utilitaire {
                 }
             }
         }
-
         return mappingUrls;
-
     }
 }
 

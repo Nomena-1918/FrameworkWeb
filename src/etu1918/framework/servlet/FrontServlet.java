@@ -18,7 +18,13 @@ public class FrontServlet extends HttpServlet {
     @Override
     public void init() throws ServletException {
         try {
-            this.mappingUrls = Utilitaire.initHashMap();
+            // Retrieve the initialization parameter
+            String paramValue = getServletContext().getInitParameter("myParam");
+
+            // Split the parameter value into a list of strings
+            String[] listPack = paramValue.split(",");
+
+            this.mappingUrls = Utilitaire.initHashMap(listPack);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
