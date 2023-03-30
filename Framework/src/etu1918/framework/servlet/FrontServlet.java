@@ -49,7 +49,7 @@ public class FrontServlet extends HttpServlet {
         if(this.mappingUrls.containsKey(url)) {
             Mapping mapping = this.mappingUrls.get(url);
 
-            out.println("C'est ici que ça se passe !");
+            out.println("C'est ici que ça se passe !, modif");
 
             // Instanciation d'un objet de type classname du Mapping
             // Appel de la méthode de l'objet instancié dans mapping par reflection

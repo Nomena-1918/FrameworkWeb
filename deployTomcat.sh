@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Préparation du projet Test-framework-webapp
-cp  -r  "/Users/nomena/TAFF S4 - PC ITU/S4/Web_Dynamique/FrameworkWeb/out/production/Test-framework-webapp/"  "/Users/nomena/TAFF S4 - PC ITU/S4/Web_Dynamique/FrameworkWeb/Test-framework-webapp/WEB-INF/classes/";
+cp  -r -f  "/Users/nomena/TAFF S4 - PC ITU/S4/Web_Dynamique/FrameworkWeb/out/production/Test-framework-webapp/"  "/Users/nomena/TAFF S4 - PC ITU/S4/Web_Dynamique/FrameworkWeb/Test-framework-webapp/WEB-INF/classes/";
 
 
 # Exportation projet Test-framework-webapp -> Test-framework-webapp.war
