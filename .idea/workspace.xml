@@ -5,10 +5,24 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7e97b584-cf9a-4bab-a7f1-44d303f5378a" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Framework/src/etu1918/framework/servlet/FrontServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/Framework/src/etu1918/framework/servlet/FrontServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Test-framework-webapp/Test-framework-webapp.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Test-framework-webapp/Test-framework-webapp.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Test-framework-webapp/Views/salut.html" beforeDir="false" afterPath="$PROJECT_DIR$/Test-framework-webapp/salut.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Test-framework-webapp/WEB-INF/classes/classesTest/Class1.class" beforeDir="false" afterPath="$PROJECT_DIR$/Test-framework-webapp/WEB-INF/classes/classesTest/Class1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Test-framework-webapp/WEB-INF/lib/framework.jar" beforeDir="false" afterPath="$PROJECT_DIR$/Test-framework-webapp/WEB-INF/lib/framework.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Test-framework-webapp/WEB-INF/web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Test-framework-webapp/WEB-INF/web.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Test-framework-webapp/src/classesTest/Class1.java" beforeDir="false" afterPath="$PROJECT_DIR$/Test-framework-webapp/src/classesTest/Class1.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/archives_java/Test-framework-webapp.war" beforeDir="false" afterPath="$PROJECT_DIR$/archives_java/Test-framework-webapp.war" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/archives_java/Test-framework-webapp/META-INF/MANIFEST.MF" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/archives_java/Test-framework-webapp/Test-framework-webapp.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/archives_java/Test-framework-webapp/Views/salut.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/archives_java/Test-framework-webapp/WEB-INF/classes/classesTest/Class1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/archives_java/Test-framework-webapp/WEB-INF/classes/main/Main.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/archives_java/Test-framework-webapp/WEB-INF/lib/framework.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/archives_java/Test-framework-webapp/WEB-INF/web.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/archives_java/Test-framework-webapp/src/classesTest/Class1.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/archives_java/Test-framework-webapp/src/main/Main.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/archives_java/framework.jar" beforeDir="false" afterPath="$PROJECT_DIR$/archives_java/framework.jar" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/deployFramework.sh" beforeDir="false" afterPath="$PROJECT_DIR$/deployFramework.sh" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/deployTomcat.sh" beforeDir="false" afterPath="$PROJECT_DIR$/deployTomcat.sh" afterDir="false" />
     </list>
@@ -73,6 +87,7 @@
       <recent name="$PROJECT_DIR$/Test-framework-webapp/WEB-INF" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/Test-framework-webapp" />
       <recent name="$PROJECT_DIR$/test-framework1" />
       <recent name="$PROJECT_DIR$/framework1/src" />
     </key>
@@ -86,7 +101,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.framework">
+  <component name="RunManager" selected="Application.webapp-test">
     <configuration name="framework" type="Application" factoryName="Application">
       <option name="ALTERNATIVE_JRE_PATH" value="17" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />

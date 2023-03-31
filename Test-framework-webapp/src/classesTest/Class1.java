@@ -7,7 +7,7 @@ import etu1918.framework.mapping.ModelView;
 @Model
 public class Class1 {
 
-    @URLMapping(valeur = "/truc")
+    @URLMapping(valeur = "/truc.run")
     public ModelView getSalut() {
 
         //Manao traitements eto ...

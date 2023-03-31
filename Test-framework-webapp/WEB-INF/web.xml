@@ -12,12 +12,13 @@
             <param-name>packClass</param-name>
 
 <!-- Path absolu du répertoire  obligatoire -->
-            <param-value>/Applications/apache-tomcat-8.5.87/webapps/Test-framework-webapp/WEB-INF/classes</param-value>
+            <param-value>/Applications/apache-tomcat-10/webapps/Test-framework-webapp/WEB-INF/classes</param-value>
         </init-param>
     </servlet>
     <servlet-mapping>
       <servlet-name>FrontServlet</servlet-name>
-      <url-pattern>/</url-pattern>
+     <!--<url-pattern>*.run</url-pattern>-->
+        <url-pattern>/</url-pattern>
     </servlet-mapping>
 
 

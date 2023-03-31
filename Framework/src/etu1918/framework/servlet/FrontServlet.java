@@ -1,13 +1,16 @@
 package etu1918.framework.servlet;
 import etu1918.framework.mapping.Mapping;
+import etu1918.framework.mapping.ModelView;
 import utilPerso.Utilitaire;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.lang.reflect.Method;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -41,7 +44,7 @@ public class FrontServlet extends HttpServlet {
 
         out.println("\n\nMappingUrls :");
 
-        for (Map.Entry me : this.mappingUrls.entrySet()) {
+        for (Map.Entry<String, Mapping> me : this.mappingUrls.entrySet()) {
             out.println("Key : "+me.getKey()+", Value : "+me.getValue());
         }
         out.println("\n\nL'URL est supportée : "+this.mappingUrls.containsKey(url));
@@ -51,12 +54,29 @@ public class FrontServlet extends HttpServlet {
 
             out.println("C'est ici que ça se passe !, modif");
 
+            out.println("ClassName : "+mapping.getClassName());
+            out.println("Méthode : "+mapping.getMethod());
+
             // Instanciation d'un objet de type classname du Mapping
-            // Appel de la méthode de l'objet instancié dans mapping par reflection
+            Class<?> classe = Class.forName(mapping.getClassName());
+            Object object = classe.cast(classe.getDeclaredConstructor().newInstance());
+
+            Method method = classe.getDeclaredMethod(mapping.getMethod());
+
             // Prendre la view dans le ModelView retourné
-            // Dispatch vers la vue correspondante
+            ModelView modelView = (ModelView) method.invoke(object);
+            String view = modelView.getView();
+
+            out.println(view);
+
+            //Dispatch vers la vue correspondante
+            RequestDispatcher dispat = req.getRequestDispatcher(view);
+            dispat.forward(req,res);
 
         }
+
+        else
+            throw new Exception("URL non supportée");
 
     }
     public void doGet(HttpServletRequest req, HttpServletResponse res) throws IOException {
