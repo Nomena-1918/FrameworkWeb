@@ -5,23 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="81a34661-66e0-4489-b53f-c569ec92fcf5" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/servlets.pdf" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FrameworkWeb-webapp/WEB-INF/classes/classPerso/Truc.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/FrameworkWeb-webapp/WEB-INF/classes/classPerso/Truc2.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/FrameworkWeb-webapp/WEB-INF/classes/classPerso/sousPack/TrucSous.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/FrameworkWeb-webapp/WEB-INF/classes/classPerso/sousPack/soussousPack/TRucsousosus.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/FrameworkWeb-webapp/WEB-INF/classes/etu1918/framework/Mapping.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/FrameworkWeb-webapp/WEB-INF/classes/etu1918/framework/annotationPerso/Model.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/FrameworkWeb-webapp/WEB-INF/classes/etu1918/framework/annotationPerso/URLMapping.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/FrameworkWeb-webapp/WEB-INF/classes/etu1918/framework/servlet/FrontServlet.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/FrameworkWeb-webapp/WEB-INF/classes/utilPerso/Utilitaire.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/FrameworkWeb-webapp/WEB-INF/web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/FrameworkWeb-webapp/WEB-INF/web.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/classPerso/sousPack/soussousPack/TRucsousosus.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/classPerso/sousPack/soussousPack/TRucsousosus.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/etu1918/framework/Mapping.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/etu1918/framework/Mapping.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/etu1918/framework/servlet/FrontServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/etu1918/framework/servlet/FrontServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/utilPerso/Utilitaire.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/utilPerso/Utilitaire.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -46,18 +30,23 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/Users/nomena/TAFF S4 - PC ITU/S4/Web_Dynamique/FrameworkWeb&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "jdk.selected.JAVA_MODULE": "17",
+    "last_opened_file_path": "/Users/nomena/Documents/GitHub/S4/FrameworkWeb",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/FrameworkWeb-webapp/WEB-INF/classes" />
@@ -78,8 +67,33 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration default="true" type="JetRunConfigurationType">
+      <module name="test-framework" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
+      <module name="test-framework" />
+      <option name="filePath" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="81a34661-66e0-4489-b53f-c569ec92fcf5" name="Changes" comment="" />
+      <created>1680397193714</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1680397193714</updated>
+      <workItem from="1680397195071" duration="49000" />
+      <workItem from="1680397409275" duration="129000" />
+    </task>
+    <servers />
+  </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
