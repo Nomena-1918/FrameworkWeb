@@ -13,7 +13,7 @@ public class Class1 {
         //Manao traitements eto ...
 
         ModelView m = new ModelView();
-        m.setView("salut.html");
+        m.setView("salut.jsp");
         return m;
     }
 }

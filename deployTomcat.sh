@@ -13,6 +13,10 @@ jar  cvf  "/Users/nomena/TAFF S4 - PC ITU/S4/Web_Dynamique/FrameworkWeb/archives
 
 
 # Déploiement vers Tomcat
-cp -f -v "/Users/nomena/TAFF S4 - PC ITU/S4/Web_Dynamique/FrameworkWeb/archives_java/Test-framework-webapp.war"  "/Applications/apache-tomcat-10/webapps/";
+# Tomcat 10
+#cp -f -v "/Users/nomena/TAFF S4 - PC ITU/S4/Web_Dynamique/FrameworkWeb/archives_java/Test-framework-webapp.war"  "/Applications/apache-tomcat-10/webapps/";
+
+# Tomcat 8
+cp -f -v "/Users/nomena/TAFF S4 - PC ITU/S4/Web_Dynamique/FrameworkWeb/archives_java/Test-framework-webapp.war"  "/Applications/apache-tomcat-8.5.87/webapps/";
 
 

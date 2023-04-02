@@ -4,23 +4,34 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7e97b584-cf9a-4bab-a7f1-44d303f5378a" name="Changes" comment="" />
+    <list default="true" id="81a34661-66e0-4489-b53f-c569ec92fcf5" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/Framework/jakarta-httpcore-4.0-alpha4.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Test-framework-webapp/WEB-INF/classes/classesTest/Config.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Test-framework-webapp/salut.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/servlet_api3.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/servlet_api1.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Framework/Framework.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Framework/Framework.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Framework/src/etu1918/framework/servlet/FrontServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/Framework/src/etu1918/framework/servlet/FrontServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Test-framework-webapp/Test-framework-webapp.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Test-framework-webapp/Test-framework-webapp.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Test-framework-webapp/WEB-INF/lib/framework.jar" beforeDir="false" afterPath="$PROJECT_DIR$/Test-framework-webapp/WEB-INF/lib/framework.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Test-framework-webapp/WEB-INF/web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Test-framework-webapp/WEB-INF/web.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Test-framework-webapp/salut.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Test-framework-webapp/src/classesTest/Class1.java" beforeDir="false" afterPath="$PROJECT_DIR$/Test-framework-webapp/src/classesTest/Class1.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/archives_java/Test-framework-webapp.war" beforeDir="false" afterPath="$PROJECT_DIR$/archives_java/Test-framework-webapp.war" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/archives_java/framework.jar" beforeDir="false" afterPath="$PROJECT_DIR$/archives_java/framework.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/deployFramework.sh" beforeDir="false" afterPath="$PROJECT_DIR$/deployFramework.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/deployTomcat.sh" beforeDir="false" afterPath="$PROJECT_DIR$/deployTomcat.sh" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ComposerSettings">
-    <execution />
-  </component>
-  <component name="ExportToHTMLSettings">
-    <option name="OUTPUT_DIRECTORY" value="$PROJECT_DIR$/exportToHTML" />
-  </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Class" />
-        <option value="HTML File" />
       </list>
     </option>
   </component>
@@ -30,7 +41,7 @@
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
-  <component name="ProjectId" id="2NdNfhR7r8eZfdE86e0Hr2g6bYT" />
+  <component name="ProjectId" id="2MzADH2HOh3n4sFbgGToN4wmX3A" />
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="2" id="Add" />
   </component>
@@ -38,51 +49,42 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
-    &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;jdk.selected.JAVA_MODULE&quot;: &quot;17&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/Users/nomena/TAFF S4 - PC ITU/S4/Web_Dynamique/FrameworkWeb/Test-framework-webapp/WEB-INF&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Libraries&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;ruby.rails.projectView.checked&quot;: &quot;true&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "jdk.selected.JAVA_MODULE": "17",
+    "last_opened_file_path": "/Users/nomena/TAFF S4 - PC ITU/S4/Web_dynamique/FrameworkWeb",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Libraries",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/Test-framework-webapp/WEB-INF" />
+      <recent name="$PROJECT_DIR$/FrameworkWeb-webapp/WEB-INF/classes" />
+      <recent name="$PROJECT_DIR$/src/classPerso" />
+      <recent name="$PROJECT_DIR$/src/etu1918/framework" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/Test-framework-webapp" />
-      <recent name="$PROJECT_DIR$/test-framework1" />
-      <recent name="$PROJECT_DIR$/framework1/src" />
+      <recent name="$PROJECT_DIR$/Framework" />
+      <recent name="$PROJECT_DIR$/FrameworkWeb-webapp/WEB-INF/classes" />
+      <recent name="$PROJECT_DIR$" />
+      <recent name="$PROJECT_DIR$/out/production/FrameworkWeb" />
     </key>
   </component>
-  <component name="RubyModuleManagerSettings">
-    <option name="blackListedRootsPaths">
-      <list>
-        <option value="$PROJECT_DIR$/Test-framework-webapp" />
-        <option value="$PROJECT_DIR$" />
-        <option value="$PROJECT_DIR$/Framework" />
-      </list>
-    </option>
-  </component>
-  <component name="RunManager" selected="Application.webapp-test">
+  <component name="RunManager" selected="Application.web-app">
     <configuration name="framework" type="Application" factoryName="Application">
-      <option name="ALTERNATIVE_JRE_PATH" value="17" />
+      <option name="ALTERNATIVE_JRE_PATH" value="19" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
       <option name="MAIN_CLASS_NAME" value="main.Main" />
       <module name="Framework" />
@@ -90,8 +92,8 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="webapp-test" type="Application" factoryName="Application">
-      <option name="ALTERNATIVE_JRE_PATH" value="17" />
+    <configuration name="web-app" type="Application" factoryName="Application">
+      <option name="ALTERNATIVE_JRE_PATH" value="19" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
       <option name="MAIN_CLASS_NAME" value="main.Main" />
       <module name="Test-framework-webapp" />
@@ -100,11 +102,24 @@
       </method>
     </configuration>
     <list>
-      <item itemvalue="Application.webapp-test" />
+      <item itemvalue="Application.web-app" />
       <item itemvalue="Application.framework" />
     </list>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="81a34661-66e0-4489-b53f-c569ec92fcf5" name="Changes" comment="" />
+      <created>1680397193714</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1680397193714</updated>
+      <workItem from="1680397195071" duration="49000" />
+      <workItem from="1680397409275" duration="1354000" />
+      <workItem from="1680398947510" duration="2135000" />
+    </task>
+    <servers />
+  </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
