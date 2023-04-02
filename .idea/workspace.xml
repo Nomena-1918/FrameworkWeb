@@ -5,6 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="81a34661-66e0-4489-b53f-c569ec92fcf5" name="Changes" comment="">
+
       <change afterPath="$PROJECT_DIR$/Framework/jakarta-httpcore-4.0-alpha4.jar" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/Test-framework-webapp/WEB-INF/classes/classesTest/Config.class" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/Test-framework-webapp/salut.jsp" afterDir="false" />
@@ -22,6 +23,8 @@
       <change beforePath="$PROJECT_DIR$/archives_java/framework.jar" beforeDir="false" afterPath="$PROJECT_DIR$/archives_java/framework.jar" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/deployFramework.sh" beforeDir="false" afterPath="$PROJECT_DIR$/deployFramework.sh" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/deployTomcat.sh" beforeDir="false" afterPath="$PROJECT_DIR$/deployTomcat.sh" afterDir="false" />
+
+
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -51,6 +54,7 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+
     "ASKED_ADD_EXTERNAL_FILES": "true",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
@@ -58,14 +62,17 @@
     "WebServerToolWindowFactoryState": "false",
     "jdk.selected.JAVA_MODULE": "17",
     "last_opened_file_path": "/Users/nomena/TAFF S4 - PC ITU/S4/Web_dynamique/FrameworkWeb",
+
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
+
     "nodejs_package_manager_path": "npm",
     "project.structure.last.edited": "Libraries",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
+
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -92,19 +99,23 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+
     <configuration name="web-app" type="Application" factoryName="Application">
       <option name="ALTERNATIVE_JRE_PATH" value="19" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
       <option name="MAIN_CLASS_NAME" value="main.Main" />
       <module name="Test-framework-webapp" />
+
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+
     <list>
       <item itemvalue="Application.web-app" />
       <item itemvalue="Application.framework" />
     </list>
+
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -115,8 +126,10 @@
       <option name="presentableId" value="Default" />
       <updated>1680397193714</updated>
       <workItem from="1680397195071" duration="49000" />
+
       <workItem from="1680397409275" duration="1354000" />
       <workItem from="1680398947510" duration="2135000" />
+
     </task>
     <servers />
   </component>
