@@ -26,4 +26,14 @@ public class EmpController {
 
         return m;
     }
+
+    @URLMapping(valeur = "/form-emp.run")
+    public ModelView formAddEmp() {
+
+        // La vue à appeler
+        ModelView m = new ModelView();
+        m.setView("form-emp.jsp");
+
+        return m;
+    }
 }
