@@ -1,8 +1,8 @@
 <%--
   Created by IntelliJ IDEA.
   User: nomena
-  Date: 02/04/2023
-  Time: 05:05
+  Date: 04/04/2023
+  Time: 08:47
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -12,9 +12,7 @@
 </head>
 <body>
 
-    <h1>Bienvenue dans ce projet test !</h1>
-
-    <h2>Le seul lien disponible actuellement : <a href="truc.run">truc.run</a> </h2>
+    <h1>Tonga ato am salut.jsp</h1>
 
 </body>
 </html>

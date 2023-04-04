@@ -4,17 +4,42 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="81a34661-66e0-4489-b53f-c569ec92fcf5" name="Changes" comment="" />
+    <list default="true" id="81a34661-66e0-4489-b53f-c569ec92fcf5" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/Test-framework-webapp/Test-framework/WEB-INF/classes/classesTest/Class2.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Test-framework-webapp/Test-framework/bonjour.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Test-framework-webapp/Test-framework/salut.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Test-framework-webapp/src/classesTest/Class2.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Framework/src/etu1918/framework/mapping/ModelView.java" beforeDir="false" afterPath="$PROJECT_DIR$/Framework/src/etu1918/framework/mapping/ModelView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Framework/src/etu1918/framework/servlet/FrontServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/Framework/src/etu1918/framework/servlet/FrontServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Test-framework-webapp/Test-framework-webapp.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Test-framework-webapp/Test-framework-webapp.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Test-framework-webapp/WEB-INF/classes/classesTest/Class1.class" beforeDir="false" afterPath="$PROJECT_DIR$/Test-framework-webapp/Test-framework/WEB-INF/classes/classesTest/Class1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Test-framework-webapp/WEB-INF/classes/classesTest/Config.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Test-framework-webapp/WEB-INF/classes/main/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/Test-framework-webapp/Test-framework/WEB-INF/classes/main/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Test-framework-webapp/WEB-INF/lib/framework.jar" beforeDir="false" afterPath="$PROJECT_DIR$/Test-framework-webapp/Test-framework/WEB-INF/lib/framework.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Test-framework-webapp/WEB-INF/web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Test-framework-webapp/Test-framework/WEB-INF/web.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Test-framework-webapp/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/Test-framework-webapp/Test-framework/index.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Test-framework-webapp/salut.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Test-framework-webapp/test-framework.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/archives_java/Test-framework-webapp.war" beforeDir="false" afterPath="$PROJECT_DIR$/archives_java/Test-framework-webapp.war" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/archives_java/framework.jar" beforeDir="false" afterPath="$PROJECT_DIR$/archives_java/framework.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/deployFramework.sh" beforeDir="false" afterPath="$PROJECT_DIR$/deployFramework.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/deployTomcat.sh" beforeDir="false" afterPath="$PROJECT_DIR$/deployTomcat.sh" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="ComposerSettings">
+    <execution />
+  </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="Jsp File" />
+        <option value="Class" />
+        <option value="HTML File" />
       </list>
     </option>
   </component>
@@ -40,6 +65,7 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "ASKED_ADD_EXTERNAL_FILES": "true",
+    "DefaultHtmlFileTemplate": "HTML File",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
@@ -54,6 +80,7 @@
     "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
+    "ruby.rails.projectView.checked": "true",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -64,6 +91,7 @@
       <recent name="$PROJECT_DIR$/src/etu1918/framework" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/Test-framework-webapp/Test-framework" />
       <recent name="$PROJECT_DIR$/Framework" />
       <recent name="$PROJECT_DIR$/FrameworkWeb-webapp/WEB-INF/classes" />
       <recent name="$PROJECT_DIR$" />
@@ -73,7 +101,6 @@
   <component name="RunManager" selected="Application.web-app">
     <configuration name="framework" type="Application" factoryName="Application">
       <option name="ALTERNATIVE_JRE_PATH" value="19" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
       <option name="MAIN_CLASS_NAME" value="main.Main" />
       <module name="Framework" />
       <method v="2">
@@ -82,7 +109,6 @@
     </configuration>
     <configuration name="web-app" type="Application" factoryName="Application">
       <option name="ALTERNATIVE_JRE_PATH" value="19" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
       <option name="MAIN_CLASS_NAME" value="main.Main" />
       <module name="Test-framework-webapp" />
       <method v="2">

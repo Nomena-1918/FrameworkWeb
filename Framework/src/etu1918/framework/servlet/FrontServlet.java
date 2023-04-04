@@ -68,7 +68,7 @@ public class FrontServlet extends HttpServlet {
             ModelView modelView = (ModelView) method.invoke(object);
             String view = modelView.getView();
 
-            //out.println(view);
+            out.println(view);
 
             //Dispatch vers la vue correspondante
             RequestDispatcher dispat = req.getRequestDispatcher(view);
