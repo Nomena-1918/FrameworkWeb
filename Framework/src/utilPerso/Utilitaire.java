@@ -1,5 +1,6 @@
 package utilPerso;
 
+import etu1918.framework.annotationPerso.Controller;
 import etu1918.framework.mapping.Mapping;
 import etu1918.framework.annotationPerso.Model;
 import etu1918.framework.annotationPerso.URLMapping;
@@ -14,30 +15,6 @@ public class Utilitaire {
     public static List<String> getInfoURL(HttpServletRequest req) {
         return Arrays.asList(req.getServletPath().split("/"));
     }
-
-    /*
-    public static List<Class> getClasses(String packageName) throws Exception {
-        ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
-        String path = packageName.replace('.', '/');
-        Enumeration<URL> resources = classLoader.getResources(path);
-
-        List<File> dirs = new ArrayList<File>();
-
-        URL resource;
-        URI uri;
-
-        while (resources.hasMoreElements()) {
-            resource = resources.nextElement();
-            uri = new URI(resource.toString());
-            dirs.add(new File(uri.getPath()));
-        }
-        List<Class> classes = new ArrayList<Class>();
-        for (File directory : dirs) {
-            classes.addAll(findClasses(directory, packageName));
-        }
-        return classes;
-    }
-*/
 
     public static List<Class> getClasses(String path) throws Exception {
         List<Class> classes = new ArrayList<Class>();
@@ -94,7 +71,7 @@ public class Utilitaire {
         Mapping mapping;
 
         for (Class c : listClass) {
-            if (c.isAnnotationPresent(Model.class)) {
+            if (c.isAnnotationPresent(Controller.class)) {
                 meths = c.getDeclaredMethods();
                 for (Method m : meths) {
                     if (m.isAnnotationPresent(URLMapping.class)) {

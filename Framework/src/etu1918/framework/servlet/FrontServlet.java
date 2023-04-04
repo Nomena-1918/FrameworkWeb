@@ -31,7 +31,7 @@ public class FrontServlet extends HttpServlet {
     public void ProcessRequest(HttpServletRequest req, HttpServletResponse res) throws Exception {
         res.setContentType("text/plain");
         PrintWriter out = res.getWriter();
-        out.println("Tous les chemins menent a moi : "+this.getClass().getName());
+        out.println("Bienvenue dans la page de debug : "+this.getClass().getName());
 
         String url = req.getServletPath();
         out.println("URL : "+url);
@@ -39,24 +39,19 @@ public class FrontServlet extends HttpServlet {
         List<String> params = Utilitaire.getInfoURL(req);
         out.println("\n\nApres decomposition : ");
 
-        for (String s : params) {
+        for (String s : params)
             out.println(s);
-        }
+
 
         out.println("\n\nMappingUrls :");
 
-        for (Map.Entry<String, Mapping> me : this.mappingUrls.entrySet()) {
+        for (Map.Entry<String, Mapping> me : this.mappingUrls.entrySet())
             out.println("Key : "+me.getKey()+", Value : "+me.getValue());
-        }
+
         out.println("\n\nL'URL est supportée : "+this.mappingUrls.containsKey(url));
 
         if(this.mappingUrls.containsKey(url)) {
             Mapping mapping = this.mappingUrls.get(url);
-
-            out.println("C'est ici que ça se passe !, modif");
-
-            out.println("ClassName : "+mapping.getClassName());
-            out.println("Méthode : "+mapping.getMethod());
 
             // Instanciation d'un objet de type classname du Mapping
             Class<?> classe = Class.forName(mapping.getClassName());
@@ -68,7 +63,19 @@ public class FrontServlet extends HttpServlet {
             ModelView modelView = (ModelView) method.invoke(object);
             String view = modelView.getView();
 
-            out.println(view);
+            HashMap<String, Object> dataHsh;
+
+            // Prendre les data dans le ModelView
+            if (modelView.getData() != null)
+                dataHsh = modelView.getData();
+
+            else
+                throw new Exception("modelView.getData() n'est pas une instance de HashMap<String, Object>");
+
+            // Les mettre dans les attributs de la requête
+            for (Map.Entry<String, Object> m : dataHsh.entrySet()) {
+                req.setAttribute(m.getKey(), m.getValue());
+            }
 
             //Dispatch vers la vue correspondante
             RequestDispatcher dispat = req.getRequestDispatcher(view);

@@ -1,10 +1,4 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: nomena
-  Date: 02/04/2023
-  Time: 05:05
-  To change this template use File | Settings | File Templates.
---%>
+
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!doctype html>
 <html>
@@ -15,7 +9,12 @@
 
     <h1>Bienvenue dans ce projet test !</h1>
 
-    <h2>Le seul lien disponible actuellement : <a href="truc.run">truc.run</a> </h2>
+    <h2>Les liens disponibles actuellement :  </h2>
+
+    <ul>
+        <li><h3><a href="truc.run">truc.run</a></h3></li>
+        <li><h3><a href="list-emp.run">list-emp.run</a></h3></li>
+    </ul>
 
 </body>
 </html>

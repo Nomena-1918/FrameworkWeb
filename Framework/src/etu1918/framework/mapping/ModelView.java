@@ -1,16 +1,18 @@
 package etu1918.framework.mapping;
 
+import java.util.HashMap;
+
 public class ModelView {
     String view;
-    //HashMap data
+    HashMap<String, Object> data;
 
     public ModelView() {
+        this.data = new HashMap<>();
     }
-
-    //addItem dans data
 
     public ModelView(String view) {
         this.view = view;
+        this.data = new HashMap<>();
     }
 
     public String getView() {
@@ -19,5 +21,13 @@ public class ModelView {
 
     public void setView(String view) {
         this.view = view;
+    }
+
+    public HashMap<String, Object> getData() {
+        return data;
+    }
+
+    public void addItem(String key, Object o){
+        this.data.put(key, o);
     }
 }
