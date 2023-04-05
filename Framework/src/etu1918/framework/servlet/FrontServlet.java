@@ -42,7 +42,6 @@ public class FrontServlet extends HttpServlet {
         for (String s : params)
             out.println(s);
 
-
         out.println("\n\nMappingUrls :");
 
         for (Map.Entry<String, Mapping> me : this.mappingUrls.entrySet())
@@ -59,8 +58,10 @@ public class FrontServlet extends HttpServlet {
 
             Method method = classe.getDeclaredMethod(mapping.getMethod());
 
+            //HashMap<String, Object> dans invoke
+
             // Prendre la view dans le ModelView retourné
-            ModelView modelView = (ModelView) method.invoke(object);
+            ModelView modelView = (ModelView) method.invoke(object );
             String view = modelView.getView();
 
             HashMap<String, Object> dataHsh;

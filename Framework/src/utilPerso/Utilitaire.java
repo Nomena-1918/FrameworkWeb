@@ -91,5 +91,15 @@ public class Utilitaire {
         return mappingUrls;
 
     }
+
+    public static boolean isNumeric(String s)
+    {
+        if (s == null || s.equals("")) {
+            return false;
+        }
+
+        return s.chars().allMatch(Character::isDigit);
+    }
+
 }
 
