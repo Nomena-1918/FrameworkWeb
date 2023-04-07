@@ -12,9 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.lang.reflect.Method;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class FrontServlet extends HttpServlet {
     HashMap<String, Mapping> mappingUrls;
@@ -45,9 +43,16 @@ public class FrontServlet extends HttpServlet {
         out.println("\n\nMappingUrls :");
 
         for (Map.Entry<String, Mapping> me : this.mappingUrls.entrySet())
-            out.println("Key : "+me.getKey()+", Value : "+me.getValue());
+            out.println("Key : "+me.getKey()+", Classe : "+me.getValue().getClassName()+", Méthode : "+me.getValue().getMethod());
 
         out.println("\n\nL'URL est supportée : "+this.mappingUrls.containsKey(url));
+        out.println("\nLes params du formulaire :");
+
+        HashMap<String, String[]> formData = (HashMap<String, String[]>) req.getParameterMap();
+
+        for (Map.Entry<String, String[]> me : formData.entrySet())
+            out.println(me.getKey()+" : "+ Arrays.toString(me.getValue()));
+
 
         if(this.mappingUrls.containsKey(url)) {
             Mapping mapping = this.mappingUrls.get(url);
@@ -63,6 +68,7 @@ public class FrontServlet extends HttpServlet {
             // Prendre la view dans le ModelView retourné
             ModelView modelView = (ModelView) method.invoke(object );
             String view = modelView.getView();
+
 
             HashMap<String, Object> dataHsh;
 
@@ -81,6 +87,8 @@ public class FrontServlet extends HttpServlet {
             //Dispatch vers la vue correspondante
             RequestDispatcher dispat = req.getRequestDispatcher(view);
             dispat.forward(req,res);
+
+            out.println("Vue :"+view+" absente");
 
         }
 

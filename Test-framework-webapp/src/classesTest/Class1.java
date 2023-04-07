@@ -12,7 +12,6 @@ public class Class1 {
     public ModelView getSalut() {
 
         //Manao traitements eto ...
-
         ModelView m = new ModelView();
         m.setView("salut.jsp");
         return m;

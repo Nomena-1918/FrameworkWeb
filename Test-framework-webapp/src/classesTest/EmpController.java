@@ -35,18 +35,15 @@ public class EmpController {
         // La vue à appeler
         ModelView m = new ModelView();
         m.setView("form-emp.jsp");
-/*
-        Method f = this.getClass().getMethod("formAddEmp");
-        f.getReturnType();
-*/
+
         return m;
 
     }
 
     // La fonction ne retourne pas un ModelView
     // donc elle fait des traitements (avec des données venant d'une vue ou non)
-    @URLMapping(valeur = "/form-emp.run")
-    public ModelView insertEmp(String nom, String matricule) throws NoSuchMethodException {
+    /*@URLMapping(valeur = "/form-emp-add.run")
+    public ModelView insertEmp(HashMap<String, String[]> nomMatricule) throws NoSuchMethodException {
 
         // La vue à appeler
         ModelView m = new ModelView();
@@ -54,8 +51,8 @@ public class EmpController {
 /*
         Method f = this.getClass().getMethod("formAddEmp");
         f.getReturnType();
-*/
-        return m;
 
+        return m;
     }
+    */
 }
