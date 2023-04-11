@@ -4,13 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="81a34661-66e0-4489-b53f-c569ec92fcf5" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/Framework/src/etu1918/framework/annotationPerso/Controller.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Framework/src/etu1918/framework/annotationPerso/Model.java" beforeDir="false" afterPath="$PROJECT_DIR$/Framework/src/etu1918/framework/annotationPerso/Model.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Framework/src/utilPerso/Utilitaire.java" beforeDir="false" afterPath="$PROJECT_DIR$/Framework/src/utilPerso/Utilitaire.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Test-framework-webapp/src/classesTest/Class1.java" beforeDir="false" afterPath="$PROJECT_DIR$/Test-framework-webapp/src/classesTest/Class1.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Test-framework-webapp/src/classesTest/EmpController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Test-framework-webapp/src/classesTest/EmpController.java" afterDir="false" />
-    </list>
+    <list default="true" id="81a34661-66e0-4489-b53f-c569ec92fcf5" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
