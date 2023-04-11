@@ -7,10 +7,53 @@ import etu1918.framework.annotationPerso.URLMapping;
 import javax.servlet.http.HttpServletRequest;
 import java.io.File;
 import java.lang.annotation.Annotation;
+import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.util.*;
 
 public class Utilitaire {
+
+    // Setters
+    public List<Method> getSetters() {
+        List<Method> setters = new ArrayList<>();
+
+        Method[] methods = this.getClass().getDeclaredMethods();
+
+        for (int i = 0; i < methods.length; i++) {
+
+            if (methods[i].getName().startsWith("set") == true) {
+                setters.add(methods[i]);
+            }
+        }
+        return setters;
+    }
+
+
+    // Setters valides : Correspondants bien aux attributs
+    public List<Method> getSettersOK() {
+
+        List<Method> setters = this.getSetters();
+        List<Method> settersOk = new ArrayList<>();
+
+        Field[] fields = this.getClass().getDeclaredFields();
+
+        String s1;
+
+        for(int i = 0; i<setters.size(); i++) {
+
+            s1 = setters.get(i).getName().substring(3);
+
+            for (Field f : fields) {
+                if (s1.equalsIgnoreCase(f.getName())) {
+                    settersOk.add(setters.get(i));
+                }
+            }
+
+        }
+
+        return settersOk;
+    }
+
     public static List<String> getInfoURL(HttpServletRequest req) {
         return Arrays.asList(req.getServletPath().split("/"));
     }

@@ -5,14 +5,13 @@ import etu1918.framework.annotationPerso.URLMapping;
 import etu1918.framework.mapping.ModelView;
 
 @Model
-public class Class1 {
+public class Test {
 
-    @URLMapping(valeur = "/truc.run")
-    public ModelView getSalut() {
-
-        //Manao traitements eto ...
+    @URLMapping(valeur = "/first-test.run")
+    public ModelView affFirstView() {
         ModelView m = new ModelView();
-        m.setView("salut.jsp");
+        m.setView("firstView.jsp");
         return m;
     }
+
 }
