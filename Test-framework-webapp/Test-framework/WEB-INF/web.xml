@@ -21,11 +21,5 @@
       <servlet-name>FrontServlet</servlet-name>
         <url-pattern>*.run</url-pattern>
     </servlet-mapping>
-<!--
-    <servlet-mapping>
-        <servlet-name>FrontServlet</servlet-name>
-        <url-pattern>/</url-pattern>
-    </servlet-mapping>
--->
 
 </web-app>
