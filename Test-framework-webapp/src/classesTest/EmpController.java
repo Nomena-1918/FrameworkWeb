@@ -1,15 +1,14 @@
 package classesTest;
 
 import business.Emp;
-import etu1918.framework.annotationPerso.Controller;
+import etu1918.framework.annotationPerso.Model;
 import etu1918.framework.annotationPerso.URLMapping;
 import etu1918.framework.mapping.ModelView;
 
-import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
 
-@Controller
+@Model
 public class EmpController {
     @URLMapping(valeur = "/list-emp.run")
     public ModelView findAll() {

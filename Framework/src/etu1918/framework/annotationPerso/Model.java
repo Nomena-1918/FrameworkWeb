@@ -6,5 +6,4 @@ import java.lang.annotation.*;
 @Retention(RetentionPolicy.RUNTIME)
 public @interface Model {
     String name() default "classe modely";
-    boolean isDAO() default false;
 }

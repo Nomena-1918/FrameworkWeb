@@ -4,24 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-<<<<<<< Updated upstream
     <list default="true" id="81a34661-66e0-4489-b53f-c569ec92fcf5" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Framework/src/etu1918/framework/servlet/FrontServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/Framework/src/etu1918/framework/servlet/FrontServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Test-framework-webapp/Test-framework/WEB-INF/classes/classesTest/Class1.class" beforeDir="false" afterPath="$PROJECT_DIR$/Test-framework-webapp/Test-framework/WEB-INF/classes/classesTest/Class1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Test-framework-webapp/Test-framework/WEB-INF/classes/classesTest/EmpController.class" beforeDir="false" afterPath="$PROJECT_DIR$/Test-framework-webapp/Test-framework/WEB-INF/classes/classesTest/EmpController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Test-framework-webapp/Test-framework/WEB-INF/lib/framework.jar" beforeDir="false" afterPath="$PROJECT_DIR$/Test-framework-webapp/Test-framework/WEB-INF/lib/framework.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Test-framework-webapp/Test-framework/form-emp.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/Test-framework-webapp/Test-framework/form-emp.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Test-framework-webapp/Test-framework/list-emp.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/Test-framework-webapp/Test-framework/list-emp.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Test-framework-webapp/Test-framework/salut.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/Test-framework-webapp/Test-framework/salut.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Framework/src/etu1918/framework/annotationPerso/Controller.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Framework/src/etu1918/framework/annotationPerso/Model.java" beforeDir="false" afterPath="$PROJECT_DIR$/Framework/src/etu1918/framework/annotationPerso/Model.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Framework/src/utilPerso/Utilitaire.java" beforeDir="false" afterPath="$PROJECT_DIR$/Framework/src/utilPerso/Utilitaire.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Test-framework-webapp/src/classesTest/Class1.java" beforeDir="false" afterPath="$PROJECT_DIR$/Test-framework-webapp/src/classesTest/Class1.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Test-framework-webapp/src/classesTest/EmpController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Test-framework-webapp/src/classesTest/EmpController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/archives_java/Test-framework-webapp.war" beforeDir="false" afterPath="$PROJECT_DIR$/archives_java/Test-framework-webapp.war" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/archives_java/framework.jar" beforeDir="false" afterPath="$PROJECT_DIR$/archives_java/framework.jar" afterDir="false" />
     </list>
-=======
-    <list default="true" id="81a34661-66e0-4489-b53f-c569ec92fcf5" name="Changes" comment="" />
->>>>>>> Stashed changes
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -88,11 +77,11 @@
       <recent name="$PROJECT_DIR$/src/etu1918/framework" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/Test-framework-webapp" />
       <recent name="$PROJECT_DIR$/Test-framework-webapp/Test-framework" />
       <recent name="$PROJECT_DIR$/Framework" />
       <recent name="$PROJECT_DIR$/FrameworkWeb-webapp/WEB-INF/classes" />
       <recent name="$PROJECT_DIR$" />
-      <recent name="$PROJECT_DIR$/out/production/FrameworkWeb" />
     </key>
   </component>
   <component name="RunManager" selected="Application.web-app">

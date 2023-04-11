@@ -1,8 +1,7 @@
 package utilPerso;
 
-import etu1918.framework.annotationPerso.Controller;
-import etu1918.framework.mapping.Mapping;
 import etu1918.framework.annotationPerso.Model;
+import etu1918.framework.mapping.Mapping;
 import etu1918.framework.annotationPerso.URLMapping;
 
 import javax.servlet.http.HttpServletRequest;
@@ -71,7 +70,7 @@ public class Utilitaire {
         Mapping mapping;
 
         for (Class c : listClass) {
-            if (c.isAnnotationPresent(Controller.class)) {
+            if (c.isAnnotationPresent(Model.class)) {
                 meths = c.getDeclaredMethods();
                 for (Method m : meths) {
                     if (m.isAnnotationPresent(URLMapping.class)) {
