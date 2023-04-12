@@ -32,10 +32,10 @@ public class FrontServlet extends HttpServlet {
         out.println("Bienvenue dans la page de debug : " + this.getClass().getName());
 
         String url = req.getServletPath();
-        out.println("URL : " + url);
+        out.println("\nURL : " + url);
 
         List<String> params = Utilitaire.getInfoURL(req);
-        out.println("\n\nApres decomposition : ");
+        out.println("\nApres decomposition : ");
 
         for (String s : params)
             out.println(s);
@@ -43,32 +43,10 @@ public class FrontServlet extends HttpServlet {
         out.println("\n\nMappingUrls :");
 
         for (Map.Entry<String, Mapping> me : this.mappingUrls.entrySet())
-            out.println("Key : " + me.getKey() + ", Classe : " + me.getValue().getClassName() + ", Méthode : " + me.getValue().getMethod());
+            out.println("URL : " + me.getKey() + " Classe : " + me.getValue().getClassName() + ", Méthode : " + me.getValue().getMethod());
 
         out.println("\n\nL'URL est supportée : " + this.mappingUrls.containsKey(url));
 
-
-        // Affichage des paramètres des formulaires
-
-        out.println("\nParamètres du formulaire :");
-
-
-        Enumeration<String> nomsParam = req.getParameterNames();
-        String[] valeurParam;
-        String nomParam;
-
-        while(nomsParam.hasMoreElements()) {
-            nomParam = nomsParam.nextElement();
-
-            out.println("\n"+nomParam + " : ");
-
-            valeurParam = req.getParameterValues(nomParam);
-
-            for (String s : valeurParam) {
-                out.print(s + "\n");
-            }
-
-        }
         /*
         /// Tsy mandeha lay HashMap
         // Traitement des données envoyées par formulaire
@@ -87,10 +65,72 @@ public class FrontServlet extends HttpServlet {
         if (this.mappingUrls.containsKey(url)) {
             Mapping mapping = this.mappingUrls.get(url);
 
-
             // Instanciation d'un objet de type classname du Mapping
             Class<?> classe = Class.forName(mapping.getClassName());
             Object object = classe.cast(classe.getDeclaredConstructor().newInstance());
+
+
+            // Association pairs (name, value) du formulaire avec les setters de object
+            out.println("\nParamètres du formulaire :\n");
+
+            Enumeration<String> nomsParam = req.getParameterNames();
+            String[] valeurParam;
+            Object valeur;
+            String nomParam, Param, setter, lo, geTest;
+            Method getter;
+
+            while (nomsParam.hasMoreElements()) {
+
+                nomParam = nomsParam.nextElement();
+
+                // Rendre la 1ère lettre du paramétre majuscule, pour le setter
+                lo = nomParam.substring(0, 1).toUpperCase();
+                Param = lo + nomParam.substring(1);
+
+                // Création du setter
+                setter = "set".concat(Param);
+
+                out.println("Setter : "+setter);
+
+                // Arg setter
+                valeurParam = req.getParameterValues(nomParam);
+
+                if (valeurParam.length == 1) {
+                    valeur = valeurParam[0];
+
+                    out.println("arg : "+ valeur);
+
+                    // Appel setter généralisé
+                    Utilitaire.toSet(setter, object, valeur);
+
+                    out.println("\n\t-> Setter appelé avec succès !\n");
+
+                    // Test setter avec getter
+                    geTest = "get"+Param;
+
+                    out.println("\t-> Test setter : "+ geTest + " = "+Utilitaire.toGet(geTest, object)+"\n");
+
+                }
+                else {
+                    valeur = valeurParam;
+                    out.println("\n\t-> Gestion des paramètres String[] pas encore implémentée !\n");
+                }
+                /*
+                    out.println("arg : "+ Arrays.toString(valeurParam));
+
+                    // Appel setter généralisé
+                    Utilitaire.toSet(setter, object, Arrays.toString(valeurParam));
+
+                    out.println("\n\t-> Setter appelé avec succès !\n");
+
+                    // Test setter avec getter
+                    geTest = "get"+Param;
+
+                    out.println("\t-> Test setter : "+ geTest + " = "+Utilitaire.toGet(geTest, object)+"\n");
+
+                 */
+
+            }
 
             Method method = classe.getDeclaredMethod(mapping.getMethod());
 

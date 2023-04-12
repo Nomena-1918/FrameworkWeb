@@ -3,26 +3,29 @@ package utilPerso;
 import etu1918.framework.annotationPerso.Model;
 import etu1918.framework.mapping.Mapping;
 import etu1918.framework.annotationPerso.URLMapping;
+import etu1918.framework.mapping.ModelView;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.File;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.*;
 
 public class Utilitaire {
 
-    // Setters
-    public List<Method> getSetters() {
+    // ===================== SETTERS ===================== //
+
+    // Tous les setters
+    public static List<Method> getSetters(Object o) {
         List<Method> setters = new ArrayList<>();
 
-        Method[] methods = this.getClass().getDeclaredMethods();
+        Method[] methods = o.getClass().getDeclaredMethods();
 
-        for (int i = 0; i < methods.length; i++) {
-
-            if (methods[i].getName().startsWith("set") == true) {
-                setters.add(methods[i]);
+        for (Method method : methods) {
+            if (method.getName().startsWith("set")) {
+                setters.add(method);
             }
         }
         return setters;
@@ -30,28 +33,80 @@ public class Utilitaire {
 
 
     // Setters valides : Correspondants bien aux attributs
-    public List<Method> getSettersOK() {
+    public static List<Method> getSettersOK(Object o) {
 
-        List<Method> setters = this.getSetters();
+        List<Method> setters = Utilitaire.getSetters(o);
         List<Method> settersOk = new ArrayList<>();
 
-        Field[] fields = this.getClass().getDeclaredFields();
+        return getMethods(o, setters, settersOk);
+    }
+
+    public static void toSet(String set, Object object, Object arg) throws Exception {
+
+        Method setter = object.getClass().getDeclaredMethod(set, String.class);
+        if (Utilitaire.getSettersOK(object).contains(setter)) {
+
+            // Appeler le setter
+            setter.invoke(object, arg.toString());
+        }
+        else
+            throw new Exception("Setter : "+set+" invalide");
+    }
+
+    // -------------------- GETTERS -------------------------------------- //
+
+    // Tous les getters
+    public static List<Method> getGetters(Object o) {
+        List<Method> getters = new ArrayList<>();
+
+        Method[] methods = o.getClass().getDeclaredMethods();
+
+        for (Method method : methods) {
+            if (method.getName().startsWith("get")) {
+                getters.add(method);
+            }
+        }
+        return getters;
+    }
+
+    // Getters valides : Correspondants bien aux attributs
+    public static List<Method> getGettersOK(Object o) {
+
+        List<Method> getters = Utilitaire.getGetters(o), gettersOk;
+        gettersOk = new ArrayList<>();
+
+        return getMethods(o, getters, gettersOk);
+    }
+
+    private static List<Method> getMethods(Object o, List<Method> getters, List<Method> gettersOk) {
+        Field[] fields = o.getClass().getDeclaredFields();
 
         String s1;
 
-        for(int i = 0; i<setters.size(); i++) {
+        for (Method getter : getters) {
 
-            s1 = setters.get(i).getName().substring(3);
+            s1 = getter.getName().substring(3);
 
             for (Field f : fields) {
                 if (s1.equalsIgnoreCase(f.getName())) {
-                    settersOk.add(setters.get(i));
+                    gettersOk.add(getter);
                 }
             }
-
         }
+        return gettersOk;
+    }
 
-        return settersOk;
+    public static Object toGet(String get, Object object) throws Exception {
+
+        Method getter = object.getClass().getDeclaredMethod(get);
+        if (Utilitaire.getGettersOK(object).contains(getter)) {
+
+            // Appeler le setter
+            return getter.invoke(object);
+        }
+        else
+            throw new Exception("Getter : "+get+" invalide");
+
     }
 
     public static List<String> getInfoURL(HttpServletRequest req) {

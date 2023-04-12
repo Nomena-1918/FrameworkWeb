@@ -3,9 +3,11 @@ package classesTest;
 import etu1918.framework.annotationPerso.Model;
 import etu1918.framework.annotationPerso.URLMapping;
 import etu1918.framework.mapping.ModelView;
+import utilPerso.Utilitaire;
 
 import java.util.ArrayList;
 import java.util.List;
+
 
 @Model
 public class Emp {
@@ -34,6 +36,15 @@ public class Emp {
         return m;
     }
 
+    @URLMapping(valeur = "/form-data.run")
+    public ModelView affFormData() {
+        ModelView m = new ModelView();
+
+        m.addItem("formData", this);
+        m.setView("formDataView.jsp");
+
+        return m;
+    }
 
     public Emp(int matricule, String nom) {
         this.matricule = matricule;
@@ -47,8 +58,9 @@ public class Emp {
         return matricule;
     }
 
-    public void setMatricule(int matricule) {
-        this.matricule = matricule;
+    public void setMatricule(String matricule) {
+        if (Utilitaire.isNumeric(matricule))
+            this.matricule = Integer.parseInt(matricule);
     }
 
     public String getNom() {

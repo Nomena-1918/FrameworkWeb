@@ -29,7 +29,7 @@
 </head>
 <body>
 
-<h1>  Bienvenue dans list-emp.jsp  </h1>
+<h1>  Bienvenue dans listEmp.jsp  </h1>
 <h2> La liste des employés :</h2>
 
 <% for(Emp e : list) { %>

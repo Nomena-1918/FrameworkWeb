@@ -12,7 +12,7 @@
 </head>
 <body>
 
-  <form action="sssss.run" method="post">
+  <form action="form-data.run" method="post">
     <div>
       <label for="matricule">Matricule :</label>
       <input type="number" id="matricule" name="matricule">

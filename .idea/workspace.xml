@@ -5,31 +5,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="81a34661-66e0-4489-b53f-c569ec92fcf5" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Test-framework-webapp/Test-framework/WEB-INF/classes/classesTest/Emp.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Test-framework-webapp/Test-framework/WEB-INF/classes/classesTest/Test.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Test-framework-webapp/Test-framework/formEmp.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Test-framework-webapp/Test-framework/listEmp.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Test-framework-webapp/src/classesTest/Emp.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Test-framework-webapp/src/classesTest/Test.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/clean.sh" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Test-framework-webapp/Test-framework/formDataView.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/deploy.sh" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Framework/src/etu1918/framework/servlet/FrontServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/Framework/src/etu1918/framework/servlet/FrontServlet.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Framework/src/utilPerso/Utilitaire.java" beforeDir="false" afterPath="$PROJECT_DIR$/Framework/src/utilPerso/Utilitaire.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Test-framework-webapp/Test-framework/WEB-INF/classes/business/Emp.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Test-framework-webapp/Test-framework/WEB-INF/classes/classesTest/Class1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Test-framework-webapp/Test-framework/WEB-INF/classes/classesTest/EmpController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Test-framework-webapp/Test-framework/WEB-INF/classes/main/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/Test-framework-webapp/Test-framework/WEB-INF/classes/main/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Test-framework-webapp/Test-framework/WEB-INF/classes/classesTest/Emp.class" beforeDir="false" afterPath="$PROJECT_DIR$/Test-framework-webapp/Test-framework/WEB-INF/classes/classesTest/Emp.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Test-framework-webapp/Test-framework/WEB-INF/lib/framework.jar" beforeDir="false" afterPath="$PROJECT_DIR$/Test-framework-webapp/Test-framework/WEB-INF/lib/framework.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Test-framework-webapp/Test-framework/form-emp.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Test-framework-webapp/Test-framework/formEmp.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/Test-framework-webapp/Test-framework/formEmp.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Test-framework-webapp/Test-framework/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/Test-framework-webapp/Test-framework/index.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Test-framework-webapp/Test-framework/list-emp.jsp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Test-framework-webapp/Test-framework/salut.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/Test-framework-webapp/Test-framework/firstView.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Test-framework-webapp/src/business/Emp.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Test-framework-webapp/src/classesTest/Class1.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Test-framework-webapp/src/classesTest/EmpController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Test-framework-webapp/src/main/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/Test-framework-webapp/src/main/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Test-framework-webapp/Test-framework/listEmp.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/Test-framework-webapp/Test-framework/listEmp.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Test-framework-webapp/src/classesTest/Emp.java" beforeDir="false" afterPath="$PROJECT_DIR$/Test-framework-webapp/src/classesTest/Emp.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/archives_java/Test-framework-webapp.war" beforeDir="false" afterPath="$PROJECT_DIR$/archives_java/Test-framework-webapp.war" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/archives_java/framework.jar" beforeDir="false" afterPath="$PROJECT_DIR$/archives_java/framework.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/clean.sh" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -68,28 +57,29 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
-    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;jdk.selected.JAVA_MODULE&quot;: &quot;17&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/Users/nomena/TAFF S4 - PC ITU/S4/Web_dynamique/FrameworkWeb&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;ruby.rails.projectView.checked&quot;: &quot;true&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "DefaultHtmlFileTemplate": "HTML File",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "extract.method.default.visibility": "private",
+    "jdk.selected.JAVA_MODULE": "17",
+    "last_opened_file_path": "/Users/nomena/TAFF S4 - PC ITU/S4/Web_dynamique/FrameworkWeb",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "ruby.rails.projectView.checked": "true",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/FrameworkWeb-webapp/WEB-INF/classes" />
@@ -104,7 +94,7 @@
       <recent name="$PROJECT_DIR$" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.framework">
+  <component name="RunManager" selected="Application.web-app">
     <configuration name="framework" type="Application" factoryName="Application">
       <option name="ALTERNATIVE_JRE_PATH" value="19" />
       <option name="MAIN_CLASS_NAME" value="main.Main" />
