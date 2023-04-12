@@ -15,68 +15,40 @@ import java.util.*;
 
 public class Utilitaire {
 
-    // ===================== SETTERS ===================== //
-
-    // Tous les setters
-    public static List<Method> getSetters(Object o) {
-        List<Method> setters = new ArrayList<>();
+// ===================== COMMUN : SETTERS et GETTERS ===================== //
+    // Tous les setters ou getters
+    public static List<Method> getAllMethodSG(Object o, String Set_Or_Get) {
+        List<Method> meths = new ArrayList<>();
 
         Method[] methods = o.getClass().getDeclaredMethods();
 
         for (Method method : methods) {
-            if (method.getName().startsWith("set")) {
-                setters.add(method);
+            if (method.getName().startsWith(Set_Or_Get)) {
+                meths.add(method);
             }
         }
-        return setters;
+        return meths;
     }
 
 
-    // Setters valides : Correspondants bien aux attributs
-    public static List<Method> getSettersOK(Object o) {
+    // Setters ou Getters valides : Correspondants bien aux attributs
+    public static List<Method> getMethodSG_OK(Object o, String Set_Or_Get) {
 
-        List<Method> setters = Utilitaire.getSetters(o);
+        List<Method> setters = Utilitaire.getAllMethodSG(o, Set_Or_Get);
         List<Method> settersOk = new ArrayList<>();
 
         return getMethods(o, setters, settersOk);
     }
 
-    public static void toSet(String set, Object object, Object arg) throws Exception {
+    // Setters ou Getters valides (pour formulaire) : Correspondants bien aux attributs + S
+    public static List<Method> getMethodSG_OK_str(Object o, String Set_Or_Get) {
 
-        Method setter = object.getClass().getDeclaredMethod(set, String.class);
-        if (Utilitaire.getSettersOK(object).contains(setter)) {
+        List<Method> setters = Utilitaire.getAllMethodSG(o, Set_Or_Get);
+        List<Method> settersOk = new ArrayList<>();
 
-            // Appeler le setter
-            setter.invoke(object, arg.toString());
-        }
-        else
-            throw new Exception("Setter : "+set+" invalide");
+        return getMethods(o, setters, settersOk);
     }
 
-    // -------------------- GETTERS -------------------------------------- //
-
-    // Tous les getters
-    public static List<Method> getGetters(Object o) {
-        List<Method> getters = new ArrayList<>();
-
-        Method[] methods = o.getClass().getDeclaredMethods();
-
-        for (Method method : methods) {
-            if (method.getName().startsWith("get")) {
-                getters.add(method);
-            }
-        }
-        return getters;
-    }
-
-    // Getters valides : Correspondants bien aux attributs
-    public static List<Method> getGettersOK(Object o) {
-
-        List<Method> getters = Utilitaire.getGetters(o), gettersOk;
-        gettersOk = new ArrayList<>();
-
-        return getMethods(o, getters, gettersOk);
-    }
 
     private static List<Method> getMethods(Object o, List<Method> getters, List<Method> gettersOk) {
         Field[] fields = o.getClass().getDeclaredFields();
@@ -96,23 +68,44 @@ public class Utilitaire {
         return gettersOk;
     }
 
-    public static Object toGet(String get, Object object) throws Exception {
+    // ===================== SETTER GÉNÉRALISÉ ===================== //
+    public static void toSet(String setterName, Object object, Object arg, Class argType) throws Exception {
 
-        Method getter = object.getClass().getDeclaredMethod(get);
-        if (Utilitaire.getGettersOK(object).contains(getter)) {
+        Method setter = object.getClass().getDeclaredMethod(setterName, argType);
+        if (Utilitaire.getMethodSG_OK(object,"set").contains(setter)) {
+
+            // Appeler le setter
+            setter.invoke(object, arg.toString());
+        }
+        else
+            throw new Exception("Setter : "+setterName+" invalide");
+    }
+
+    // -------------------- GETTER GÉNÉRALISÉ -------------------------------------- //
+    public static Object toGet(String getterName, Object object) throws Exception {
+
+        // Traitement des méthodes spéciales retournant un String
+        boolean endsWithS = getterName.charAt(getterName.length() - 1) == 'S';
+
+        if (endsWithS)
+            getterName = getterName.substring(0, getterName.length()-1);
+
+        Method getter = object.getClass().getDeclaredMethod(getterName);
+        List<Method> listGetOk = Utilitaire.getMethodSG_OK(object, "get");
+
+        if (listGetOk.contains(getter)) {
 
             // Appeler le setter
             return getter.invoke(object);
         }
+
         else
-            throw new Exception("Getter : "+get+" invalide");
+            throw new Exception("Getter : "+getterName+" invalide");
 
     }
 
-    public static List<String> getInfoURL(HttpServletRequest req) {
-        return Arrays.asList(req.getServletPath().split("/"));
-    }
 
+//==================== PACKAGES SCAN ====================//
     public static List<Class> getClasses(String path) throws Exception {
         List<Class> classes = new ArrayList<Class>();
         ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
@@ -189,13 +182,28 @@ public class Utilitaire {
 
     }
 
-    public static boolean isNumeric(String s)
-    {
-        if (s == null || s.equals("")) {
+//============== VALIDATION / CONTROLE DE VALEURS ================//
+
+    public static List<String> getInfoURL(HttpServletRequest req) {
+        return Arrays.asList(req.getServletPath().split("/"));
+    }
+
+
+    public static boolean isNumeric(String s) {
+        if (s == null || s.equals(""))
             return false;
-        }
 
         return s.chars().allMatch(Character::isDigit);
+    }
+
+    public static boolean isArrayNumeric(String[] tab) {
+        boolean resp = true;
+
+        for (String s : tab)
+            if (!Utilitaire.isNumeric(s))
+                return false;
+
+        return resp;
     }
 
 }

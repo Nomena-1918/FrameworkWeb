@@ -1,17 +1,10 @@
 <%@ page import="classesTest.Emp" %>
-<%@ page import="java.util.List" %>
-<%@ page import="java.util.ArrayList" %><%--
-  Created by IntelliJ IDEA.
-  User: nomena
-  Date: 11/04/2023
-  Time: 16:44
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <%
 
   Emp e = (Emp) request.getAttribute("formData");
+  String[] prenoms = e.getPrenoms();
 
 %>
 
@@ -29,6 +22,20 @@
     <ul>
       <li><h3>Matricule : <%= e.getMatricule() %></h3></li>
       <li><h3>Nom : <%= e.getNom() %></h3></li>
+      <li><h3>Prénoms : </h3>
+        <h3>
+          <ul>
+            <%
+            if (prenoms != null)
+              for (String s : e.getPrenoms()) {%>
+            <li> <%= s %> </li>
+            <% }
+            else
+            %>
+            <li> <%= "pas de prénoms" %> </li>
+          </ul>
+        </h3>
+      </li>
     </ul>
 
 
