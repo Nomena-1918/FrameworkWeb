@@ -6,14 +6,16 @@ import etu1918.framework.mapping.ModelView;
 import utilPerso.Utilitaire;
 
 import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 
-// S a la fin : NECESSAIRE POUR ETRE VU DANS LE FORMULAIRE
-//public String getMatriculeS() {
+// ---------------S a la fin : NECESSAIRE POUR ETRE VU DANS LE FORMULAIRE
+//----------------public String getMatriculeS() {
 @Model
 public class Emp {
     int matricule;
+    boolean isBoss = false;
+    Date dtn;
     String nom;
     String[] prenoms;
 
@@ -62,15 +64,24 @@ public class Emp {
         return matricule;
     }
 
-    // S a la fin : NECESSAIRE POUR ETRE VU DANS LE FORMULAIRE
-    public String getMatriculeS() {
-        return String.valueOf(matricule);
+    public void setMatricule(int matricule) {
+        this.matricule = matricule;
     }
 
-    public void setMatricule(String matricule) {
-        if (Utilitaire.isNumeric(matricule))
-            this.matricule = Integer.parseInt(matricule);
-        else throw new RuntimeException("Matricule n'est pas numérique");
+    public boolean getIsBoss() {
+        return isBoss;
+    }
+
+    public void setIsBoss(boolean boss) {
+        isBoss = boss;
+    }
+
+    public Date getDtn() {
+        return dtn;
+    }
+
+    public void setDtn(Date dtn) {
+        this.dtn = dtn;
     }
 
     public String getNom() {
@@ -85,15 +96,7 @@ public class Emp {
         return prenoms;
     }
 
-    public String getPrenomsS() {
-        return Arrays.toString(prenoms);
-    }
-
     public void setPrenoms(String[] prenoms) {
         this.prenoms = prenoms;
-    }
-
-    public void setPrenoms(String prenoms) {
-        this.prenoms = new String[]{prenoms};
     }
 }

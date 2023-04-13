@@ -4,7 +4,6 @@ import etu1918.framework.mapping.Mapping;
 import etu1918.framework.mapping.ModelView;
 import utilPerso.Utilitaire;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -12,6 +11,9 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.lang.reflect.Method;
+import java.text.SimpleDateFormat;
+import java.time.DateTimeException;
+import java.time.LocalDateTime;
 import java.util.*;
 
 public class FrontServlet extends HttpServlet {
@@ -33,7 +35,7 @@ public class FrontServlet extends HttpServlet {
 
         try {
 
-            out.println("Bienvenue dans la page de debug : " + this.getClass().getName());
+            out.println("Bienvenue dans la page de debug : " + this.getClass().getClass().getSimpleName());
 
             String url = req.getServletPath();
             out.println("\nURL : " + url);
@@ -51,20 +53,6 @@ public class FrontServlet extends HttpServlet {
 
             out.println("\n\nL'URL est supportée : " + this.mappingUrls.containsKey(url));
 
-        /*
-        /// Tsy mandeha lay HashMap
-        // Traitement des données envoyées par formulaire
-        if (req.getParameterMap() != null) {
-            out.println("\nLes params du formulaire : ");
-
-            HashMap<String, String[]> formData = (HashMap<String, String[]>) req.getParameterMap();
-
-            for (Map.Entry<String, String[]> me : formData.entrySet())
-                out.println(me.getKey() + " : " + Arrays.toString(me.getValue()));
-
-        }
-         */
-
             // Chargement d'une view
             if (this.mappingUrls.containsKey(url)) {
                 Mapping mapping = this.mappingUrls.get(url);
@@ -75,16 +63,20 @@ public class FrontServlet extends HttpServlet {
 
 
                 // Association pairs (name, value) du formulaire avec les setters de object
-                out.println("\n\nParamètres du formulaire :\n");
+                out.println("\n\nParamètres du formulaire :");
 
                 Enumeration<String> nomsParam = req.getParameterNames();
                 String[] valeurParam;
-                Object valeur;
+                String valeur;
                 String nomParam, Param, setter, lo, geTest;
+
+                Class<?> fieldC;
 
                 while (nomsParam.hasMoreElements()) {
 
+                    // Paramètre du formulaire
                     nomParam = nomsParam.nextElement();
+                    out.println("\n-> "+nomParam+" = {\n");
 
                     // Rendre la 1ère lettre du paramétre majuscule, pour le setter
                     lo = nomParam.substring(0, 1).toUpperCase();
@@ -92,50 +84,110 @@ public class FrontServlet extends HttpServlet {
 
                     // Création du setter
                     setter = "set".concat(Param);
-
-                    out.println("Setter : " + setter);
+                    out.println("     setter : " + setter);
 
                     // Arg setter
                     valeurParam = req.getParameterValues(nomParam);
 
-                    if (valeurParam.length == 1) {
-                        valeur = valeurParam[0];
+                    // Paramater type du setter
+                    fieldC = object.getClass().getDeclaredField(nomParam).getType();
+                    out.println("     Type du param : "+ fieldC.getSimpleName());
 
-                        out.println("arg : " + valeur);
+                    Object o = null;
+
+                    if (valeurParam.length == 1) {
+                        out.println("     arg : " + valeurParam[0]);
+
+                // ================== CAST ===================== //
+
+                        if (fieldC.getSimpleName().equalsIgnoreCase("String")) {
+                            o = valeurParam[0];
+                        }
+                        if (valeurParam[0].equalsIgnoreCase("true") || valeurParam[0].equalsIgnoreCase("false")) {
+                            o = Boolean.parseBoolean(valeurParam[0]);
+                        }
+                        if (Utilitaire.isNumeric(valeurParam[0])) {
+                            o = Integer.parseInt(valeurParam[0]);
+                        }
+                        if (fieldC.getSimpleName().equalsIgnoreCase("Date")) {
+                            o = new SimpleDateFormat("yyyy/MM/dd").parse(valeurParam[0]);
+                        }
+
+                        //else
+                          //  throw new Exception("Type de variable non pris en charge");
+
+                // ========================================== //
 
                         // Appel setter généralisé
-                        Utilitaire.toSet(setter, object, valeur, String.class);
-
+                        Utilitaire.toSet(setter, object, o, fieldC);
                         out.println("\n\t-> Setter appelé avec succès !\n");
 
                         // Test setter avec getter
-                        geTest = "get" + Param + "S";
+                        geTest = "get" + Param;
 
-                        out.println("\t-> Test setter : " + geTest + " = " + Utilitaire.toGet(geTest, object) + "\n");
+                        if (Utilitaire.toGet(geTest, object) != null)
+                            out.println("\t-> Test setter : " + geTest + " = " + Utilitaire.toGet(geTest, object).toString() + "\n");
 
+                        else
+                            out.println("\t-> Test setter : " + geTest + " = null\n");
+
+                        out.println("    }\n");
                         continue;
                     }
                     if (valeurParam.length > 1) {
-                        valeur = valeurParam;
+                        out.println("     arg : "+Arrays.toString(valeurParam));
 
-                        out.println("arg : "+valeur.getClass().getName());
 
-                        for (String s : (String[]) valeur)
-                            out.println("\t" + s);
+                // ================== CAST ===================== //
 
-                        // Appel setter généralisé
-                        Utilitaire.toSet(setter, object, valeur, String[].class);
+                        if (fieldC.equals(String[].class)) {
+                            // Appel setter généralisé
+                            Utilitaire.toSet(setter, object, valeurParam, fieldC);
+                        }
+                        if (fieldC.getClass().getSimpleName().equalsIgnoreCase("boolean")) {
+                            boolean[] tab = new boolean[valeurParam.length];
+
+                            for(int i=0; i<valeurParam.length; i++) {
+                                tab[i] = Boolean.parseBoolean(valeurParam[i]);
+                            }
+                            // Appel setter généralisé
+                            Utilitaire.toSet(setter, object, tab, fieldC);
+                        }
+                        if (fieldC.getClass().getSimpleName().equalsIgnoreCase("int") || fieldC.getClass().getSimpleName().equalsIgnoreCase("Integer")) {
+                            int[] tab = new int[valeurParam.length];
+
+                            for(int i=0; i<valeurParam.length; i++) {
+                                tab[i] = Integer.parseInt(valeurParam[i]);
+                            }
+                            // Appel setter généralisé
+                            Utilitaire.toSet(setter, object, tab, fieldC);
+                        }
+                        if (fieldC.getClass().getSimpleName().equalsIgnoreCase("Date[]")) {
+                            Date[] tab = new Date[valeurParam.length];
+
+                            for(int i=0; i<valeurParam.length; i++) {
+                                tab[i] = new SimpleDateFormat("yyyy/MM/dd").parse(valeurParam[0]);
+                            }
+                            // Appel setter généralisé
+                            Utilitaire.toSet(setter, object, tab, fieldC);
+                        }
+                        else
+                            throw new Exception("Type de variable non pris en charge");
+
+
+                // ========================================== //
 
                         out.println("\n\t-> Setter appelé avec succès !\n");
 
                         // Test setter avec getter
-                        geTest = "get" + Param + "S";
+                        geTest = "get" + Param;
+                        if (Utilitaire.toGet(geTest, object) != null)
+                            out.println("\t-> Test setter : " + geTest + " = " + Arrays.toString((String[])Utilitaire.toGet(geTest, object)) + "\n");
+                        else
+                            out.println("\t-> Test setter : " + geTest + " = null\n");
 
-                        out.println("\t-> Test setter : " + geTest + " = {\n");
-                        for (String s : (String[]) Utilitaire.toGet(geTest, object))
-                            out.println("\t   " + s + " ,");
+                        out.println("    }\n");
 
-                        out.println("\t   } \n");
 
                     }
                 }
@@ -159,15 +211,15 @@ public class FrontServlet extends HttpServlet {
                 }
 
                 //Dispatch vers la vue correspondante
-                RequestDispatcher dispat = req.getRequestDispatcher(view);
-                dispat.forward(req, res);
+                //RequestDispatcher dispat = req.getRequestDispatcher(view);
+                //dispat.forward(req, res);
 
             } else
                 throw new Exception("URL non supportée");
 
         }
         catch (Exception e) {
-            out.println(e.getMessage());
+            out.println(e);
         }
 
     }

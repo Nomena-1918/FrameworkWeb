@@ -72,10 +72,14 @@ public class Utilitaire {
     public static void toSet(String setterName, Object object, Object arg, Class argType) throws Exception {
 
         Method setter = object.getClass().getDeclaredMethod(setterName, argType);
+        
+
         if (Utilitaire.getMethodSG_OK(object,"set").contains(setter)) {
 
-            // Appeler le setter
-            setter.invoke(object, arg.toString());
+            if (argType.isInstance(arg)) {
+                // Appeler le setter
+                setter.invoke(object, arg);
+            }
         }
         else
             throw new Exception("Setter : "+setterName+" invalide");
@@ -83,12 +87,6 @@ public class Utilitaire {
 
     // -------------------- GETTER GÉNÉRALISÉ -------------------------------------- //
     public static Object toGet(String getterName, Object object) throws Exception {
-
-        // Traitement des méthodes spéciales retournant un String
-        boolean endsWithS = getterName.charAt(getterName.length() - 1) == 'S';
-
-        if (endsWithS)
-            getterName = getterName.substring(0, getterName.length()-1);
 
         Method getter = object.getClass().getDeclaredMethod(getterName);
         List<Method> listGetOk = Utilitaire.getMethodSG_OK(object, "get");

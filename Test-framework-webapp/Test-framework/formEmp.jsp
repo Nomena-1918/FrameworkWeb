@@ -17,6 +17,7 @@
 
 
   <form action="form-data.run" method="post">
+
     <div>
       <label for="matricule">Matricule :</label>
       <input type="number" id="matricule" name="matricule">
@@ -25,8 +26,17 @@
       <label for="nom">Nom :</label>
       <input type="text" id="nom" name="nom">
     </div>
+    <div>
+      <label for="dtn">Date de naissance :</label>
+      <input type="date" id="dtn" name="dtn">
+    </div>
 
-<!--=========== CHECKBOXES ==========-->
+    <div>
+      <input type="checkbox" id="isBoss" name="isBoss" value="true">
+      <label for="isBoss"> Is Boss  :</label>
+    </div>
+
+    <!--=========== CHECKBOXES ==========-->
     <div>
       <label>Prénoms :</label>
     </div>
@@ -39,7 +49,12 @@
       <input type="checkbox" id="p2" name="prenoms" value="Vahatra">
       <label for="p2">Vahatra</label>
     </div>
-<!--================================-->
+
+    <div>
+      <input type="checkbox" id="p3" name="prenoms" value="Else...">
+      <label for="p2">Else...</label>
+    </div>
+    <!--================================-->
 
     <div class="button">
       <button type="submit">Valider</button>
