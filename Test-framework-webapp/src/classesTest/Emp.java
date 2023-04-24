@@ -3,11 +3,14 @@ package classesTest;
 import etu1918.framework.annotationPerso.Model;
 import etu1918.framework.annotationPerso.URLMapping;
 import etu1918.framework.mapping.ModelView;
+import utilPerso.Utilitaire;
 
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+// ---------------S a la fin : NECESSAIRE POUR ETRE VU DANS LE FORMULAIRE
+//----------------public String getMatriculeS() {
 @Model
 public class Emp {
     Integer matricule;
@@ -50,16 +53,8 @@ public class Emp {
     }
 
     public Emp(Integer matricule, String nom) {
-        this.matricule = matricule;
-        this.nom = nom;
-    }
-
-    public Emp(Integer matricule, Boolean isBoss, Date dtn, String nom, String[] prenoms) {
-        this.matricule = matricule;
-        this.isBoss = isBoss;
-        this.dtn = dtn;
-        this.nom = nom;
-        this.prenoms = prenoms;
+        setMatricule(matricule);
+        setNom(nom);
     }
 
     public Emp() {
