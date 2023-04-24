@@ -13,8 +13,8 @@ import java.util.List;
 //----------------public String getMatriculeS() {
 @Model
 public class Emp {
-    int matricule;
-    boolean isBoss = false;
+    Integer matricule;
+    Boolean isBoss = false;
     Date dtn;
     String nom;
     String[] prenoms;
@@ -52,27 +52,27 @@ public class Emp {
         return m;
     }
 
-    public Emp(int matricule, String nom) {
-        this.matricule = matricule;
-        this.nom = nom;
+    public Emp(Integer matricule, String nom) {
+        setMatricule(matricule);
+        setNom(nom);
     }
 
     public Emp() {
     }
 
-    public int getMatricule() {
+    public Integer getMatricule() {
         return matricule;
     }
 
-    public void setMatricule(int matricule) {
+    public void setMatricule(Integer matricule) {
         this.matricule = matricule;
     }
 
-    public boolean getIsBoss() {
+    public Boolean getBoss() {
         return isBoss;
     }
 
-    public void setIsBoss(boolean boss) {
+    public void setBoss(Boolean boss) {
         isBoss = boss;
     }
 
