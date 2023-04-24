@@ -72,7 +72,6 @@ public class Utilitaire {
     public static void toSet(String setterName, Object object, Object arg, Class argType) throws Exception {
 
         Method setter = object.getClass().getDeclaredMethod(setterName, argType);
-        
 
         if (Utilitaire.getMethodSG_OK(object,"set").contains(setter)) {
 
@@ -209,9 +208,7 @@ public class Utilitaire {
 //============== GESTION DE FICHIERS ================//
 
     public void WriteObjectToFile(Object serObj, String filepath) {
-
         try {
-
             FileOutputStream fileOut = new FileOutputStream(filepath);
             ObjectOutputStream objectOut = new ObjectOutputStream(fileOut);
             objectOut.writeObject(serObj);

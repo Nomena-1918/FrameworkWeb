@@ -68,11 +68,11 @@ public class Emp {
         this.matricule = matricule;
     }
 
-    public Boolean getBoss() {
+    public Boolean getIsBoss() {
         return isBoss;
     }
 
-    public void setBoss(Boolean boss) {
+    public void setIsBoss(Boolean boss) {
         isBoss = boss;
     }
 

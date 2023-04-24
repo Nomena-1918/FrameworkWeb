@@ -4,6 +4,7 @@ import etu1918.framework.mapping.Mapping;
 import etu1918.framework.mapping.ModelView;
 import utilPerso.Utilitaire;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -93,7 +94,7 @@ public class FrontServlet extends HttpServlet {
                     fieldC = object.getClass().getDeclaredField(nomParam).getType();
                     out.println("     Type du param : "+ fieldC.getSimpleName());
 
-                    Object o = null;
+                    Object o;
 
                     if (valeurParam.length == 1) {
                         out.println("     arg : " + valeurParam[0]);
@@ -103,18 +104,18 @@ public class FrontServlet extends HttpServlet {
                         if (fieldC.getSimpleName().equalsIgnoreCase("String")) {
                             o = valeurParam[0];
                         }
-                        if (valeurParam[0].equalsIgnoreCase("true") || valeurParam[0].equalsIgnoreCase("false")) {
+                        else if (valeurParam[0].equalsIgnoreCase("true") || valeurParam[0].equalsIgnoreCase("false")) {
                             o = Boolean.parseBoolean(valeurParam[0]);
                         }
-                        if (Utilitaire.isNumeric(valeurParam[0])) {
+                        else if (fieldC.getSimpleName().equalsIgnoreCase("Integer") && Utilitaire.isNumeric(valeurParam[0])) {
                             o = Integer.parseInt(valeurParam[0]);
                         }
-                        if (fieldC.getSimpleName().equalsIgnoreCase("Date")) {
+                        else if (fieldC.getSimpleName().equalsIgnoreCase("Date")) {
                             o = new SimpleDateFormat("yyyy-MM-dd").parse(valeurParam[0]);
                         }
 
-                        //else
-                          //  throw new Exception("Type de variable non pris en charge");
+                        else
+                            throw new Exception("Type de variable non pris en charge");
 
                 // ========================================== //
 
@@ -144,7 +145,7 @@ public class FrontServlet extends HttpServlet {
                             // Appel setter généralisé
                             Utilitaire.toSet(setter, object, valeurParam, fieldC);
                         }
-                        if (fieldC.getSimpleName().equalsIgnoreCase("int")) {
+                        else if (fieldC.getSimpleName().equalsIgnoreCase("int")) {
                             int[] tab = new int[valeurParam.length];
 
                             for(int i=0; i<valeurParam.length; i++) {
@@ -153,7 +154,7 @@ public class FrontServlet extends HttpServlet {
                             // Appel setter généralisé
                             Utilitaire.toSet(setter, object, tab, fieldC);
                         }
-                        if (fieldC.getSimpleName().equalsIgnoreCase("Date[]")) {
+                        else if (fieldC.getSimpleName().equalsIgnoreCase("Date[]")) {
                             Date[] tab = new Date[valeurParam.length];
 
                             for(int i=0; i<valeurParam.length; i++) {
@@ -202,8 +203,8 @@ public class FrontServlet extends HttpServlet {
                 }
 
                 //Dispatch vers la vue correspondante
-                //RequestDispatcher dispat = req.getRequestDispatcher(view);
-                //dispat.forward(req, res);
+                RequestDispatcher dispat = req.getRequestDispatcher(view);
+                dispat.forward(req, res);
 
             } else
                 throw new Exception("URL non supportée");
