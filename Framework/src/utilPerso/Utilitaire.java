@@ -6,7 +6,7 @@ import etu1918.framework.annotationPerso.URLMapping;
 import etu1918.framework.mapping.ModelView;
 
 import javax.servlet.http.HttpServletRequest;
-import java.io.File;
+import java.io.*;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
@@ -202,6 +202,45 @@ public class Utilitaire {
                 return false;
 
         return resp;
+    }
+
+
+
+//============== GESTION DE FICHIERS ================//
+
+    public void WriteObjectToFile(Object serObj, String filepath) {
+
+        try {
+
+            FileOutputStream fileOut = new FileOutputStream(filepath);
+            ObjectOutputStream objectOut = new ObjectOutputStream(fileOut);
+            objectOut.writeObject(serObj);
+            objectOut.close();
+            System.out.println("The Object  was succesfully written to a file");
+
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    public Object ReadObjectFromFile(String filepath) {
+
+        try {
+
+            FileInputStream fileIn = new FileInputStream(filepath);
+            ObjectInputStream objectIn = new ObjectInputStream(fileIn);
+
+            Object obj = objectIn.readObject();
+
+            System.out.println("\n\nThe Object has been read from the file");
+            objectIn.close();
+
+            return obj;
+
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            return null;
+        }
     }
 
 }

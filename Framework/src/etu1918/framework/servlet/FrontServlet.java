@@ -35,7 +35,7 @@ public class FrontServlet extends HttpServlet {
 
         try {
 
-            out.println("Bienvenue dans la page de debug : " + this.getClass().getClass().getSimpleName());
+            out.println("Bienvenue dans la page de debug : " + this.getClass().getSimpleName());
 
             String url = req.getServletPath();
             out.println("\nURL : " + url);
@@ -49,7 +49,7 @@ public class FrontServlet extends HttpServlet {
             out.println("\n\nMappingUrls :");
 
             for (Map.Entry<String, Mapping> me : this.mappingUrls.entrySet())
-                out.println("URL : " + me.getKey() + " Classe : " + me.getValue().getClassName() + ", Méthode : " + me.getValue().getMethod());
+                out.println("URL : " + me.getKey() + ", Classe : " + me.getValue().getClassName() + ", Méthode : " + me.getValue().getMethod());
 
             out.println("\n\nL'URL est supportée : " + this.mappingUrls.containsKey(url));
 
@@ -110,7 +110,7 @@ public class FrontServlet extends HttpServlet {
                             o = Integer.parseInt(valeurParam[0]);
                         }
                         if (fieldC.getSimpleName().equalsIgnoreCase("Date")) {
-                            o = new SimpleDateFormat("yyyy/MM/dd").parse(valeurParam[0]);
+                            o = new SimpleDateFormat("yyyy-MM-dd").parse(valeurParam[0]);
                         }
 
                         //else
@@ -144,16 +144,7 @@ public class FrontServlet extends HttpServlet {
                             // Appel setter généralisé
                             Utilitaire.toSet(setter, object, valeurParam, fieldC);
                         }
-                        if (fieldC.getClass().getSimpleName().equalsIgnoreCase("boolean")) {
-                            boolean[] tab = new boolean[valeurParam.length];
-
-                            for(int i=0; i<valeurParam.length; i++) {
-                                tab[i] = Boolean.parseBoolean(valeurParam[i]);
-                            }
-                            // Appel setter généralisé
-                            Utilitaire.toSet(setter, object, tab, fieldC);
-                        }
-                        if (fieldC.getClass().getSimpleName().equalsIgnoreCase("int") || fieldC.getClass().getSimpleName().equalsIgnoreCase("Integer")) {
+                        if (fieldC.getSimpleName().equalsIgnoreCase("int")) {
                             int[] tab = new int[valeurParam.length];
 
                             for(int i=0; i<valeurParam.length; i++) {
@@ -162,7 +153,7 @@ public class FrontServlet extends HttpServlet {
                             // Appel setter généralisé
                             Utilitaire.toSet(setter, object, tab, fieldC);
                         }
-                        if (fieldC.getClass().getSimpleName().equalsIgnoreCase("Date[]")) {
+                        if (fieldC.getSimpleName().equalsIgnoreCase("Date[]")) {
                             Date[] tab = new Date[valeurParam.length];
 
                             for(int i=0; i<valeurParam.length; i++) {
