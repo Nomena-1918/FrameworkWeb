@@ -22,17 +22,21 @@
     <ul>
       <li><h3>Matricule : <%= e.getMatricule() %></h3></li>
       <li><h3>Nom : <%= e.getNom() %></h3></li>
+      <li><h3>Date de naissance : <%= e.getDtn() %></h3></li>
+      <li><h3>Is boss : <%= e.getIsBoss() %></h3></li>
       <li><h3>Prénoms : </h3>
         <h3>
           <ul>
             <%
-            if (prenoms != null)
+            if (prenoms != null) {
               for (String s : e.getPrenoms()) {%>
             <li> <%= s %> </li>
             <% }
-            else
+            }
+            else {
             %>
             <li> <%= "pas de prénoms" %> </li>
+            <% }%>
           </ul>
         </h3>
       </li>

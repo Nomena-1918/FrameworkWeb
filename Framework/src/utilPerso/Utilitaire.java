@@ -68,6 +68,13 @@ public class Utilitaire {
         return gettersOk;
     }
 
+
+
+
+
+
+
+
     // ===================== SETTER GÉNÉRALISÉ ===================== //
     public static void toSet(String setterName, Object object, Object arg, Class argType) throws Exception {
 

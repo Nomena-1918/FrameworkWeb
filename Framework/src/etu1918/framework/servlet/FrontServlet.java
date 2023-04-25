@@ -68,7 +68,6 @@ public class FrontServlet extends HttpServlet {
 
                 Enumeration<String> nomsParam = req.getParameterNames();
                 String[] valeurParam;
-                String valeur;
                 String nomParam, Param, setter, lo, geTest;
 
                 Class<?> fieldC;
@@ -145,7 +144,7 @@ public class FrontServlet extends HttpServlet {
                             // Appel setter généralisé
                             Utilitaire.toSet(setter, object, valeurParam, fieldC);
                         }
-                        else if (fieldC.getSimpleName().equalsIgnoreCase("int")) {
+                        else if (fieldC.getSimpleName().equalsIgnoreCase("Integer")) {
                             int[] tab = new int[valeurParam.length];
 
                             for(int i=0; i<valeurParam.length; i++) {
