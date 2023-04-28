@@ -49,6 +49,7 @@ public class Emp {
         return m;
     }
 
+
     public Emp(Integer matricule, String nom) {
         setMatricule(matricule);
         setNom(nom);
