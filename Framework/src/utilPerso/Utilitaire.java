@@ -71,10 +71,6 @@ public class Utilitaire {
 
 
 
-
-
-
-
     // ===================== SETTER GÉNÉRALISÉ ===================== //
     public static void toSet(String setterName, Object object, Object arg, Class argType) throws Exception {
 

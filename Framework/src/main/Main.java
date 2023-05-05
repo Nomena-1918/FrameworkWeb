@@ -1,12 +1,6 @@
 package main;
 public class Main {
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) {
         System.out.println("\nFramework built successfully ! 🚀");
-
-        Class fieldC = Boolean.class;
-        String s = "true";
-
-        Boolean b = (Boolean) fieldC.cast(s);
-
     }
 }

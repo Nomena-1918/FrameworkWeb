@@ -116,7 +116,7 @@ public class FrontServlet extends HttpServlet {
                         else
                             throw new Exception("Type de variable non pris en charge");
 
-                // ========================================== //
+                // ============================================== //
 
                         // Appel setter généralisé
                         Utilitaire.toSet(setter, object, o, fieldC);
