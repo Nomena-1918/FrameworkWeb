@@ -5,14 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="81a34661-66e0-4489-b53f-c569ec92fcf5" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/Framework/src/etu1918/framework/annotationPerso/ParamValue.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Framework/src/etu1918/framework/servlet/FrontServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/Framework/src/etu1918/framework/servlet/FrontServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Framework/src/main/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/Framework/src/main/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Framework/src/utilPerso/Utilitaire.java" beforeDir="false" afterPath="$PROJECT_DIR$/Framework/src/utilPerso/Utilitaire.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Test-framework-webapp/Test-framework/WEB-INF/classes/classesTest/Emp.class" beforeDir="false" afterPath="$PROJECT_DIR$/Test-framework-webapp/Test-framework/WEB-INF/classes/classesTest/Emp.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Test-framework-webapp/Test-framework/WEB-INF/lib/framework.jar" beforeDir="false" afterPath="$PROJECT_DIR$/Test-framework-webapp/Test-framework/WEB-INF/lib/framework.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Test-framework-webapp/Test-framework/WEB-INF/web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Test-framework-webapp/Test-framework/WEB-INF/web.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Test-framework-webapp/src/classesTest/Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/Test-framework-webapp/src/classesTest/Test.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/archives_java/framework.jar" beforeDir="false" afterPath="$PROJECT_DIR$/archives_java/framework.jar" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -27,6 +26,7 @@
       <list>
         <option value="Class" />
         <option value="Jsp File" />
+        <option value="AnnotationType" />
       </list>
     </option>
   </component>
@@ -84,7 +84,7 @@
       <recent name="$PROJECT_DIR$/out/production/FrameworkWeb" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.web-app">
+  <component name="RunManager" selected="Application.framework">
     <configuration name="framework" type="Application" factoryName="Application">
       <option name="ALTERNATIVE_JRE_PATH" value="19" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />

@@ -106,6 +106,39 @@ public class Utilitaire {
 
 
 //==================== PACKAGES SCAN ====================//
+
+    /*
+// Code de Ny Avo
+    @SuppressWarnings("rawtypes")
+    public Method getMethodeByAnnotation(String annote, String valueAnnote, Class classe) throws Exception{
+        HashMap<Method, Annotation> methodes=getAllAnnotedMethods(annote, classe);
+        for(Map.Entry<Method,Annotation> entry:methodes.entrySet()){
+            if(entry.getValue().annotationType().getMethod("url").invoke(entry.getValue()).equals(valueAnnote)){
+                return entry.getKey();
+            }
+        }
+        return null;
+    }
+
+@SuppressWarnings("rawtypes")
+    public HashMap<Method, Annotation> getAllAnnotedMethods(String annote, Class classe){
+        HashMap<Method, Annotation> liste=new HashMap<>();
+        Method[] methods=classe.getDeclaredMethods();
+        for(Method m:methods){
+            Annotation[] annotes=m.getAnnotations();
+            for(Annotation an:annotes){
+                if(an.annotationType().getSimpleName().equals(annote)){
+                    liste.put(m, an);
+                    break;
+                }
+            }
+        }
+        return liste;
+    }
+     */
+
+
+
     public static List<Class> getClasses(String path) throws Exception {
         List<Class> classes = new ArrayList<Class>();
         ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
