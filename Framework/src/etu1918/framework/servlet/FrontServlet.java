@@ -34,7 +34,7 @@ public class FrontServlet extends HttpServlet {
         res.setContentType("text/plain");
         PrintWriter out = res.getWriter();
 
-        try {
+        //try {
 
             out.println("Bienvenue dans la page de debug : " + this.getClass().getSimpleName());
 
@@ -183,6 +183,7 @@ public class FrontServlet extends HttpServlet {
                     }
                 }
 
+                //
                 Method method = classe.getDeclaredMethod(mapping.getMethod());
 
                 // Prendre la view dans le ModelView retourné
@@ -208,10 +209,10 @@ public class FrontServlet extends HttpServlet {
             } else
                 throw new Exception("URL non supportée");
 
-        }
-        catch (Exception e) {
-            out.println(e);
-        }
+        //}
+        //catch (Exception e) {
+          //  out.println(e);
+        //}
 
     }
     public void doGet(HttpServletRequest req, HttpServletResponse res) throws IOException {
