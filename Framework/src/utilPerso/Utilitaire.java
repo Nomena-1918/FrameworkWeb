@@ -11,11 +11,62 @@ import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.net.URI;
+import java.net.URL;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 public class Utilitaire {
 
+
 // ===================== COMMUN : SETTERS et GETTERS ===================== //
+    // Cast génralisé
+    public static Object convert(Object valeurParam, Class fieldC) throws Exception {
+        Object o = null;
+
+        if (fieldC.equals(String.class)) {
+            o = valeurParam;
+        }
+        else if (valeurParam.toString().equalsIgnoreCase("true") || valeurParam.toString().equalsIgnoreCase("false")) {
+            o = Boolean.parseBoolean((String) valeurParam);
+        }
+        else if (fieldC.equals(Integer.class)) {
+            if (Utilitaire.isNumeric((String) valeurParam))
+                o = Integer.parseInt((String) valeurParam);
+            else throw new Exception("Divergence de type entre le paramètre de la requête et l'attribut de l'objet");
+        }
+        else if (fieldC.equals(Date.class)) {
+            o = new SimpleDateFormat("yyyy-MM-dd").parse((String) valeurParam);
+        }
+        else if (fieldC.equals(String[].class)) {
+            return valeurParam;
+        }
+        else if (fieldC.equals(Integer[].class)) {
+            Integer[] tab = new Integer[((String[])valeurParam).length];
+
+            for(int i=0; i<((String[])valeurParam).length; i++) {
+                tab[i] = Integer.parseInt(((String[])valeurParam)[i]);
+            }
+            o = tab;
+        }
+        else if (fieldC.equals(Date[].class)) {
+            Date[] tab = new Date[((String[])valeurParam).length];
+
+            for(int i=0; i<((String[])valeurParam).length; i++) {
+                tab[i] = new SimpleDateFormat("yyyy/MM/dd").parse(((String[])valeurParam)[0]);
+            }
+            o = tab;
+        }
+
+        else
+            throw new Exception("Type de variable non pris en charge");
+
+        return o;
+    }
+
+
+
     // Tous les setters ou getters
     public static List<Method> getAllMethodSG(Object o, String Set_Or_Get) {
         List<Method> meths = new ArrayList<>();
@@ -106,22 +157,36 @@ public class Utilitaire {
 
 
 //==================== PACKAGES SCAN ====================//
+    public static boolean isClassAttribute(Class classe, String param) {
+        Field[] listFields = classe.getDeclaredFields();
 
-    /*
-// Code de Ny Avo
+        for (Field f : listFields)
+            if (f.getName().equalsIgnoreCase(param))
+                return true;
+        return false;
+    }
+
+    public static boolean isMethodParam(Method method, String param) throws InvocationTargetException, IllegalAccessException, NoSuchMethodException {
+        Annotation annotationParam = method.getParameterAnnotations()[0][0];
+        Method annotMeth = annotationParam .annotationType().getDeclaredMethod("value");
+        String nameParam = annotMeth.invoke(annotationParam ).toString();
+
+        return nameParam.equalsIgnoreCase(param);
+    }
+
     @SuppressWarnings("rawtypes")
-    public Method getMethodeByAnnotation(String annote, String valueAnnote, Class classe) throws Exception{
+    public static Method getMethodeByAnnotation(String annote, String valueAnnote, Class classe) throws Exception{
         HashMap<Method, Annotation> methodes=getAllAnnotedMethods(annote, classe);
         for(Map.Entry<Method,Annotation> entry:methodes.entrySet()){
-            if(entry.getValue().annotationType().getMethod("url").invoke(entry.getValue()).equals(valueAnnote)){
+            if(entry.getValue().annotationType().getMethod("valeur").invoke(entry.getValue()).equals(valueAnnote)){
                 return entry.getKey();
             }
         }
         return null;
     }
 
-@SuppressWarnings("rawtypes")
-    public HashMap<Method, Annotation> getAllAnnotedMethods(String annote, Class classe){
+    @SuppressWarnings("rawtypes")
+    public static HashMap<Method, Annotation> getAllAnnotedMethods(String annote, Class classe){
         HashMap<Method, Annotation> liste=new HashMap<>();
         Method[] methods=classe.getDeclaredMethods();
         for(Method m:methods){
@@ -135,50 +200,49 @@ public class Utilitaire {
         }
         return liste;
     }
-     */
 
-
-
-    public static List<Class> getClasses(String path) throws Exception {
-        List<Class> classes = new ArrayList<Class>();
+    public static List<Class> getClasses(String packageName) throws Exception {
         ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
+        String path = packageName.replace('.', '/');
+        Enumeration<URL> resources = classLoader.getResources(path);
+        List<File> dirs = new ArrayList<File>();
 
-        File[] dirs = new File(path).listFiles();
+        URL resource;
+        URI uri;
 
-        if (dirs != null)
-            for (File dir : dirs) {
-                if (dir.isDirectory())
-                    classes.addAll(findClasses(dir, dir.getName()));
-                else
-                    if (dir.getName().endsWith(".class"))
-                        classes.add(classLoader.loadClass(dir.getName()));
-            }
-
+        while (resources.hasMoreElements()) {
+            resource = resources.nextElement();
+            uri = new URI(resource.toString());
+            dirs.add(new File(uri.getPath()));
+        }
+        List<Class> classes = new ArrayList<Class>();
+        for (File directory : dirs) {
+            classes.addAll(findClasses(directory, packageName));
+        }
         return classes;
     }
 
-    public static List<Class> findClasses(File directory, String packageName) throws Exception {
-        List<Class> classes = new ArrayList<>();
-        ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
 
+    private static List<Class> findClasses(File directory, String packageName) throws Exception {
+        List<Class> classes = new ArrayList<Class>();
         if (!directory.exists()) {
             return classes;
         }
         File[] files = directory.listFiles();
-        String className;
         if (files != null)
             for (File file : files) {
                 if (file.isDirectory()) {
                     classes.addAll(findClasses(file, packageName + "." + file.getName()));
                 } else if (file.getName().endsWith(".class")) {
-                    className = packageName + '.' + file.getName().substring(0, file.getName().length() - 6);
-                    classes.add(classLoader.loadClass(className));
+                    String className = packageName + '.' + file.getName().substring(0, file.getName().length() - 6);
+                    classes.add(Class.forName(className));
                 }
             }
         else
             throw new Exception("Il n'y a pas de fichiers dans : "+directory);
         return classes;
     }
+
 
     //Lister les classes dans la liste des packages en argument
     public static HashMap<String, Mapping> initHashMap(String pack) throws Exception {
