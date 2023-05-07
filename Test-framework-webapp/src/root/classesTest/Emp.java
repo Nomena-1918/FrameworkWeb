@@ -1,6 +1,7 @@
-package classesTest;
+package root.classesTest;
 
 import etu1918.framework.annotationPerso.Model;
+import etu1918.framework.annotationPerso.ParamValue;
 import etu1918.framework.annotationPerso.URLMapping;
 import etu1918.framework.mapping.ModelView;
 
@@ -45,6 +46,19 @@ public class Emp {
 
         m.addItem("formData", this);
         m.setView("formDataView.jsp");
+
+        return m;
+    }
+
+    @URLMapping(valeur = "/nbr/mistery.run")
+    public ModelView methodWithOneArg(@ParamValue(value = "num") Integer number) {
+        ModelView m = new ModelView();
+
+        if (number == null)
+            number = 19;
+
+        m.addItem("numberMistery", number);
+        m.setView("/view/affNumberMistery.jsp");
 
         return m;
     }

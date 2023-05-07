@@ -15,7 +15,7 @@
         <li><h3><a href="first-test.run">first-test.run</a></h3></li>
         <li><h3><a href="form-emp.run">form-emp.run</a></h3></li>
         <li><h3><a href="list-emp.run">list-emp.run</a></h3></li>
-        <li><h3><a href="form-data.run">form-data.run</a></h3></li>
+        <li><h3><a href="nbr/mistery.run?num=42">mistery.run?num=42</a></h3></li>
     </ul>
 
 

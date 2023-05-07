@@ -1,4 +1,4 @@
-package classesTest;
+package root.classesTest;
 
 import etu1918.framework.annotationPerso.Model;
 import etu1918.framework.annotationPerso.ParamValue;
@@ -9,7 +9,7 @@ import etu1918.framework.mapping.ModelView;
 public class Test {
 
     @URLMapping(valeur = "/first-test.run")
-    public ModelView affFirstView(@ParamValue(value = "param") String param) {
+    public ModelView affFirstView() {
         ModelView m = new ModelView();
         m.setView("firstView.jsp");
         return m;
