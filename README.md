@@ -78,7 +78,7 @@ Suivi de la creation d'un framework web en Java en S4 à ITUniversity
               <% } %>
 
 
-### Gestion des données envoyées de la méthode d'action 
+### Gestion des données envoyées vers la méthode d'action 
 #### Méthode 1 : Par l'objet appelant
 (Ex d'usage : formulaire)
 - Pas d'attributs avec des types primitifs (int, boolean, float, etc...) que des wrappers (Integer, Boolean, Float, etc, ...)
