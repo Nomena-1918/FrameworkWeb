@@ -13,3 +13,8 @@ repertoireClass="/Users/nomena/TAFF S4 - PC ITU/S4/Web_Dynamique/FrameworkWeb/ou
 
 # shellcheck disable=SC2164
 cd "${repertoireClass}";
+
+
+### A faire en plus :
+# Compilation depuis script.sh
+# Dossier courant et sous-dossier avec boucle for et appel ls
