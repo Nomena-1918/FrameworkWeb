@@ -5,29 +5,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="81a34661-66e0-4489-b53f-c569ec92fcf5" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Test-framework-webapp/Test-framework/WEB-INF/classes/root/classesTest/Test.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Test-framework-webapp/Test-framework/view/affNumberMistery.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test.sh" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Framework/src/etu1918/framework/servlet/FrontServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/Framework/src/etu1918/framework/servlet/FrontServlet.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Framework/src/main/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/Framework/src/main/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Framework/src/utilPerso/Utilitaire.java" beforeDir="false" afterPath="$PROJECT_DIR$/Framework/src/utilPerso/Utilitaire.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Test-framework-webapp/Test-framework/WEB-INF/classes/classesTest/Emp.class" beforeDir="false" afterPath="$PROJECT_DIR$/Test-framework-webapp/Test-framework/WEB-INF/classes/root/classesTest/Emp.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Test-framework-webapp/Test-framework/WEB-INF/classes/classesTest/Student.class" beforeDir="false" afterPath="$PROJECT_DIR$/Test-framework-webapp/Test-framework/WEB-INF/classes/root/classesTest/Student.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Test-framework-webapp/Test-framework/WEB-INF/classes/classesTest/Test.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Test-framework-webapp/Test-framework/WEB-INF/classes/classesTest/obj" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Test-framework-webapp/Test-framework/WEB-INF/classes/main/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/Test-framework-webapp/Test-framework/WEB-INF/classes/root/main/Main.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Test-framework-webapp/Test-framework/WEB-INF/lib/framework.jar" beforeDir="false" afterPath="$PROJECT_DIR$/Test-framework-webapp/Test-framework/WEB-INF/lib/framework.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Test-framework-webapp/Test-framework/WEB-INF/web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Test-framework-webapp/Test-framework/WEB-INF/web.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Test-framework-webapp/Test-framework/formDataView.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/Test-framework-webapp/Test-framework/formDataView.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Test-framework-webapp/Test-framework/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/Test-framework-webapp/Test-framework/index.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Test-framework-webapp/Test-framework/listEmp.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/Test-framework-webapp/Test-framework/listEmp.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Test-framework-webapp/src/classesTest/Emp.java" beforeDir="false" afterPath="$PROJECT_DIR$/Test-framework-webapp/src/root/classesTest/Emp.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Test-framework-webapp/src/classesTest/Student.java" beforeDir="false" afterPath="$PROJECT_DIR$/Test-framework-webapp/src/root/classesTest/Student.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Test-framework-webapp/src/classesTest/Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/Test-framework-webapp/src/root/classesTest/Test.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Test-framework-webapp/src/main/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/Test-framework-webapp/src/root/main/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Test-framework-webapp/src/root/classesTest/Emp.java" beforeDir="false" afterPath="$PROJECT_DIR$/Test-framework-webapp/src/root/classesTest/Emp.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Test-framework-webapp/src/root/main/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/Test-framework-webapp/src/root/main/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/archives_java/Test-framework-webapp.war" beforeDir="false" afterPath="$PROJECT_DIR$/archives_java/Test-framework-webapp.war" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/archives_java/framework.jar" beforeDir="false" afterPath="$PROJECT_DIR$/archives_java/framework.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/deployFramework.sh" beforeDir="false" afterPath="$PROJECT_DIR$/deployFramework.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/deployTomcat.sh" beforeDir="false" afterPath="$PROJECT_DIR$/deployTomcat.sh" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -40,9 +28,9 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="Jsp File" />
         <option value="Class" />
         <option value="AnnotationType" />
-        <option value="Jsp File" />
       </list>
     </option>
   </component>
@@ -94,14 +82,13 @@
       <recent name="$PROJECT_DIR$/src/etu1918/framework" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/Test-framework-webapp/Test-framework/WEB-INF/classes/root" />
       <recent name="$PROJECT_DIR$/Framework" />
       <recent name="$PROJECT_DIR$/FrameworkWeb-webapp/WEB-INF/classes" />
       <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/out/production/FrameworkWeb" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.web-app">
+  <component name="RunManager" selected="Application.framework">
     <configuration name="framework" type="Application" factoryName="Application">
       <option name="ALTERNATIVE_JRE_PATH" value="19" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
@@ -114,21 +101,8 @@
     <configuration name="web-app" type="Application" factoryName="Application">
       <option name="ALTERNATIVE_JRE_PATH" value="19" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
-      <option name="MAIN_CLASS_NAME" value="main.Main" />
+      <option name="MAIN_CLASS_NAME" value="root.main.Main" />
       <module name="Test-framework-webapp" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration default="true" type="JetRunConfigurationType">
-      <module name="Framework" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
-      <module name="Framework" />
-      <option name="filePath" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>

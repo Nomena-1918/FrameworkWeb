@@ -245,6 +245,7 @@ public class Utilitaire {
 
 
     //Lister les classes dans la liste des packages en argument
+    @SuppressWarnings("rawtypes")
     public static HashMap<String, Mapping> initHashMap(String pack) throws Exception {
 
         List<Class> listClass = new ArrayList<>(Utilitaire.getClasses(pack));
@@ -263,7 +264,10 @@ public class Utilitaire {
                 for (Method m : meths) {
                     if (m.isAnnotationPresent(URLMapping.class)) {
 
+                        // Récupération de l'annotation recherchée
                         annot = m.getAnnotation(URLMapping.class);
+
+                        // Récupération de la valeur d'un attribut de l'annotation
                         annotMeth = annot.annotationType().getDeclaredMethod("valeur");
                         valueUrl = annotMeth.invoke(annot).toString();
 
