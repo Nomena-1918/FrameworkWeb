@@ -1,5 +1,12 @@
 #!/bin/bash
 
+# Prochaine étape : 
+# Utiliser des variables bash
+# Utilisation d'un répertoire temporaire pour la préparation du projet
+# Tout copier là-bas
+# (Pour rendre les script.sh plus flexibles)
+# Créer le war à partir de ce répertoire temporaire
+
 # Préparation du projet Test-framework-webapp
 cp  -r -f -v "/Users/nomena/TAFF S4 - PC ITU/S4/Web_Dynamique/FrameworkWeb/out/production/Test-framework-webapp/"  "/Users/nomena/TAFF S4 - PC ITU/S4/Web_Dynamique/FrameworkWeb/Test-framework-webapp/Test-framework/WEB-INF/classes/";
 
