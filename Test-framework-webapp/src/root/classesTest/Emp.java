@@ -111,4 +111,9 @@ public class Emp {
     public void setPrenoms(String[] prenoms) {
         this.prenoms = prenoms;
     }
+
+    @Override
+    public String toString(){
+        return "this object";
+    }
 }

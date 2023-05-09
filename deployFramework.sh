@@ -1,8 +1,11 @@
 #!/bin/bash
 
-# IMPORTANT : A exécuter après la compilation du projet framework
+# IMPORTANT : A exécuter après la compilation du projet framework (via l'IDE)
 
-# Exportation projet Framework -> framework.jar
+# Utiliser des variables bash
+
+# Exportation project Framework -> framework.jar
+
 # shellcheck disable=SC2164
 cd "/Users/nomena/TAFF S4 - PC ITU/S4/Web_Dynamique/FrameworkWeb/out/production/Framework";
 
@@ -11,3 +14,7 @@ jar cvmf  "/Users/nomena/TAFF S4 - PC ITU/S4/Web_Dynamique/FrameworkWeb/Framewor
 
 # Déploiement vers Test-framework-webapp
 cp -f -v "/Users/nomena/TAFF S4 - PC ITU/S4/Web_Dynamique/FrameworkWeb/archives_java/framework.jar"     "/Users/nomena/TAFF S4 - PC ITU/S4/Web_Dynamique/FrameworkWeb/Test-framework-webapp/Test-framework/WEB-INF/lib/";
+
+
+
+
