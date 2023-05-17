@@ -20,6 +20,7 @@ public class Emp {
 
     @URLMapping(valeur = "/list-emp.run")
     public ModelView listView() {
+        Student s = new Student("Vahatra", "Nomena", 19);
         ModelView m = new ModelView();
 
         List<Emp> listEmp = new ArrayList<>();
@@ -28,6 +29,7 @@ public class Emp {
         listEmp.add(new Emp(3, "Bema"));
 
         m.addItem("list-emp", listEmp);
+        m.addItem("student", s);
 
         m.setView("listEmp.jsp");
         return m;

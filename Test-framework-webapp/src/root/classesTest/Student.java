@@ -1,15 +1,13 @@
 package root.classesTest;
-import java.io.Serial;
 import java.io.Serializable;
 public class Student implements Serializable {
 
-    //default serialVersion id
-    @Serial
-    private static final long serialVersionUID = 1L;
-
     private String first_name;
-    private final String last_name;
+    private String last_name;
     private int age;
+    Emp e;
+
+    public Student() {}
 
     public Student(String fname, String lname, int age){
         this.first_name = fname;
@@ -18,6 +16,7 @@ public class Student implements Serializable {
     }
 
     public void setFirstName(String fname) {
+
         this.first_name = fname;
     }
 
