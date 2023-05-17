@@ -248,7 +248,7 @@ public class Utilitaire {
     @SuppressWarnings("rawtypes")
     public static HashMap<String, Mapping> initHashMap(String pack) throws Exception {
 
-        List<Class> listClass = new ArrayList<>(Utilitaire.getClasses(pack));
+        List<Class> listClass = new ArrayList<Class>(Utilitaire.getClasses(pack));
 
         Method[] meths;
 
@@ -257,9 +257,10 @@ public class Utilitaire {
         String valueUrl = null;
         Method annotMeth;
         Mapping mapping;
+        Class<Model> annotationClass = Model.class;
 
         for (Class c : listClass) {
-            if (c.isAnnotationPresent(Model.class)) {
+            if (c.isAnnotationPresent(annotationClass)) {
                 meths = c.getDeclaredMethods();
                 for (Method m : meths) {
                     if (m.isAnnotationPresent(URLMapping.class)) {

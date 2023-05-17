@@ -1,8 +1,12 @@
 #!/bin/bash
 
-bash "/Users/nomena/TAFF S4 - PC ITU/S4/Web_Dynamique/FrameworkWeb/deployFramework.sh";
+# Framework -> jar
+bash deployFramework.sh;
 
-bash "/Users/nomena/TAFF S4 - PC ITU/S4/Web_Dynamique/FrameworkWeb/deployTomcat.sh";
+# Préparation projet de test : dossier temporaire
+# Test-framework -> war et déploiement tomcat
+bash deployTomcat.sh;
+
 
 echo "" ;
 echo " Deployement done ! 🔥";
