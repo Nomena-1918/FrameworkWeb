@@ -2,10 +2,8 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <%
-
   Emp e = (Emp) request.getAttribute("formData");
   String[] prenoms = e.getPrenoms();
-
 %>
 
 <!DOCTYPE html>
@@ -35,7 +33,7 @@
             }
             else {
             %>
-            <li> <%= "pas de prénoms" %> </li>
+            <li><%= "pas de prénoms" %></li>
             <% }%>
           </ul>
         </h3>
