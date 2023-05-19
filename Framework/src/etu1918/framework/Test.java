@@ -1,8 +1,6 @@
 package etu1918.framework;
 
-import etu1918.framework.annotationPerso.Model;
 import etu1918.framework.annotationPerso.ParamTest;
-import etu1918.framework.annotationPerso.ParamValue;
 import etu1918.framework.annotationPerso.TestClass;
 
 @TestClass

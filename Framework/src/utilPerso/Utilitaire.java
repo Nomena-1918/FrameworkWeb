@@ -11,6 +11,7 @@ import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.lang.reflect.Parameter;
 import java.net.URI;
 import java.net.URL;
 import java.text.ParseException;
@@ -165,15 +166,37 @@ public class Utilitaire {
                 return true;
         return false;
     }
+/* 
+    // check si le paramètre correspond à l'une des annotations des paramètres, si Oui, retourner l'indice si Non -1
+    public static Parameter[] ParamToMethodArg(Method method, String[] nameParams) throws InvocationTargetException, IllegalAccessException, NoSuchMethodException {
 
-    public static boolean isMethodParam(Method method, String param) throws InvocationTargetException, IllegalAccessException, NoSuchMethodException {
-        Annotation annotationParam = method.getParameterAnnotations()[0][0];
-        Method annotMeth = annotationParam .annotationType().getDeclaredMethod("value");
-        String nameParam = annotMeth.invoke(annotationParam ).toString();
+        Parameter[] params = null;
+        List<Parameter> listParams = new ArrayList<>();
+        
+        Annotation[][] annotationParam = method.getParameterAnnotations();
+        Method annotMeth;
+        String nameParam;
 
-        return nameParam.equalsIgnoreCase(param);
+
+        for(Annotation[] annots : annotationParam) {
+            for(String param : nameParams) {
+                for(Annotation annot : annots) {
+                    annotMeth = annot.annotationType().getDeclaredMethod("value");
+                    nameParam = annotMeth.invoke(annotationParam ).toString();
+
+                    if(nameParam.equalsIgnoreCase(param))
+                        listParams.add((Parameter) nameParam);
+                }
+            }
+        }
+
+        //String nameParam = annotMeth.invoke(annotationParam ).toString();
+
+        //nameParam.equalsIgnoreCase(param);
+
+        return params;
     }
-
+*/
     @SuppressWarnings("rawtypes")
     public static Method getMethodeByAnnotation(String annote, String valueAnnote, Class classe) throws Exception{
         HashMap<Method, Annotation> methodes=getAllAnnotedMethods(annote, classe);

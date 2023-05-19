@@ -1,22 +1,22 @@
 package main;
-
+/* 
 import etu1918.framework.Test;
 import etu1918.framework.annotationPerso.Model;
 import etu1918.framework.annotationPerso.ParamTest;
 import etu1918.framework.annotationPerso.ParamValue;
-
 import java.lang.annotation.Annotation;
-import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.lang.reflect.Parameter;
+*/
+import java.lang.reflect.InvocationTargetException;
 
-
-@Model
+//@Model
 public class Main {
-    public void testMethod(@ParamValue(value = "param") String hey) {}
+    //public void testMethod(@ParamValue(value = "param") String hey) {}
 
     public static void main(String[] args) throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
 
+        /* 
         Test test = new Test();
         Annotation[] listAnnot = test.getClass().getAnnotations();
 
@@ -52,8 +52,10 @@ public class Main {
 
         for(String s : (String[]) valueAnnot)
             System.out.println(s);
+*/
 
-         }
-        //System.out.println("\nFramework built successfully ! 🚀");
+            System.out.println("\n\tFramework built successfully ! 🚀\n");
 
-    }
+        }
+       
+}
