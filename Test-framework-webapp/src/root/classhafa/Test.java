@@ -1,7 +1,6 @@
-package root.classesTest;
+package root.classhafa;
 
 import etu1918.framework.annotationPerso.Model;
-import etu1918.framework.annotationPerso.ParamValue;
 import etu1918.framework.annotationPerso.URLMapping;
 import etu1918.framework.mapping.ModelView;
 

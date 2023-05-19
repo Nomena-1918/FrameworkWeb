@@ -177,11 +177,15 @@ public class FrontServlet extends HttpServlet {
                 if (method.getParameterCount() == 0) {
                     modelView = (ModelView) method.invoke(object);
                 }
-                else if (method.getParameterCount() == 1) {
-                    if (Utilitaire.isMethodParam(method, paramMethodAction)) {
+                else if (method.getParameterCount() >= 1) {
+
+
+
+
+                    //if (Utilitaire.isMethodParam(method, paramMethodAction)) {
                         Object paramMethod = Utilitaire.convert(valueParam, method.getParameterTypes()[0]);
                         modelView = (ModelView) method.invoke(object, paramMethod);
-                    } else
+                   // } else
                         modelView = (ModelView) method.invoke(object, (Object) null);
                 }
                 else

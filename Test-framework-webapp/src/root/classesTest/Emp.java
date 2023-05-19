@@ -4,6 +4,7 @@ import etu1918.framework.annotationPerso.Model;
 import etu1918.framework.annotationPerso.ParamValue;
 import etu1918.framework.annotationPerso.URLMapping;
 import etu1918.framework.mapping.ModelView;
+import root.classhafa.Test;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -20,6 +21,7 @@ public class Emp {
 
     @URLMapping(valeur = "/list-emp.run")
     public ModelView listView() {
+        //Test t = new Test();
         Student s = new Student("Vahatra", "Nomena", 19);
         ModelView m = new ModelView();
 
