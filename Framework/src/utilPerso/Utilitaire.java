@@ -1,6 +1,7 @@
 package utilPerso;
 
 import etu1918.framework.annotationPerso.Model;
+import etu1918.framework.annotationPerso.ParamValue;
 import etu1918.framework.mapping.Mapping;
 import etu1918.framework.annotationPerso.URLMapping;
 import etu1918.framework.mapping.ModelView;
@@ -166,37 +167,54 @@ public class Utilitaire {
                 return true;
         return false;
     }
-/* 
-    // check si le paramètre correspond à l'une des annotations des paramètres, si Oui, retourner l'indice si Non -1
-    public static Parameter[] ParamToMethodArg(Method method, String[] nameParams) throws InvocationTargetException, IllegalAccessException, NoSuchMethodException {
 
-        Parameter[] params = null;
-        List<Parameter> listParams = new ArrayList<>();
+
+
+
+    // Liste des noms des vrais paramètres de la méthode d'action
+    public static List<String> getTrueParams(Method method) throws InvocationTargetException, IllegalAccessException, NoSuchMethodException {
+
+        List<String> listParams = new ArrayList<>();
         
         Annotation[][] annotationParam = method.getParameterAnnotations();
         Method annotMeth;
         String nameParam;
 
-
         for(Annotation[] annots : annotationParam) {
-            for(String param : nameParams) {
-                for(Annotation annot : annots) {
-                    annotMeth = annot.annotationType().getDeclaredMethod("value");
-                    nameParam = annotMeth.invoke(annotationParam ).toString();
+            annotMeth = annots[0].annotationType().getDeclaredMethod("value");
+            nameParam = annotMeth.invoke(annotationParam ).toString();
 
-                    if(nameParam.equalsIgnoreCase(param))
-                        listParams.add((Parameter) nameParam);
-                }
+            listParams.add(nameParam);
+        }
+
+        return listParams;
+    }
+
+    // Liste des types des paramètres données
+
+    @SuppressWarnings("rawtypes")
+    public static List<Class> getParamType(List<String> nomParam, Method method) throws Exception {
+        List<Class> lclass = new ArrayList<>();
+
+        Parameter[] paramsMethod = method.getParameters();
+
+        Method annotMeth;
+        String nameParam;
+        Annotation annot;
+
+        for (Parameter parameter : paramsMethod) {
+            annot = parameter.getAnnotation(ParamValue.class);
+            annotMeth = annot.annotationType().getDeclaredMethod("value");
+            nameParam = annotMeth.invoke(annot).toString();
+
+            if(nomParam.contains(nameParam)) {
+                lclass.add(parameter.getType());
             }
         }
 
-        //String nameParam = annotMeth.invoke(annotationParam ).toString();
+        return lclass;
+    } 
 
-        //nameParam.equalsIgnoreCase(param);
-
-        return params;
-    }
-*/
     @SuppressWarnings("rawtypes")
     public static Method getMethodeByAnnotation(String annote, String valueAnnote, Class classe) throws Exception{
         HashMap<Method, Annotation> methodes=getAllAnnotedMethods(annote, classe);
