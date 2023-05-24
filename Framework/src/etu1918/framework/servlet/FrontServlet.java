@@ -5,6 +5,7 @@ import etu1918.framework.mapping.ModelView;
 import utilPerso.Utilitaire;
 
 import javax.servlet.RequestDispatcher;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -15,6 +16,7 @@ import java.lang.reflect.Method;
 
 import java.util.*;
 
+//@MultipartConfig
 public class FrontServlet extends HttpServlet {
     HashMap<String, Mapping> mappingUrls;
     @Override
@@ -71,18 +73,13 @@ public class FrontServlet extends HttpServlet {
                 Object valueParam = null;
 
                 Class<?> fieldC;
-/*
-                int len = Collections.list(nomsParam).size();
-                nomParam = nomsParam.nextElement();
 
-                if (len == 1)
-                    paramMethodAction = nomParam;
-*/
+                List<String> possibleParamMethodAction = new ArrayList<>();
+
                 while (nomsParam.hasMoreElements()) {
 
                     // Paramètre du formulaire
                     nomParam = nomsParam.nextElement();
-
 
 
                     // Check, c'est un attribut de classe sinon Continue
@@ -158,13 +155,17 @@ public class FrontServlet extends HttpServlet {
 
                         }
                     }
+
+
                     else {
                         out.println("Nom param : "+nomParam);
                         paramMethodAction = nomParam;
                         valueParam = req.getParameterValues(nomParam)[0];
                         out.println("Valeur param : "+valueParam);
-                    }
 
+                        // Possible paramètre de la méthode d'action
+                        possibleParamMethodAction.add(nomParam);
+                    }
                 }
 
                 //La méthode d'action correspondant à l'URL
@@ -173,30 +174,49 @@ public class FrontServlet extends HttpServlet {
                 // Prendre la view dans le ModelView retourné
                 ModelView modelView;
 
+                int count = method.getParameterCount();
+
                 assert method != null;
-                if (method.getParameterCount() == 0) {
+                if (count == 0) {
                     modelView = (ModelView) method.invoke(object);
                 }
-                else if (method.getParameterCount() >= 1) {
+                // count >= 1
+                else {
+
+                    // Liste des noms des vrais paramètres de la méthode d'action
+                    List<String> trueParams = Utilitaire.getTrueParams(method);
+
+                    // Liste des noms en commun avec possibleParamMethodAction
+                    List<String> paramCom = new ArrayList<>(trueParams);
+                    paramCom.retainAll(possibleParamMethodAction);
 
 
+                    // Prendre la valeur de chacun de ces parameters -> List<Object>
+                    List<Object> valParamCom = new ArrayList<>();
+                    for (String s : paramCom) {
+                        valParamCom.add(req.getParameterValues(s)[0]);
+                    }
 
+                    // Cast List<Object> en Object[]
+                    Object[] valParamComArr = valParamCom.toArray();
+                    
+                    // Get list des vrais types des paramètres de la méthode
+                    List<Class> paramType = Utilitaire.getParamType(paramCom, method);
 
-                    //if (Utilitaire.isMethodParam(method, paramMethodAction)) {
-                        Object paramMethod = Utilitaire.convert(valueParam, method.getParameterTypes()[0]);
-                        modelView = (ModelView) method.invoke(object, paramMethod);
-                   // } else
-                        modelView = (ModelView) method.invoke(object, (Object) null);
+                    // Cast des éléments vers vrai type
+                    for(int i=0; i<valParamComArr.length; i++) {
+                        valParamComArr[i] = Utilitaire.convert(valParamComArr[i], paramType.get(i));
+                    }
+                    
+                    // Appel de la méthode avec les paramètres castés
+                    modelView = (ModelView) method.invoke(object, valParamComArr);
                 }
-                else
-                    throw new Exception("Pour l'instant, la méthode d'action prend au max 1 argument");
-
+                
                 String view = modelView.getView();
-                HashMap<String, Object> dataHsh;
+                HashMap<String, Object> dataHsh = modelView.getData();
 
                 // Prendre les data dans le ModelView
-                if (modelView.getData() != null) {
-                    dataHsh = modelView.getData();
+                if (dataHsh != null) {
 
                     // Les mettre dans les attributs de la requête
                     for (Map.Entry<String, Object> m : dataHsh.entrySet()) {

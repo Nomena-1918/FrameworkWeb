@@ -55,7 +55,7 @@ public class Emp {
     }
 
     @URLMapping(valeur = "/nbr/mistery.run")
-    public ModelView methodWithOneArg(@ParamValue(value = "num") Integer number) {
+    public ModelView methodWithOneArg(@ParamValue(value = "num") Integer number, @ParamValue(value = "num1") Integer number1) {
         ModelView m = new ModelView();
 
         if (number == null)
