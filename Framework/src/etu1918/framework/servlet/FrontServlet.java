@@ -74,7 +74,7 @@ public class FrontServlet extends HttpServlet {
 
                 Class<?> fieldC;
 
-                List<String> possibleParamMethodAction = new ArrayList<>();
+                HashMap<String, Object> possibleParamMethodAction = new HashMap<>();
 
                 while (nomsParam.hasMoreElements()) {
 
@@ -158,15 +158,18 @@ public class FrontServlet extends HttpServlet {
 
 
                     else {
-                        out.println("Nom param : "+nomParam);
-                        paramMethodAction = nomParam;
                         valueParam = req.getParameterValues(nomParam)[0];
-                        out.println("Valeur param : "+valueParam);
-
+                        
                         // Possible paramètre de la méthode d'action
-                        possibleParamMethodAction.add(nomParam);
+                        possibleParamMethodAction.put(nomParam, valueParam);
                     }
+
                 }
+
+                // Affichage de ces paramètres
+                for (Map.Entry<String, Object> me : possibleParamMethodAction.entrySet())
+                    out.println("Nom param : " + me.getKey() + ", Valeur param : " + me.getValue().toString());
+
 
                 //La méthode d'action correspondant à l'URL
                 Method method = Utilitaire.getMethodeByAnnotation("URLMapping", url, Class.forName(mapping.getClassName()));
@@ -188,7 +191,7 @@ public class FrontServlet extends HttpServlet {
 
                     // Liste des noms en commun avec possibleParamMethodAction
                     List<String> paramCom = new ArrayList<>(trueParams);
-                    paramCom.retainAll(possibleParamMethodAction);
+                    //paramCom.retainAll(possibleParamMethodAction);
 
 
                     // Prendre la valeur de chacun de ces parameters -> List<Object>

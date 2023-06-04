@@ -18,6 +18,7 @@ import java.net.URL;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
+import java.lang.reflect.Modifier;
 
 public class Utilitaire {
 
@@ -168,7 +169,27 @@ public class Utilitaire {
         return false;
     }
 
-
+// Exécuter une méthode 
+public static Object execMethod(Object objet, String nomMethode, Object[] parametres) throws Exception {
+    
+    Object retour;
+    Class[] typeParametres = null;
+    
+    if (parametres != null) {
+      typeParametres = new Class[parametres.length];
+      for (int i = 0; i < parametres.length; ++i) {
+        typeParametres[i] = parametres[i].getClass();
+      }
+    }
+    
+    Method m = objet.getClass().getMethod(nomMethode, typeParametres);
+    if (Modifier.isStatic(m.getModifiers())) {
+      retour = m.invoke(null, parametres);
+    } else {
+      retour = m.invoke(objet, parametres);
+    }
+    return retour;
+  }
 
 
     // Liste des noms des vrais paramètres de la méthode d'action
@@ -219,7 +240,7 @@ public class Utilitaire {
     public static Method getMethodeByAnnotation(String annote, String valueAnnote, Class classe) throws Exception{
         HashMap<Method, Annotation> methodes=getAllAnnotedMethods(annote, classe);
         for(Map.Entry<Method,Annotation> entry:methodes.entrySet()){
-            if(entry.getValue().annotationType().getMethod("valeur").invoke(entry.getValue()).equals(valueAnnote)){
+            if(entry.getValue().annotationType().getMethod("value").invoke(entry.getValue()).equals(valueAnnote)){
                 return entry.getKey();
             }
         }
