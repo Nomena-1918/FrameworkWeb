@@ -19,7 +19,7 @@ public class Emp {
     String[] prenoms;
 
 
-    @URLMapping(valeur = "/list-emp.run")
+    @URLMapping(value = "/list-emp.run")
     public ModelView listView() {
         //Test t = new Test();
         Student s = new Student("Vahatra", "Nomena", 19);
@@ -37,14 +37,14 @@ public class Emp {
         return m;
     }
 
-    @URLMapping(valeur = "/form-emp.run")
+    @URLMapping(value = "/form-emp.run")
     public ModelView formView() {
         ModelView m = new ModelView();
         m.setView("formEmp.jsp");
         return m;
     }
 
-    @URLMapping(valeur = "/form-data.run")
+    @URLMapping(value = "/form-data.run")
     public ModelView affFormData() {
         ModelView m = new ModelView();
 
@@ -54,12 +54,15 @@ public class Emp {
         return m;
     }
 
-    @URLMapping(valeur = "/nbr/mistery.run")
-    public ModelView methodWithOneArg(@ParamValue(value = "num") Integer number, @ParamValue(value = "num1") Integer number1) {
+    @URLMapping(value = "/nbr/mistery.run")
+    public ModelView methodWithSeveralArg(@ParamValue(value = "num") Integer number, @ParamValue(value = "num1") Integer number1) {
         ModelView m = new ModelView();
 
         if (number == null)
             number = 19;
+
+        if (number1 == null)
+        number1 = 24;
 
         m.addItem("numberMistery", number);
         m.setView("/view/affNumberMistery.jsp");
