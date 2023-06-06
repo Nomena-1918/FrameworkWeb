@@ -18,6 +18,7 @@ mkdir $projectName
 cd $projectName
 mkdir WEB-INF WEB-INF/classes WEB-INF/lib
 
+
 cp -r -f ../$classDir WEB-INF/classes
 cp -r -f ../$webXmlPath WEB-INF/
 cp -r -f ../$frameworkJarPath WEB-INF/lib

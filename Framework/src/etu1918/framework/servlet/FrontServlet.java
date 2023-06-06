@@ -69,18 +69,18 @@ public class FrontServlet extends HttpServlet {
                 Enumeration<String> nomsParam = req.getParameterNames();
                 String[] valeurParam;
                 String nomParam, Param, setter, lo, geTest, paramMethodAction = null;
-
                 Object valueParam = null;
-
                 Class<?> fieldC;
-
                 HashMap<String, Object> possibleParamMethodAction = new HashMap<>();
+                    
 
                 while (nomsParam.hasMoreElements()) {
 
                     // Paramètre du formulaire
                     nomParam = nomsParam.nextElement();
 
+                    // Arg setter
+                    valeurParam = req.getParameterValues(nomParam);
 
                     // Check, c'est un attribut de classe sinon Continue
                     if (Utilitaire.isClassAttribute(classe, nomParam)) {
@@ -94,9 +94,6 @@ public class FrontServlet extends HttpServlet {
                         // Création du setter
                         setter = "set".concat(Param);
                         out.println("     setter : " + setter);
-
-                        // Arg setter
-                        valeurParam = req.getParameterValues(nomParam);
 
                         // Paramater type du setter
                         fieldC = object.getClass().getDeclaredField(nomParam).getType();
@@ -156,28 +153,22 @@ public class FrontServlet extends HttpServlet {
                         }
                     }
 
-
-                    else {
-                        valueParam = req.getParameterValues(nomParam)[0];
-                        
-                        // Possible paramètre de la méthode d'action
-                        possibleParamMethodAction.put(nomParam, valueParam);
-                    }
-
+                    else 
+                        out.println("!(class attr) - Nom param : " + nomParam + ", Valeur param : " + valeurParam[0]);
+                    
                 }
-
-                // Affichage de ces paramètres
-                for (Map.Entry<String, Object> me : possibleParamMethodAction.entrySet())
-                    out.println("Nom param : " + me.getKey() + ", Valeur param : " + me.getValue().toString());
-
 
                 //La méthode d'action correspondant à l'URL
                 Method method = Utilitaire.getMethodeByAnnotation("URLMapping", url, Class.forName(mapping.getClassName()));
+
+                //out.println(method);
 
                 // Prendre la view dans le ModelView retourné
                 ModelView modelView;
 
                 int count = method.getParameterCount();
+
+                //out.println(count);
 
                 assert method != null;
                 if (count == 0) {
@@ -189,30 +180,30 @@ public class FrontServlet extends HttpServlet {
                     // Liste des noms des vrais paramètres de la méthode d'action
                     List<String> trueParams = Utilitaire.getTrueParams(method);
 
-                    // Liste des noms en commun avec possibleParamMethodAction
-                    List<String> paramCom = new ArrayList<>(trueParams);
-                    //paramCom.retainAll(possibleParamMethodAction);
-
+                    out.println(" \n Noms paramètres méthode d'action :");
+                    for (String string : trueParams) 
+                        out.println(string);
+                    
 
                     // Prendre la valeur de chacun de ces parameters -> List<Object>
-                    List<Object> valParamCom = new ArrayList<>();
-                    for (String s : paramCom) {
-                        valParamCom.add(req.getParameterValues(s)[0]);
-                    }
+                    List<Object> valParam = new ArrayList<>();
+                    // Type de ces paramètres
+                    List<Class> listParamType = Utilitaire.getParamType(trueParams, method);
 
+                    // Cast des paramètres String -> vraie valeur
+                    out.println("\n Valeurs paramètres de requête pour la méthode d'action :");
+                    for (int i = 0; i < trueParams.size(); i++) {
+                        valParam.add(Utilitaire.convert(req.getParameterValues(trueParams.get(i))[0], listParamType.get(i))); 
+                        out.println(Utilitaire.convert(req.getParameterValues(trueParams.get(i))[0], listParamType.get(i)));
+                    }
+                        
+            
                     // Cast List<Object> en Object[]
-                    Object[] valParamComArr = valParamCom.toArray();
+                    Object[] valParamArr = valParam.toArray();
                     
-                    // Get list des vrais types des paramètres de la méthode
-                    List<Class> paramType = Utilitaire.getParamType(paramCom, method);
+                    // Appel de la méthode
+                    modelView = (ModelView) method.invoke(object, valParamArr);
 
-                    // Cast des éléments vers vrai type
-                    for(int i=0; i<valParamComArr.length; i++) {
-                        valParamComArr[i] = Utilitaire.convert(valParamComArr[i], paramType.get(i));
-                    }
-                    
-                    // Appel de la méthode avec les paramètres castés
-                    modelView = (ModelView) method.invoke(object, valParamComArr);
                 }
                 
                 String view = modelView.getView();
@@ -226,6 +217,9 @@ public class FrontServlet extends HttpServlet {
                         req.setAttribute(m.getKey(), m.getValue());
                     }
                 }
+
+
+                out.println(view);
 
                 //Dispatch vers la vue correspondante
                 RequestDispatcher dispat = req.getRequestDispatcher(view);
