@@ -24,7 +24,7 @@ public class Utilitaire {
 
 
 // ===================== COMMUN : SETTERS et GETTERS ===================== //
-    // Cast génralisé
+    // Cast généralisé
     public static Object convert(Object valeurParam, Class fieldC) throws Exception {
         Object o = null;
 
@@ -202,8 +202,9 @@ public static Object execMethod(Object objet, String nomMethode, Object[] parame
         String nameParam;
 
         for(Annotation[] annots : annotationParam) {
+
             annotMeth = annots[0].annotationType().getDeclaredMethod("value");
-            nameParam = annotMeth.invoke(annotationParam ).toString();
+            nameParam = annotMeth.invoke(annots[0]).toString();
 
             listParams.add(nameParam);
         }
@@ -212,7 +213,6 @@ public static Object execMethod(Object objet, String nomMethode, Object[] parame
     }
 
     // Liste des types des paramètres données
-
     @SuppressWarnings("rawtypes")
     public static List<Class> getParamType(List<String> nomParam, Method method) throws Exception {
         List<Class> lclass = new ArrayList<>();
@@ -247,6 +247,7 @@ public static Object execMethod(Object objet, String nomMethode, Object[] parame
         return null;
     }
 
+    
     @SuppressWarnings("rawtypes")
     public static HashMap<Method, Annotation> getAllAnnotedMethods(String annote, Class classe){
         HashMap<Method, Annotation> liste=new HashMap<>();
@@ -331,7 +332,7 @@ public static Object execMethod(Object objet, String nomMethode, Object[] parame
                         annot = m.getAnnotation(URLMapping.class);
 
                         // Récupération de la valeur d'un attribut de l'annotation
-                        annotMeth = annot.annotationType().getDeclaredMethod("valeur");
+                        annotMeth = annot.annotationType().getDeclaredMethod("value");
                         valueUrl = annotMeth.invoke(annot).toString();
 
                         mapping = new Mapping(c.getName(), m.getName());
