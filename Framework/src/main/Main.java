@@ -38,13 +38,6 @@ public class Main {
         List<String> l = new ArrayList<>();
         l.contains(l);
 
-        // Possible param
-       /* HashMap<String, Object> possibleParam = new HashMap<>();
-        possibleParam.put("id", 5);
-        possibleParam.put("date", new Date());
-        possibleParam.put("matricule", Double.valueOf(67));
-        possibleParam.put("isBoss", false);
-        */
 
     }
 
