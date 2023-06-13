@@ -7,6 +7,7 @@ import etu1918.framework.annotationPerso.URLMapping;
 import etu1918.framework.mapping.ModelView;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.Part;
 import java.io.*;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
@@ -168,6 +169,18 @@ public class Utilitaire {
                 return true;
         return false;
     }
+
+    public static String getNameFileUploadAttribute(Class classe) {
+        Field[] listFields = classe.getDeclaredFields();
+        String name = null;
+
+        for (Field f : listFields)
+            if (f.getType().equals(FileUpload.class))
+                return f.getName();
+                
+        return name;
+    }
+
 
 // Exécuter une méthode 
 public static Object execMethod(Object objet, String nomMethode, Object[] parametres) throws Exception {
@@ -373,7 +386,25 @@ public static Object execMethod(Object objet, String nomMethode, Object[] parame
 
 
 
-//============== GESTION DE FICHIERS ================//
+//============== GESTION DE FICHIERS ================//s
+
+// Vérifier si un champ de formulaire est de type file ou pas 
+public static String getNomFichier(Part part) {
+
+    /* Boucle sur chacun des paramètres de l'en-tête "content-disposition". */
+    for ( String contentDisposition : part.getHeader("content-disposition").split( ";" ) ) {
+
+        /* Recherche de l'éventuelle présence du paramètre "filename". */
+        if ( contentDisposition.trim().startsWith("filename") ) {
+
+            /* Si "filename" est présent, alors renvoi de sa valeur, c'est-à-dire du nom de fichier. */
+            return contentDisposition.substring( contentDisposition.indexOf( '=' ) + 1 );
+        }
+    }
+    
+    /* Et pour terminer, si rien n'a été trouvé... */
+    return null;
+}
 
     public void WriteObjectToFile(Object serObj, String filepath) {
         try {

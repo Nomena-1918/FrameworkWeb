@@ -1,10 +1,3 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: nomena
-  Date: 11/04/2023
-  Time: 15:58
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -16,8 +9,11 @@
 <h2> Formulaire d'insertion d'employé :</h2>
 
 
-  <form action="form-data.run" method="post">
-
+  <form action="form-data.run" method="post" enctype="multipart/form-data">
+    <div>
+      <label for="fichier">Fichier :</label>
+      <input type="file" id="fichier" name="fichier">
+    </div>
     <div>
       <label for="matricule">Matricule :</label>
       <input type="number" id="matricule" name="matricule">

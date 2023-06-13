@@ -18,6 +18,7 @@
   <h2> L'employé correspondant au formulaire :</h2>
 
     <ul>
+      <li><h3>Fichier : <%= e.getFichier() %></h3></li>
       <li><h3>Matricule : <%= e.getMatricule() %></h3></li>
       <li><h3>Nom : <%= e.getNom() %></h3></li>
       <li><h3>Date de naissance : <%= e.getDtn() %></h3></li>
