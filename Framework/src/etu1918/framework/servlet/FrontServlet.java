@@ -2,23 +2,28 @@ package etu1918.framework.servlet;
 
 import etu1918.framework.mapping.Mapping;
 import etu1918.framework.mapping.ModelView;
+import utilPerso.FileUpload;
 import utilPerso.Utilitaire;
 
 import javax.servlet.RequestDispatcher;
-import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.Part;
+
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.PrintWriter;
+import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 
 import java.util.*;
 
-//@MultipartConfig
+
 public class FrontServlet extends HttpServlet {
     HashMap<String, Mapping> mappingUrls;
+
     @Override
     public void init() throws ServletException {
         try {
@@ -28,6 +33,7 @@ public class FrontServlet extends HttpServlet {
             throw new RuntimeException(e);
         }
     }
+
 
     public void ProcessRequest(HttpServletRequest req, HttpServletResponse res) throws Exception {
 
@@ -63,9 +69,6 @@ public class FrontServlet extends HttpServlet {
                 Object object = classe.cast(classe.getDeclaredConstructor().newInstance());
 
 
-                // Association pairs (name, value) du formulaire avec les setters de object
-                out.println("\n\nParamètres du formulaire :\n");
-
                 Enumeration<String> nomsParam = req.getParameterNames();
                 String[] valeurParam;
                 String nomParam, Param, setter, lo, geTest, paramMethodAction = null;
@@ -74,10 +77,63 @@ public class FrontServlet extends HttpServlet {
                 HashMap<String, Object> possibleParamMethodAction = new HashMap<>();
                     
 
+                // Pour les fichiers
+                /*
+                * Les données reçues sont multipart, on doit donc utiliser la méthode
+                * getPart() pour traiter le champ d'envoi de fichiers.
+                */
+
+                String nameAttrFile = Utilitaire.getNameFileUploadAttribute(classe);
+
+                if(nameAttrFile != null) {
+                    Part part = req.getPart(nameAttrFile);
+                    out.println("Part : "+part);
+
+                    
+                    /*
+                    * Il faut déterminer s'il s'agit d'un champ classique 
+                    * ou d'un champ de type fichier : on délègue cette opération 
+                    * à la méthode utilitaire getNomFichier().
+                    */
+                    String nomFichier = Utilitaire.getNomFichier(part);
+                    
+
+                    if(nomFichier != null) {
+                        nomFichier = nomFichier.substring( nomFichier.lastIndexOf( '/' ) + 1 ).substring( nomFichier.lastIndexOf( '\\' ) + 1 );
+                        
+                        InputStream in = part.getInputStream();
+                        byte[] bytes = in.readAllBytes();
+
+                        out.println("Bytes : "+bytes);
+
+                        FileUpload file = new FileUpload(nomFichier, bytes);
+
+                        // Rendre la 1ère lettre du paramétre majuscule, pour le setter
+                        lo = nameAttrFile.substring(0, 1).toUpperCase();
+                        Param = lo + nameAttrFile.substring(1);
+
+                        // Création du setter
+                        setter = "set".concat(Param);
+                        out.println("     setter : " + setter);
+
+                        // Appel setter généralisé
+                        Utilitaire.toSet(setter, object, file, FileUpload.class);
+                        out.println("\n\t-> Setter FileUpload appelé avec succès !\n");
+
+                        in.close();
+                    }
+                }
+
+
+                // Association pairs (name, value) du formulaire avec les setters de object
+                out.println("\n\nParamètres du formulaire :\n");
+
                 while (nomsParam.hasMoreElements()) {
 
                     // Paramètre du formulaire
                     nomParam = nomsParam.nextElement();
+
+                    out.println(nomParam);
 
                     // Arg setter
                     valeurParam = req.getParameterValues(nomParam);
@@ -101,56 +157,61 @@ public class FrontServlet extends HttpServlet {
 
                         Object o;
 
-                        if (valeurParam.length == 1) {
-                            out.println("     arg : " + valeurParam[0]);
+                        
+                        
 
-                            // ================== CAST ===================== //
+                            if (valeurParam.length == 1) {
 
-                            o = Utilitaire.convert(valeurParam[0], fieldC);
+                                out.println("     arg : " + valeurParam[0]);
 
-                            // ============================================== //
+                                // ================== CAST ===================== //
 
-                            // Appel setter généralisé
-                            Utilitaire.toSet(setter, object, o, fieldC);
-                            out.println("\n\t-> Setter appelé avec succès !\n");
+                                o = Utilitaire.convert(valeurParam[0], fieldC);
 
-                            // Test setter avec getter
-                            geTest = "get" + Param;
+                                // ============================================== //
 
-                            if (Utilitaire.toGet(geTest, object) != null)
-                                out.println("\t-> Test setter : " + geTest + " = " + Utilitaire.toGet(geTest, object).toString() + "\n");
+                                // Appel setter généralisé
+                                Utilitaire.toSet(setter, object, o, fieldC);
+                                out.println("\n\t-> Setter appelé avec succès !\n");
 
-                            else
-                                out.println("\t-> Test setter : " + geTest + " = null\n");
+                                // Test setter avec getter
+                                geTest = "get" + Param;
 
-                            out.println("    }\n");
-                            continue;
-                        }
-                        if (valeurParam.length > 1) {
-                            out.println("     arg : " + Arrays.toString(valeurParam));
+                                if (Utilitaire.toGet(geTest, object) != null)
+                                    out.println("\t-> Test setter : " + geTest + " = " + Utilitaire.toGet(geTest, object).toString() + "\n");
+
+                                else
+                                    out.println("\t-> Test setter : " + geTest + " = null\n");
+
+                                out.println("    }\n");
+                                continue;
+                            }
+                        
+                            if (valeurParam.length > 1) {
+                                out.println("     arg : " + Arrays.toString(valeurParam));
 
 
-                            // ================== CAST ===================== //
+                                // ================== CAST ===================== //
 
-                            Object tab = Utilitaire.convert(valeurParam, fieldC);
+                                Object tab = Utilitaire.convert(valeurParam, fieldC);
 
-                            // ========================================== //
+                                // ========================================== //
 
-                            // Appel setter généralisé
-                            Utilitaire.toSet(setter, object, tab, fieldC);
+                                // Appel setter généralisé
+                                Utilitaire.toSet(setter, object, tab, fieldC);
 
-                            out.println("\n\t-> Setter appelé avec succès !\n");
+                                out.println("\n\t-> Setter appelé avec succès !\n");
 
-                            // Test setter avec getter
-                            geTest = "get" + Param;
-                            if (Utilitaire.toGet(geTest, object) != null)
-                                out.println("\t-> Test setter : " + geTest + " = " + Arrays.toString((String[]) Utilitaire.toGet(geTest, object)) + "\n");
-                            else
-                                out.println("\t-> Test setter : " + geTest + " = null\n");
+                                // Test setter avec getter
+                                geTest = "get" + Param;
+                                if (Utilitaire.toGet(geTest, object) != null)
+                                    out.println("\t-> Test setter : " + geTest + " = " + Arrays.toString((String[]) Utilitaire.toGet(geTest, object)) + "\n");
+                                else
+                                    out.println("\t-> Test setter : " + geTest + " = null\n");
 
-                            out.println("    }\n");
+                                out.println("    }\n");
 
-                        }
+                            }
                     }
 
                     else 

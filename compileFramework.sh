@@ -3,7 +3,7 @@
 # Specify the source and destination directories
 source_dir="Framework/src"
 destination_dir="binFramework"
-jar_file="Framework/servlet-api.jar"
+jar_file="Framework/javaee-api-6.0-6.jar"
 
 # Find all Java files recursively and write their paths to a text file
 find "$source_dir" -name "*.java" > java_files.txt

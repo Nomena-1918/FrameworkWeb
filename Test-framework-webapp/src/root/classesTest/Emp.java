@@ -4,7 +4,7 @@ import etu1918.framework.annotationPerso.Model;
 import etu1918.framework.annotationPerso.ParamValue;
 import etu1918.framework.annotationPerso.URLMapping;
 import etu1918.framework.mapping.ModelView;
-import root.classhafa.Test;
+import utilPerso.FileUpload;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -17,6 +17,7 @@ public class Emp {
     Date dtn;
     String nom;
     String[] prenoms;
+    FileUpload fichier;
 
 
     @URLMapping(value = "/list-emp.run")
@@ -123,4 +124,13 @@ public class Emp {
     public String toString(){
         return "this object";
     }
+
+    public FileUpload getFichier() {
+        return fichier;
+    }
+
+    public void setFichier(FileUpload fichier) {
+        this.fichier = fichier;
+    }
+
 }

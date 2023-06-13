@@ -15,14 +15,16 @@ import utilPerso.Utilitaire;
 
 
 public class Main {
+
+    /*
     @URLMapping(value="url")
     public void testMethod(@ParamValue(value = "id") Integer id, @ParamValue(value = "nom") String nom, @ParamValue(value = "date") Date date) {
         System.out.println(id+" : "+nom+" : "+date);
-    }
+    }*/
 
     public static void main(String[] args) throws Exception {
-        //System.out.println("\n\tFramework built successfully ! 🚀\n");
-
+        System.out.println("\n\tFramework built successfully ! 🚀\n");
+/*
         //Method m = Main.class.getDeclaredMethod("testMethod", Integer.class, String.class, Date.class);
 
         Method m = Utilitaire.getMethodeByAnnotation("URLMapping", "url", Main.class);
@@ -44,7 +46,7 @@ public class Main {
             System.out.println(string);
         }
 */   
-        // Liste des valeurs de ces paramètres (get dans hashmap)
+      /*  // Liste des valeurs de ces paramètres (get dans hashmap)
         List<Object> listVal = new ArrayList<Object>();
 
         //Avant cast
@@ -56,20 +58,18 @@ public class Main {
             else
             System.out.println("null : null");
         }
-
+*/
         // Liste des types des paramètres de la méthode
         //List<Class> listC = Utilitaire.getParamType(list, m);
-
-        
 
         // Cast de la liste des valeurs des paramètres
         /*for (int i = 0; i < listVal.size(); i++) {
             Utilitaire.convert(listVal.get(i), listC.get(i));
         }*/
-
+/*
         // Invokation méthode
         Object[] listValOK = listVal.toArray();
         m.invoke(new Main(), listValOK);
-
+*/
     }
 }
