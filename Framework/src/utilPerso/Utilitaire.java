@@ -23,6 +23,21 @@ import java.lang.reflect.Modifier;
 
 public class Utilitaire {
 
+    // REST UN OBJET
+    public static void resetObject(Object o) throws IllegalAccessException {
+        Class<?> clazz = o.getClass();
+
+        // Récupère tous les attributs déclarés dans la classe, y compris les attributs hérités
+        Field[] fields = clazz.getDeclaredFields();
+
+        for (Field field : fields) {
+            // Autorise l'accès aux attributs privés
+            field.setAccessible(true);
+
+            // Définit la valeur de l'attribut à null
+            field.set(o, null);
+        }
+    }
 
 // ===================== COMMUN : SETTERS et GETTERS ===================== //
     // Cast généralisé

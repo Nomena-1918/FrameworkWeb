@@ -24,6 +24,8 @@ import java.util.*;
 public class FrontServlet extends HttpServlet {
     HashMap<String, Mapping> mappingUrls;
 
+   // HashMap<String, Mapping> mappingUrls;
+
     @Override
     public void init() throws ServletException {
         try {
@@ -75,7 +77,7 @@ public class FrontServlet extends HttpServlet {
                 Object valueParam = null;
                 Class<?> fieldC;
                 HashMap<String, Object> possibleParamMethodAction = new HashMap<>();
-                    
+                     
 
                 // Pour les fichiers
                 /*
@@ -123,7 +125,6 @@ public class FrontServlet extends HttpServlet {
                         in.close();
                     }
                 }
-
 
                 // Association pairs (name, value) du formulaire avec les setters de object
                 out.println("\n\nParamètres du formulaire :\n");
