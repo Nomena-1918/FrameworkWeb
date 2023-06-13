@@ -20,7 +20,15 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="module" module-name="Framework" exported="" />
-    <orderEntry type="library" exported="" name="servlet-api1" level="project" />
+    <orderEntry type="module" module-name="Framework" />
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/../Framework/javaee-api-6.0-6.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
   </component>
 </module>

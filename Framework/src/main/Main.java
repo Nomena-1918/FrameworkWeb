@@ -1,59 +1,75 @@
 package main;
 
-import etu1918.framework.Test;
-import etu1918.framework.annotationPerso.Model;
-import etu1918.framework.annotationPerso.ParamTest;
-import etu1918.framework.annotationPerso.ParamValue;
-
 import java.lang.annotation.Annotation;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-import java.lang.reflect.Parameter;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import etu1918.framework.annotationPerso.ParamValue;
+import etu1918.framework.annotationPerso.URLMapping;
+import utilPerso.Utilitaire;
 
 
-@Model
 public class Main {
-    public void testMethod(@ParamValue(value = "param") String hey) {}
 
-    public static void main(String[] args) throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
+    /*
+    @URLMapping(value="url")
+    public void testMethod(@ParamValue(value = "id") Integer id, @ParamValue(value = "nom") String nom, @ParamValue(value = "date") Date date) {
+        System.out.println(id+" : "+nom+" : "+date);
+    }*/
 
-        Test test = new Test();
-        Annotation[] listAnnot = test.getClass().getAnnotations();
+    public static void main(String[] args) throws Exception {
+        System.out.println("\n\tFramework built successfully ! 🚀\n");
+/*
+        //Method m = Main.class.getDeclaredMethod("testMethod", Integer.class, String.class, Date.class);
 
-        // Annotation de classe
-        for (Annotation a : listAnnot)
-            System.out.println("Nom de l'annotation  : "+a.annotationType().getSimpleName());
+        Method m = Utilitaire.getMethodeByAnnotation("URLMapping", "url", Main.class);
 
+        //System.out.println(m);
 
-        // Récupération des méthodes de notre objet Test
-        Method[] listMethod = test.getClass().getDeclaredMethods();
-        Parameter[] listParam;
-        Method annotMeth;
-        Object valueAnnot = null;
-        Annotation annot;
+        // Paramètres de la requête (HashMap) "données simulation"
+        HashMap<String, Object> parameters = new HashMap<>();
 
-        // Recherche des paramètres annotés de ces méthodes
-        for (Method m : listMethod) {
-            listParam = m.getParameters();
-            for (Parameter p : listParam) {
-                if (p.isAnnotationPresent(ParamTest.class)) {
-                    annot = p.getAnnotation(ParamTest.class);
-                    System.out.println("\n Annotation trouvée : " + annot);
+        Object i = 8, no = "Jean";
 
-                    // Récupération de la valeur d'un attribut de l'annotation
-                    annotMeth = p.getAnnotation(ParamTest.class).annotationType().getDeclaredMethod("listString");
-                    valueAnnot = annotMeth.invoke(annot);
-                }
-            }
+        parameters.put("id", i);
+        parameters.put("nom", no);
+
+        // Nom des paramètres de la méthode
+        List<String> list = Utilitaire.getTrueParams(m);
+/* 
+        for (String string : list) {
+            System.out.println(string);
         }
+*/   
+      /*  // Liste des valeurs de ces paramètres (get dans hashmap)
+        List<Object> listVal = new ArrayList<Object>();
 
-        assert valueAnnot != null;
-        System.out.println("\nLa valeur de l'annotation d'argument de méthode : ");
+        //Avant cast
+        System.out.println("Avant cast : \n");
+        for(String s : list) {
+            listVal.add(parameters.get(s));
+            if(parameters.get(s) != null)
+                System.out.println(parameters.get(s).getClass()+" : "+parameters.get(s));
+            else
+            System.out.println("null : null");
+        }
+*/
+        // Liste des types des paramètres de la méthode
+        //List<Class> listC = Utilitaire.getParamType(list, m);
 
-        for(String s : (String[]) valueAnnot)
-            System.out.println(s);
-
-         }
-        //System.out.println("\nFramework built successfully ! 🚀");
-
+        // Cast de la liste des valeurs des paramètres
+        /*for (int i = 0; i < listVal.size(); i++) {
+            Utilitaire.convert(listVal.get(i), listC.get(i));
+        }*/
+/*
+        // Invokation méthode
+        Object[] listValOK = listVal.toArray();
+        m.invoke(new Main(), listValOK);
+*/
     }
+}

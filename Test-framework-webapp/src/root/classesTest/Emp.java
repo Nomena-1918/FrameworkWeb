@@ -4,6 +4,7 @@ import etu1918.framework.annotationPerso.Model;
 import etu1918.framework.annotationPerso.ParamValue;
 import etu1918.framework.annotationPerso.URLMapping;
 import etu1918.framework.mapping.ModelView;
+import utilPerso.FileUpload;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -16,10 +17,13 @@ public class Emp {
     Date dtn;
     String nom;
     String[] prenoms;
+    FileUpload fichier;
 
 
-    @URLMapping(valeur = "/list-emp.run")
+    @URLMapping(value = "/list-emp.run")
     public ModelView listView() {
+        //Test t = new Test();
+        Student s = new Student("Vahatra", "Nomena", 19);
         ModelView m = new ModelView();
 
         List<Emp> listEmp = new ArrayList<>();
@@ -28,19 +32,20 @@ public class Emp {
         listEmp.add(new Emp(3, "Bema"));
 
         m.addItem("list-emp", listEmp);
+        m.addItem("student", s);
 
         m.setView("listEmp.jsp");
         return m;
     }
 
-    @URLMapping(valeur = "/form-emp.run")
+    @URLMapping(value = "/form-emp.run")
     public ModelView formView() {
         ModelView m = new ModelView();
         m.setView("formEmp.jsp");
         return m;
     }
 
-    @URLMapping(valeur = "/form-data.run")
+    @URLMapping(value = "/form-data.run")
     public ModelView affFormData() {
         ModelView m = new ModelView();
 
@@ -50,12 +55,15 @@ public class Emp {
         return m;
     }
 
-    @URLMapping(valeur = "/nbr/mistery.run")
-    public ModelView methodWithOneArg(@ParamValue(value = "num") Integer number) {
+    @URLMapping(value = "/nbr/mistery.run")
+    public ModelView methodWithSeveralArg(@ParamValue(value = "num") Integer number, @ParamValue(value = "num1") Integer number1) {
         ModelView m = new ModelView();
 
         if (number == null)
             number = 19;
+
+        if (number1 == null)
+        number1 = 24;
 
         m.addItem("numberMistery", number);
         m.setView("/view/affNumberMistery.jsp");
@@ -116,4 +124,13 @@ public class Emp {
     public String toString(){
         return "this object";
     }
+
+    public FileUpload getFichier() {
+        return fichier;
+    }
+
+    public void setFichier(FileUpload fichier) {
+        this.fichier = fichier;
+    }
+
 }

@@ -1,27 +1,31 @@
 package utilPerso;
 
 import etu1918.framework.annotationPerso.Model;
+import etu1918.framework.annotationPerso.ParamValue;
 import etu1918.framework.mapping.Mapping;
 import etu1918.framework.annotationPerso.URLMapping;
 import etu1918.framework.mapping.ModelView;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.Part;
 import java.io.*;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.lang.reflect.Parameter;
 import java.net.URI;
 import java.net.URL;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
+import java.lang.reflect.Modifier;
 
 public class Utilitaire {
 
 
 // ===================== COMMUN : SETTERS et GETTERS ===================== //
-    // Cast génralisé
+    // Cast généralisé
     public static Object convert(Object valeurParam, Class fieldC) throws Exception {
         Object o = null;
 
@@ -166,25 +170,97 @@ public class Utilitaire {
         return false;
     }
 
-    public static boolean isMethodParam(Method method, String param) throws InvocationTargetException, IllegalAccessException, NoSuchMethodException {
-        Annotation annotationParam = method.getParameterAnnotations()[0][0];
-        Method annotMeth = annotationParam .annotationType().getDeclaredMethod("value");
-        String nameParam = annotMeth.invoke(annotationParam ).toString();
+    public static String getNameFileUploadAttribute(Class classe) {
+        Field[] listFields = classe.getDeclaredFields();
+        String name = null;
 
-        return nameParam.equalsIgnoreCase(param);
+        for (Field f : listFields)
+            if (f.getType().equals(FileUpload.class))
+                return f.getName();
+                
+        return name;
     }
+
+
+// Exécuter une méthode 
+public static Object execMethod(Object objet, String nomMethode, Object[] parametres) throws Exception {
+    
+    Object retour;
+    Class[] typeParametres = null;
+    
+    if (parametres != null) {
+      typeParametres = new Class[parametres.length];
+      for (int i = 0; i < parametres.length; ++i) {
+        typeParametres[i] = parametres[i].getClass();
+      }
+    }
+    
+    Method m = objet.getClass().getMethod(nomMethode, typeParametres);
+    if (Modifier.isStatic(m.getModifiers())) {
+      retour = m.invoke(null, parametres);
+    } else {
+      retour = m.invoke(objet, parametres);
+    }
+    return retour;
+  }
+
+
+    // Liste des noms des vrais paramètres de la méthode d'action
+    public static List<String> getTrueParams(Method method) throws InvocationTargetException, IllegalAccessException, NoSuchMethodException {
+
+        List<String> listParams = new ArrayList<>();
+        
+        Annotation[][] annotationParam = method.getParameterAnnotations();
+        Method annotMeth;
+        String nameParam;
+
+        for(Annotation[] annots : annotationParam) {
+
+            annotMeth = annots[0].annotationType().getDeclaredMethod("value");
+            nameParam = annotMeth.invoke(annots[0]).toString();
+
+            listParams.add(nameParam);
+        }
+
+        return listParams;
+    }
+
+    // Liste des types des paramètres données
+    @SuppressWarnings("rawtypes")
+    public static List<Class> getParamType(List<String> nomParam, Method method) throws Exception {
+        List<Class> lclass = new ArrayList<>();
+
+        Parameter[] paramsMethod = method.getParameters();
+
+        Method annotMeth;
+        String nameParam;
+        Annotation annot;
+
+        for (Parameter parameter : paramsMethod) {
+            annot = parameter.getAnnotation(ParamValue.class);
+            annotMeth = annot.annotationType().getDeclaredMethod("value");
+            nameParam = annotMeth.invoke(annot).toString();
+
+            if(nomParam.contains(nameParam)) {
+                lclass.add(parameter.getType());
+            }
+        }
+
+        return lclass;
+    } 
 
     @SuppressWarnings("rawtypes")
     public static Method getMethodeByAnnotation(String annote, String valueAnnote, Class classe) throws Exception{
         HashMap<Method, Annotation> methodes=getAllAnnotedMethods(annote, classe);
         for(Map.Entry<Method,Annotation> entry:methodes.entrySet()){
-            if(entry.getValue().annotationType().getMethod("valeur").invoke(entry.getValue()).equals(valueAnnote)){
+            if(entry.getValue().annotationType().getMethod("value").invoke(entry.getValue()).equals(valueAnnote)){
                 return entry.getKey();
             }
         }
         return null;
     }
 
+    
     @SuppressWarnings("rawtypes")
     public static HashMap<Method, Annotation> getAllAnnotedMethods(String annote, Class classe){
         HashMap<Method, Annotation> liste=new HashMap<>();
@@ -248,7 +324,7 @@ public class Utilitaire {
     @SuppressWarnings("rawtypes")
     public static HashMap<String, Mapping> initHashMap(String pack) throws Exception {
 
-        List<Class> listClass = new ArrayList<>(Utilitaire.getClasses(pack));
+        List<Class> listClass = new ArrayList<Class>(Utilitaire.getClasses(pack));
 
         Method[] meths;
 
@@ -257,9 +333,10 @@ public class Utilitaire {
         String valueUrl = null;
         Method annotMeth;
         Mapping mapping;
+        Class<Model> annotationClass = Model.class;
 
         for (Class c : listClass) {
-            if (c.isAnnotationPresent(Model.class)) {
+            if (c.isAnnotationPresent(annotationClass)) {
                 meths = c.getDeclaredMethods();
                 for (Method m : meths) {
                     if (m.isAnnotationPresent(URLMapping.class)) {
@@ -268,7 +345,7 @@ public class Utilitaire {
                         annot = m.getAnnotation(URLMapping.class);
 
                         // Récupération de la valeur d'un attribut de l'annotation
-                        annotMeth = annot.annotationType().getDeclaredMethod("valeur");
+                        annotMeth = annot.annotationType().getDeclaredMethod("value");
                         valueUrl = annotMeth.invoke(annot).toString();
 
                         mapping = new Mapping(c.getName(), m.getName());
@@ -309,7 +386,25 @@ public class Utilitaire {
 
 
 
-//============== GESTION DE FICHIERS ================//
+//============== GESTION DE FICHIERS ================//s
+
+// Vérifier si un champ de formulaire est de type file ou pas 
+public static String getNomFichier(Part part) {
+
+    /* Boucle sur chacun des paramètres de l'en-tête "content-disposition". */
+    for ( String contentDisposition : part.getHeader("content-disposition").split( ";" ) ) {
+
+        /* Recherche de l'éventuelle présence du paramètre "filename". */
+        if ( contentDisposition.trim().startsWith("filename") ) {
+
+            /* Si "filename" est présent, alors renvoi de sa valeur, c'est-à-dire du nom de fichier. */
+            return contentDisposition.substring( contentDisposition.indexOf( '=' ) + 1 );
+        }
+    }
+    
+    /* Et pour terminer, si rien n'a été trouvé... */
+    return null;
+}
 
     public void WriteObjectToFile(Object serObj, String filepath) {
         try {
