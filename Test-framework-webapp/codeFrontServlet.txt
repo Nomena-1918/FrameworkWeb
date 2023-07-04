@@ -1,0 +1,44 @@
+// Pour les fichiers
+                /*
+                * Les données reçues sont multipart, on doit donc utiliser la méthode
+                * getPart() pour traiter le champ d'envoi de fichiers.
+                */
+
+                String nameAttrFile = Utilitaire.getNameFileUploadAttribute(classe);
+
+                if(nameAttrFile != null) {
+                    Part part = req.getPart(nameAttrFile);
+                    out.println("Part : "+part);
+
+                    /*
+                    * Il faut déterminer s'il s'agit d'un champ classique
+                    * ou d'un champ de type fichier : on délègue cette opération
+                    * à la méthode utilitaire getNomFichier().
+                    */
+                    String nomFichier = Utilitaire.getNomFichier(part);
+
+
+                    if(nomFichier != null) {
+                        //nomFichier = nomFichier.substring( nomFichier.lastIndexOf( '/' ) + 1 ).substring( nomFichier.lastIndexOf( '\\' ) + 1 );
+
+                        InputStream in = part.getInputStream();
+                        byte[] bytes = in.readAllBytes();
+
+                        out.println("Bytes : "+bytes);
+
+                        FileUpload file = new FileUpload(nomFichier, bytes);
+
+                        // Rendre la 1ère lettre du paramétre majuscule, pour le setter
+                        lo = nameAttrFile.substring(0, 1).toUpperCase();
+                        Param = lo + nameAttrFile.substring(1);
+
+                        // Création du setter
+                        setter = "set".concat(Param);
+                        out.println("     setter : " + setter);
+
+                        // Appel setter généralisé
+                        Utilitaire.toSet(setter, object, file, FileUpload.class);
+                        out.println("\n\t-> Setter FileUpload appelé avec succès !\n");
+
+                        in.close();
+                    }

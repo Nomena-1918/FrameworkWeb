@@ -1,0 +1,30 @@
+public static String getNameFileUploadAttribute(Class classe) {
+    Field[] listFields = classe.getDeclaredFields();
+    String name = null;
+
+    for (Field f : listFields)
+        if (f.getType().equals(FileUpload.class))
+            return f.getName();
+
+    return name;
+}
+
+
+
+// Vérifier si un champ de formulaire est de type file ou pas
+public static String getNomFichier(Part part) {
+
+    /* Boucle sur chacun des paramètres de l'en-tête "content-disposition". */
+    for ( String contentDisposition : part.getHeader("content-disposition").split( ";" ) ) {
+
+        /* Recherche de l'éventuelle présence du paramètre "filename". */
+        if ( contentDisposition.trim().startsWith("filename") ) {
+
+            /* Si "filename" est présent, alors renvoi de sa valeur, c'est-à-dire du nom de fichier. */
+            return contentDisposition.substring( contentDisposition.indexOf( '=' ) + 1 );
+        }
+    }
+
+    /* Et pour terminer, si rien n'a été trouvé... */
+    return null;
+}

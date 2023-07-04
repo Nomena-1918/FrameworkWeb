@@ -7,35 +7,50 @@ import utilPerso.Utilitaire;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 
-import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintWriter;
-import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 
 import java.util.*;
 
-
+@MultipartConfig
 public class FrontServlet extends HttpServlet {
     HashMap<String, Mapping> mappingUrls;
-
-   // HashMap<String, Mapping> mappingUrls;
+    HashMap<Class, Object> instanceClass;
 
     @Override
     public void init() throws ServletException {
         try {
+
             String path = this.getInitParameter("classpath");
-            this.mappingUrls = Utilitaire.initHashMap(path);
+            Utilitaire.initHashMap(this, path);
+
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
     }
 
+    public HashMap<String, Mapping> getMappingUrls() {
+        return mappingUrls;
+    }
+
+    public void setMappingUrls(HashMap<String, Mapping> mappingUrls) {
+        this.mappingUrls = mappingUrls;
+    }
+
+    public HashMap<Class, Object> getInstanceClass() {
+        return instanceClass;
+    }
+
+    public void setInstanceClass(HashMap<Class, Object> instanceClass) {
+        this.instanceClass = instanceClass;
+    }
 
     public void ProcessRequest(HttpServletRequest req, HttpServletResponse res) throws Exception {
 
@@ -56,28 +71,46 @@ public class FrontServlet extends HttpServlet {
                 out.println(s);
 
             out.println("\n\nMappingUrls :");
-
             for (Map.Entry<String, Mapping> me : this.mappingUrls.entrySet())
                 out.println("URL : " + me.getKey() + ", Classe : " + me.getValue().getClassName() + ", Méthode : " + me.getValue().getMethod());
+
+            out.println("\n\nInstanceClass :");
+            for (Map.Entry<Class, Object> me : this.instanceClass.entrySet())
+                out.println("Classe : " + me.getKey() + ", Instance : " + me.getValue());
+
 
             out.println("\n\nL'URL est supportée : " + this.mappingUrls.containsKey(url));
 
             // Chargement d'une view
             if (this.mappingUrls.containsKey(url)) {
+
                 Mapping mapping = this.mappingUrls.get(url);
 
                 // Instanciation d'un objet de type classname du Mapping
                 Class<?> classe = Class.forName(mapping.getClassName());
-                Object object = classe.cast(classe.getDeclaredConstructor().newInstance());
+
+
+                // Contrôle singleton
+                Object object;
+                Object oTemp;
+                if(this.instanceClass.containsKey(classe)) {
+                    oTemp = this.instanceClass.get(classe);
+
+                    if (oTemp != null)
+                        object = oTemp;
+                    else {
+                        this.instanceClass.put(classe, classe.cast(classe.getDeclaredConstructor().newInstance()));
+                        object =  this.instanceClass.get(classe);
+                    }
+                }
+                else
+                    object = classe.cast(classe.getDeclaredConstructor().newInstance());
 
 
                 Enumeration<String> nomsParam = req.getParameterNames();
                 String[] valeurParam;
-                String nomParam, Param, setter, lo, geTest, paramMethodAction = null;
-                Object valueParam = null;
+                String nomParam, Param, setter, lo, geTest;
                 Class<?> fieldC;
-                HashMap<String, Object> possibleParamMethodAction = new HashMap<>();
-                     
 
                 // Pour les fichiers
                 /*
@@ -87,21 +120,24 @@ public class FrontServlet extends HttpServlet {
 
                 String nameAttrFile = Utilitaire.getNameFileUploadAttribute(classe);
 
-                if(nameAttrFile != null) {
+
+                if(nameAttrFile != null && req.getPart(nameAttrFile) != null) {
                     Part part = req.getPart(nameAttrFile);
+
+
                     out.println("Part : "+part);
 
-                    
                     /*
                     * Il faut déterminer s'il s'agit d'un champ classique 
                     * ou d'un champ de type fichier : on délègue cette opération 
                     * à la méthode utilitaire getNomFichier().
                     */
                     String nomFichier = Utilitaire.getNomFichier(part);
-                    
+                    out.println("nomFichier : "+nomFichier);
+
 
                     if(nomFichier != null) {
-                        nomFichier = nomFichier.substring( nomFichier.lastIndexOf( '/' ) + 1 ).substring( nomFichier.lastIndexOf( '\\' ) + 1 );
+                        //nomFichier = nomFichier.substring( nomFichier.lastIndexOf( '/' ) + 1 ).substring( nomFichier.lastIndexOf( '\\' ) + 1 );
                         
                         InputStream in = part.getInputStream();
                         byte[] bytes = in.readAllBytes();
@@ -125,6 +161,9 @@ public class FrontServlet extends HttpServlet {
                         in.close();
                     }
                 }
+                else out.println("pas de fichier");
+
+
 
                 // Association pairs (name, value) du formulaire avec les setters de object
                 out.println("\n\nParamètres du formulaire :\n");
@@ -157,9 +196,6 @@ public class FrontServlet extends HttpServlet {
                         out.println("     Type du param : " + fieldC.getSimpleName());
 
                         Object o;
-
-                        
-                        
 
                             if (valeurParam.length == 1) {
 
@@ -223,16 +259,14 @@ public class FrontServlet extends HttpServlet {
                 //La méthode d'action correspondant à l'URL
                 Method method = Utilitaire.getMethodeByAnnotation("URLMapping", url, Class.forName(mapping.getClassName()));
 
-                //out.println(method);
-
                 // Prendre la view dans le ModelView retourné
                 ModelView modelView;
 
+                assert method != null;
                 int count = method.getParameterCount();
 
                 //out.println(count);
 
-                assert method != null;
                 if (count == 0) {
                     modelView = (ModelView) method.invoke(object);
                 }
@@ -258,8 +292,7 @@ public class FrontServlet extends HttpServlet {
                         valParam.add(Utilitaire.convert(req.getParameterValues(trueParams.get(i))[0], listParamType.get(i))); 
                         out.println(Utilitaire.convert(req.getParameterValues(trueParams.get(i))[0], listParamType.get(i)));
                     }
-                        
-            
+
                     // Cast List<Object> en Object[]
                     Object[] valParamArr = valParam.toArray();
                     
@@ -279,7 +312,6 @@ public class FrontServlet extends HttpServlet {
                         req.setAttribute(m.getKey(), m.getValue());
                     }
                 }
-
 
                 out.println(view);
 

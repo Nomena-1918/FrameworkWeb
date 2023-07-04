@@ -2,12 +2,17 @@ package utilPerso;
 
 import etu1918.framework.annotationPerso.Model;
 import etu1918.framework.annotationPerso.ParamValue;
+import etu1918.framework.annotationPerso.Scope;
 import etu1918.framework.mapping.Mapping;
 import etu1918.framework.annotationPerso.URLMapping;
 import etu1918.framework.mapping.ModelView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.Part;
+
+import dataStructure.Pair;
+import etu1918.framework.servlet.FrontServlet;
+
 import java.io.*;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
@@ -337,18 +342,22 @@ public static Object execMethod(Object objet, String nomMethode, Object[] parame
 
     //Lister les classes dans la liste des packages en argument
     @SuppressWarnings("rawtypes")
-    public static HashMap<String, Mapping> initHashMap(String pack) throws Exception {
+    public static void initHashMap(FrontServlet frontservlet, String pack) throws Exception {
+
+        List<HashMap> result = new ArrayList<>();
 
         List<Class> listClass = new ArrayList<Class>(Utilitaire.getClasses(pack));
-
         Method[] meths;
 
-        HashMap<String, Mapping> mappingUrls = new HashMap<>();
         Annotation annot;
         String valueUrl = null;
         Method annotMeth;
         Mapping mapping;
         Class<Model> annotationClass = Model.class;
+        Class<Scope> annotationClassScope = Scope.class;
+
+        HashMap<String, Mapping> mappingUrls = new HashMap<>();
+        HashMap<Class, Object> instanceClass = new HashMap<>();
 
         for (Class c : listClass) {
             if (c.isAnnotationPresent(annotationClass)) {
@@ -369,9 +378,25 @@ public static Object execMethod(Object objet, String nomMethode, Object[] parame
                     }
                 }
             }
+            if (c.isAnnotationPresent(annotationClassScope)) {
+                // Récupération de l'annotation recherchée
+                annot = c.getAnnotation(annotationClassScope);
+
+                // Récupération de la valeur d'un attribut de l'annotation
+                annotMeth = annot.annotationType().getDeclaredMethod("value");
+                valueUrl = annotMeth.invoke(annot).toString();
+
+                if(valueUrl.equalsIgnoreCase("singleton")) {
+                    instanceClass.put(c, null);
+                }
+
+            }
+
         }
 
-        return mappingUrls;
+        // Ajout des hashmap à la frontservlet
+        frontservlet.setMappingUrls(mappingUrls);
+        frontservlet.setInstanceClass(instanceClass);
 
     }
 

@@ -6,9 +6,9 @@
 <%
 
     List<Emp> list = new ArrayList<>();
-    Object o = request.getAttribute("list-emp");
+    Object o = request.getAttribute("list-empTest");
 
-    Integer countAppel = (Integer) request.getAttribute("count");
+    Integer countAppel = (Integer) request.getAttribute("countTest");
 
     if (o != null)
         if (o instanceof ArrayList<?>)

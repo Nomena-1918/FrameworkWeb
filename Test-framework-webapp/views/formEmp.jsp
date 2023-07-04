@@ -1,12 +1,15 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
+
 <html>
 <head>
     <title>Formulaire Emp</title>
 </head>
 <body>
 
+
 <h1>  Bienvenue dans formEmp.jsp  </h1>
 <h2> Formulaire d'insertion d'employé :</h2>
+
 
 
   <form action="form-data.run" method="post" enctype="multipart/form-data">

@@ -1,4 +1,4 @@
-# Session + Authentification
+# Sprint 11 - Session + Authentification
 
 Ex :
 
@@ -26,7 +26,7 @@ Ex :
     Modèle 
 
 - web.xml :
-    sessioname
+    sessioname et
     profilname
 
 

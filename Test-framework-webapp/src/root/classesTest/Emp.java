@@ -2,6 +2,7 @@ package root.classesTest;
 
 import etu1918.framework.annotationPerso.Model;
 import etu1918.framework.annotationPerso.ParamValue;
+import etu1918.framework.annotationPerso.Scope;
 import etu1918.framework.annotationPerso.URLMapping;
 import etu1918.framework.mapping.ModelView;
 import utilPerso.FileUpload;
@@ -11,6 +12,7 @@ import java.util.Date;
 import java.util.List;
 
 @Model
+@Scope("singleton")
 public class Emp {
     Integer matricule;
     Boolean isBoss = false;
@@ -18,12 +20,12 @@ public class Emp {
     String nom;
     String[] prenoms;
     FileUpload fichier;
+    Integer count = 0;
 
 
     @URLMapping(value = "/list-emp.run")
     public ModelView listView() {
-        //Test t = new Test();
-        Student s = new Student("Vahatra", "Nomena", 19);
+        count++;
         ModelView m = new ModelView();
 
         List<Emp> listEmp = new ArrayList<>();
@@ -31,24 +33,27 @@ public class Emp {
         listEmp.add(new Emp(2, "Rasoa"));
         listEmp.add(new Emp(3, "Bema"));
 
+        m.addItem("count", count);
         m.addItem("list-emp", listEmp);
-        m.addItem("student", s);
 
         m.setView("listEmp.jsp");
         return m;
     }
 
+    /*
     @URLMapping(value = "/form-emp.run")
     public ModelView formView() {
         ModelView m = new ModelView();
         m.setView("formEmp.jsp");
         return m;
     }
-
+*/
     @URLMapping(value = "/form-data.run")
     public ModelView affFormData() {
+        count++;
         ModelView m = new ModelView();
 
+        m.addItem("count", count);
         m.addItem("formData", this);
         m.setView("formDataView.jsp");
 
@@ -57,14 +62,16 @@ public class Emp {
 
     @URLMapping(value = "/nbr/mistery.run")
     public ModelView methodWithSeveralArg(@ParamValue(value = "num") Integer number, @ParamValue(value = "num1") Integer number1) {
+        count++;
         ModelView m = new ModelView();
 
         if (number == null)
             number = 19;
 
         if (number1 == null)
-        number1 = 24;
+            number = 24;
 
+        m.addItem("count", count);
         m.addItem("numberMistery", number);
         m.setView("/view/affNumberMistery.jsp");
 
@@ -78,6 +85,14 @@ public class Emp {
     }
 
     public Emp() {
+    }
+
+    public Integer getCount() {
+        return count;
+    }
+
+    public void setCount(Integer count) {
+        this.count = count;
     }
 
     public Integer getMatricule() {
