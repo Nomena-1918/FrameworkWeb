@@ -1,8 +1,10 @@
 <%@ page import="root.classesTest.Emp" %>
+<%@ page import="java.util.Arrays" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <%
   Emp e = (Emp) request.getAttribute("formData");
+  Integer countAppel = (Integer) request.getAttribute("count");
   String[] prenoms = e.getPrenoms();
 %>
 
@@ -14,11 +16,15 @@
 </head>
 <body>
 
+<h3>Count nbr appel objet : <%= countAppel %></h3>
+
+
 <h1>  Bienvenue dans formData.jsp  </h1>
   <h2> L'employé correspondant au formulaire :</h2>
 
+
     <ul>
-      <li><h3>Fichier : <%= e.getFichier() %></h3></li>
+      <li><h3>Fichier : <%= e.getFichier().getNom() + "  :  "+ e.getFichier().getFile().length %></h3></li>
       <li><h3>Matricule : <%= e.getMatricule() %></h3></li>
       <li><h3>Nom : <%= e.getNom() %></h3></li>
       <li><h3>Date de naissance : <%= e.getDtn() %></h3></li>
