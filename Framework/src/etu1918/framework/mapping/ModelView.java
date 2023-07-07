@@ -5,8 +5,8 @@ import java.util.HashMap;
 public class ModelView {
     String view;
     HashMap<String, Object> data;
-
     HashMap<String, Object> sessionToAdd;
+    boolean isJson = false;
 
     public ModelView() {
         this.data = new HashMap<>();
@@ -17,6 +17,18 @@ public class ModelView {
         this.view = view;
         this.data = new HashMap<>();
         this.sessionToAdd = new HashMap<>();
+    }
+
+    public void setData(HashMap<String, Object> data) {
+        this.data = data;
+    }
+
+    public boolean isJson() {
+        return isJson;
+    }
+
+    public void setJson(boolean json) {
+        isJson = json;
     }
 
     public HashMap<String, Object> getSessionToAdd() {

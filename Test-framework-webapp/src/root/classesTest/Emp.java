@@ -35,6 +35,7 @@ public class Emp {
         m.addItem("count", count);
         m.addItem("list-emp", listEmp);
 
+
         m.setView("listEmp.jsp");
         return m;
     }
@@ -120,7 +121,12 @@ public class Emp {
 
         m.addItem("count", count);
         m.addItem("numberMistery", somme);
+
+        m.setJson(true);
+
+
         m.setView("/view/affNumberMistery.jsp");
+
 
         return m;
     }

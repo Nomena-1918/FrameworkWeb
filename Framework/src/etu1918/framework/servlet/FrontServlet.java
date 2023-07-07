@@ -1,5 +1,6 @@
 package etu1918.framework.servlet;
 
+import com.google.gson.Gson;
 import etu1918.framework.annotationPerso.Auth;
 import etu1918.framework.mapping.Mapping;
 import etu1918.framework.mapping.ModelView;
@@ -384,11 +385,42 @@ public class FrontServlet extends HttpServlet {
 
                     // Prendre les data dans le ModelView
                     if (dataHsh != null) {
+
+
                         // Les mettre dans les attributs de la requête
-                        for (Map.Entry<String, Object> m : dataHsh.entrySet()) {
-                            req.setAttribute(m.getKey(), m.getValue());
+                        if(modelView.isJson()) {
+
+                            //out.println("eto");
+                            for (Map.Entry<String, Object> m : dataHsh.entrySet()) {
+                                out.println(" "+m.getKey()+" : "+m.getValue());
+                            }
+
+                            /*
+                            Gson gson = new Gson();
+                            out.println(gson);
+
+                            String json = gson.toJson(dataHsh);
+
+                            res.setContentType("application/json");
+
+                            // Write the JSON string to the response
+                            PrintWriter outs = res.getWriter();
+                            outs.print(json);
+                            outs.flush();
+
+                            outs.close();
+
+                            req.setAttribute("dataJson", json);
+                            */
+
+
                         }
+                        else
+                            for (Map.Entry<String, Object> m : dataHsh.entrySet()) {
+                                req.setAttribute(m.getKey(), m.getValue());
+                            }
                     }
+
                     // Prendre les sessions dans le ModelView, mettre dans HttpSession
 // Les mettre dans les attributs de la requête
                     for (Map.Entry<String, Object> m : sessionHsh.entrySet()) {
