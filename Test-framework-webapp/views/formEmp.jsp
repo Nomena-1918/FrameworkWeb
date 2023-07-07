@@ -1,10 +1,19 @@
+<%@ page import="root.classesTest.Emp" %>
+<%@ page import="java.util.Arrays" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
+<%
+  Integer countAppel = (Integer) request.getAttribute("count");
+%>
 
 <html>
 <head>
     <title>Formulaire Emp</title>
 </head>
 <body>
+
+<h3>Count nbr appel objet : <%= countAppel %></h3>
+
 
 
 <h1>  Bienvenue dans formEmp.jsp  </h1>

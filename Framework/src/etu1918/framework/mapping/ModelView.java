@@ -6,13 +6,25 @@ public class ModelView {
     String view;
     HashMap<String, Object> data;
 
+    HashMap<String, Object> sessionToAdd;
+
     public ModelView() {
         this.data = new HashMap<>();
+        this.sessionToAdd = new HashMap<>();
     }
 
     public ModelView(String view) {
         this.view = view;
         this.data = new HashMap<>();
+        this.sessionToAdd = new HashMap<>();
+    }
+
+    public HashMap<String, Object> getSessionToAdd() {
+        return sessionToAdd;
+    }
+
+    public void setSessionToAdd(HashMap<String, Object> sessionToAdd) {
+        this.sessionToAdd = sessionToAdd;
     }
 
     public String getView() {
@@ -30,4 +42,9 @@ public class ModelView {
     public void addItem(String key, Object o){
         this.data.put(key, o);
     }
+
+    public void addSession(String key, Object o){
+        this.sessionToAdd.put(key, o);
+    }
+
 }
