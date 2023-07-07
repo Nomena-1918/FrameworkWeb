@@ -5,51 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="81a34661-66e0-4489-b53f-c569ec92fcf5" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Framework/src/etu1918/framework/annotationPerso/Auth.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Framework/src/etu1918/framework/Test.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Framework/src/etu1918/framework/annotationPerso/ParamTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Framework/src/etu1918/framework/annotationPerso/TestClass.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Framework/src/etu1918/framework/mapping/ModelView.java" beforeDir="false" afterPath="$PROJECT_DIR$/Framework/src/etu1918/framework/mapping/ModelView.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Framework/src/etu1918/framework/servlet/FrontServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/Framework/src/etu1918/framework/servlet/FrontServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Framework/src/main/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/Framework/src/main/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Framework/src/utilPerso/Utilitaire.java" beforeDir="false" afterPath="$PROJECT_DIR$/Framework/src/utilPerso/Utilitaire.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Test-framework-webapp/config-webapp/web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Test-framework-webapp/config-webapp/web.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Test-framework-webapp/src/root/classesTest/Emp.java" beforeDir="false" afterPath="$PROJECT_DIR$/Test-framework-webapp/src/root/classesTest/Emp.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Test-framework-webapp/src/root/classhafa/Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/Test-framework-webapp/src/root/classhafa/Test.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Test-framework-webapp/views/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/Test-framework-webapp/views/index.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Test-framework-webapp/views/viewTest/listEmp.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/Test-framework-webapp/views/viewTest/login.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/archives_java/Test-webapp.war" beforeDir="false" afterPath="$PROJECT_DIR$/archives_java/Test-webapp.war" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/archives_java/framework.jar" beforeDir="false" afterPath="$PROJECT_DIR$/archives_java/framework.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/binFramework/dataStructure/Pair.class" beforeDir="false" afterPath="$PROJECT_DIR$/binFramework/dataStructure/Pair.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/binFramework/etu1918/framework/Test.class" beforeDir="false" afterPath="$PROJECT_DIR$/binFramework/etu1918/framework/Test.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/binFramework/etu1918/framework/annotationPerso/Model.class" beforeDir="false" afterPath="$PROJECT_DIR$/binFramework/etu1918/framework/annotationPerso/Model.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/binFramework/etu1918/framework/annotationPerso/ParamTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/binFramework/etu1918/framework/annotationPerso/ParamTest.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/binFramework/etu1918/framework/annotationPerso/ParamValue.class" beforeDir="false" afterPath="$PROJECT_DIR$/binFramework/etu1918/framework/annotationPerso/ParamValue.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/binFramework/etu1918/framework/annotationPerso/Scope.class" beforeDir="false" afterPath="$PROJECT_DIR$/binFramework/etu1918/framework/annotationPerso/Scope.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/binFramework/etu1918/framework/annotationPerso/TestClass.class" beforeDir="false" afterPath="$PROJECT_DIR$/binFramework/etu1918/framework/annotationPerso/TestClass.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/binFramework/etu1918/framework/annotationPerso/URLMapping.class" beforeDir="false" afterPath="$PROJECT_DIR$/binFramework/etu1918/framework/annotationPerso/URLMapping.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/binFramework/etu1918/framework/mapping/Mapping.class" beforeDir="false" afterPath="$PROJECT_DIR$/binFramework/etu1918/framework/mapping/Mapping.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/binFramework/etu1918/framework/mapping/ModelView.class" beforeDir="false" afterPath="$PROJECT_DIR$/binFramework/etu1918/framework/mapping/ModelView.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/binFramework/etu1918/framework/servlet/FrontServlet.class" beforeDir="false" afterPath="$PROJECT_DIR$/binFramework/etu1918/framework/servlet/FrontServlet.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/binFramework/main/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/binFramework/main/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/binFramework/utilPerso/FileUpload.class" beforeDir="false" afterPath="$PROJECT_DIR$/binFramework/utilPerso/FileUpload.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/binFramework/utilPerso/Utilitaire.class" beforeDir="false" afterPath="$PROJECT_DIR$/binFramework/utilPerso/Utilitaire.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/binTest/root/classesTest/Emp.class" beforeDir="false" afterPath="$PROJECT_DIR$/binTest/root/classesTest/Emp.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/binTest/root/classesTest/Student.class" beforeDir="false" afterPath="$PROJECT_DIR$/binTest/root/classesTest/Student.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/binTest/root/classhafa/Test.class" beforeDir="false" afterPath="$PROJECT_DIR$/binTest/root/classhafa/Test.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/binTest/root/main/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/binTest/root/main/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Framework/etu1918/framework/Test.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Framework/etu1918/framework/annotationPerso/Model.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Framework/etu1918/framework/annotationPerso/ParamTest.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Framework/etu1918/framework/annotationPerso/ParamValue.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Framework/etu1918/framework/annotationPerso/Scope.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Framework/etu1918/framework/annotationPerso/TestClass.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Framework/etu1918/framework/annotationPerso/URLMapping.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Framework/etu1918/framework/servlet/FrontServlet.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Framework/main/Main.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Framework/utilPerso/FileUpload.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Framework/utilPerso/Utilitaire.class" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -71,7 +29,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="master" />
+        <entry key="$PROJECT_DIR$" value="Sprint12" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -87,28 +45,28 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_ADD_EXTERNAL_FILES": "true",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "jdk.selected.JAVA_MODULE": "17",
-    "last_opened_file_path": "/Users/nomena/TAFF-S4-PC-ITU/S4/Web_Dynamique/FrameworkWeb/Test-framework-webapp/views/viewTest",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2",
-    "ruby.rails.projectView.checked": "true",
-    "settings.editor.selected.configurable": "terminal",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;jdk.selected.JAVA_MODULE&quot;: &quot;17&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/nomena/TAFF-S4-PC-ITU/S4/Web_Dynamique/FrameworkWeb/Test-framework-webapp/views/viewTest&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;ruby.rails.projectView.checked&quot;: &quot;true&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;terminal&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/Test-framework-webapp/Test-framework/WEB-INF/lib" />

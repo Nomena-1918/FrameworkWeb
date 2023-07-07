@@ -269,12 +269,34 @@ public class FrontServlet extends HttpServlet {
 
 //====== Simulation login =======================
                 HttpSession session = req.getSession();
+
+                // Val test
+                session.setAttribute("nbr", 5);
+
                 String varProfil = this.getInitParameter("session_profil");
                 /*String profilCourant = "admin";
                 session.setAttribute(varProfil, profilCourant);
                  */
-//===============================================
+                if (Objects.equals(classe.getDeclaredField("session").getType(), HashMap.class)) {
+                    Field fieldSession = classe.getDeclaredField("session");
 
+                    // Create a HashMap to store the keys and values
+                    HashMap<String, Object> sessionData = new HashMap<>();
+
+                    // Get all the attribute names in the HttpSession
+                    Enumeration<String> attributeNames = session.getAttributeNames();
+
+                    // Loop through each attribute and put it in the HashMap
+                    while (attributeNames.hasMoreElements()) {
+                        String attributeName = attributeNames.nextElement();
+                        Object attributeValue = session.getAttribute(attributeName);
+                        sessionData.put(attributeName, attributeValue);
+                    }
+
+                    fieldSession.setAccessible(true);
+                    fieldSession.set(object, sessionData);
+                }
+//===============================================
 
                 boolean access = true;
                 String valAnnot;
@@ -291,8 +313,7 @@ public class FrontServlet extends HttpServlet {
                     // Nom profil dans session
                     String valSession = (String) session.getAttribute(varProfil);
                     out.println("Valeur session :" + valSession);
-
-
+                    
                     // Utilisateurs authentifiés
                     if (valAnnot.equalsIgnoreCase("")) {
                         if (valSession == null) {
@@ -373,8 +394,7 @@ public class FrontServlet extends HttpServlet {
                     for (Map.Entry<String, Object> m : sessionHsh.entrySet()) {
                         session.setAttribute(m.getKey(), m.getValue());
                     }
-
-
+                    
                     out.println("\n\nVue pour dispatch : "+view);
 
                     //Dispatch vers la vue correspondante

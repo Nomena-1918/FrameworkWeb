@@ -6,6 +6,7 @@ import utilPerso.FileUpload;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 
 @Model
@@ -18,7 +19,7 @@ public class Emp {
     String[] prenoms;
     FileUpload fichier;
     Integer count = 0;
-
+    HashMap<String, Object> session;
 
     @Auth
     @URLMapping(value = "/list-emp.run")
@@ -115,8 +116,10 @@ public class Emp {
         if (number1 == null)
             number1 = 24;
 
+        Integer somme = number+number1+(Integer)session.get("nbr");
+
         m.addItem("count", count);
-        m.addItem("numberMistery", number+number1);
+        m.addItem("numberMistery", somme);
         m.setView("/view/affNumberMistery.jsp");
 
         return m;
@@ -126,6 +129,22 @@ public class Emp {
     public Emp(Integer matricule, String nom) {
         setMatricule(matricule);
         setNom(nom);
+    }
+
+    public Boolean getBoss() {
+        return isBoss;
+    }
+
+    public void setBoss(Boolean boss) {
+        isBoss = boss;
+    }
+
+    public HashMap<String, Object> getSession() {
+        return session;
+    }
+
+    public void setSession(HashMap<String, Object> session) {
+        this.session = session;
     }
 
     public Emp() {
