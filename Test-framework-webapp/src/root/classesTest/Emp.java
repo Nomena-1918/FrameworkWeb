@@ -1,9 +1,6 @@
 package root.classesTest;
 
-import etu1918.framework.annotationPerso.Model;
-import etu1918.framework.annotationPerso.ParamValue;
-import etu1918.framework.annotationPerso.Scope;
-import etu1918.framework.annotationPerso.URLMapping;
+import etu1918.framework.annotationPerso.*;
 import etu1918.framework.mapping.ModelView;
 import utilPerso.FileUpload;
 
@@ -23,6 +20,7 @@ public class Emp {
     Integer count = 0;
 
 
+    @Auth
     @URLMapping(value = "/list-emp.run")
     public ModelView listView() {
         count++;
@@ -40,14 +38,16 @@ public class Emp {
         return m;
     }
 
-    /*
+    @Auth("admin")
     @URLMapping(value = "/form-emp.run")
     public ModelView formView() {
         ModelView m = new ModelView();
+        m.addItem("count", count);
         m.setView("formEmp.jsp");
         return m;
     }
-*/
+
+
     @URLMapping(value = "/form-data.run")
     public ModelView affFormData() {
         count++;
@@ -59,7 +59,51 @@ public class Emp {
 
         return m;
     }
+////////////////////////////
+    @URLMapping(value = "/login.run")
+    public ModelView Login() {
+        count++;
+        ModelView m = new ModelView();
 
+        m.addItem("count", count);
+        //m.setView("viewTest/login.jsp");
+
+        /// SESSION
+        String varProfil = "profil";
+        String valProfil = "admin";
+
+        m.addSession(varProfil, valProfil);
+        m.setView("index.jsp");
+
+        return m;
+    }
+
+    /*
+    @URLMapping(value = "/process-login.run")
+    public ModelView processFormLogin(@ParamValue(value = "mdp") String mdp) {
+        count++;
+        ModelView m = new ModelView();
+        m.addItem("count", count);
+
+        /// SESSION
+        String varProfil = "profil";
+        String valProfil = null;
+
+        String motCle = "root";
+        if (mdp.equalsIgnoreCase(motCle))
+            valProfil = mdp;
+
+        m.addSession(varProfil, valProfil);
+        ////
+
+        m.setView("index.jsp");
+
+        return m;
+    }
+    */
+
+//////////////////////////
+    @Auth("admin")
     @URLMapping(value = "/nbr/mistery.run")
     public ModelView methodWithSeveralArg(@ParamValue(value = "num") Integer number, @ParamValue(value = "num1") Integer number1) {
         count++;
@@ -69,10 +113,10 @@ public class Emp {
             number = 19;
 
         if (number1 == null)
-            number = 24;
+            number1 = 24;
 
         m.addItem("count", count);
-        m.addItem("numberMistery", number);
+        m.addItem("numberMistery", number+number1);
         m.setView("/view/affNumberMistery.jsp");
 
         return m;
@@ -133,11 +177,6 @@ public class Emp {
 
     public void setPrenoms(String[] prenoms) {
         this.prenoms = prenoms;
-    }
-
-    @Override
-    public String toString(){
-        return "this object";
     }
 
     public FileUpload getFichier() {

@@ -15,11 +15,15 @@
       </multipart-config>
 
         <init-param>
-<!-- Nom du paramètre obligatoire -->
+            <!-- Package racine pour scan -->
             <param-name>classpath</param-name>
-
-<!-- Package à partir duquel scanner -->
             <param-value>root</param-value>
+        </init-param>
+
+        <init-param>
+            <!-- Nom variable de session pour authorisation -->
+            <param-name>session_profil</param-name>
+            <param-value>profil</param-value>
         </init-param>
     </servlet>
 

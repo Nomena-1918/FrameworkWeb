@@ -1,13 +1,11 @@
 package utilPerso;
 
-import etu1918.framework.annotationPerso.Model;
-import etu1918.framework.annotationPerso.ParamValue;
-import etu1918.framework.annotationPerso.Scope;
+import etu1918.framework.annotationPerso.*;
 import etu1918.framework.mapping.Mapping;
-import etu1918.framework.annotationPerso.URLMapping;
 import etu1918.framework.mapping.ModelView;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
 
 import dataStructure.Pair;
@@ -28,20 +26,26 @@ import java.lang.reflect.Modifier;
 
 public class Utilitaire {
 
-    // REST UN OBJET
-    public static void resetObject(Object o) throws IllegalAccessException {
-        Class<?> clazz = o.getClass();
-
-        // Récupère tous les attributs déclarés dans la classe, y compris les attributs hérités
+    // RESET UN OBJET
+    public static Object resetFields(Object object) throws IllegalAccessException {
+        Class<?> clazz = object.getClass();
         Field[] fields = clazz.getDeclaredFields();
 
         for (Field field : fields) {
-            // Autorise l'accès aux attributs privés
             field.setAccessible(true);
+            Class<?> fieldType = field.getType();
 
-            // Définit la valeur de l'attribut à null
-            field.set(o, null);
+            if (fieldType.isPrimitive()) {
+                if (fieldType == int.class) {
+                    field.setInt(object, 0);
+                } else if (fieldType == boolean.class) {
+                    field.setBoolean(object, false);
+                }
+            } else {
+                field.set(object, null);
+            }
         }
+        return object;
     }
 
 // ===================== COMMUN : SETTERS et GETTERS ===================== //
@@ -160,6 +164,7 @@ public class Utilitaire {
         }
         else
             throw new Exception("Setter : "+setterName+" invalide");
+
     }
 
     // -------------------- GETTER GÉNÉRALISÉ -------------------------------------- //
