@@ -19,4 +19,11 @@ public class Test {
         return m;
     }
 
+    @URLMapping(value = "/first.run")
+    public ModelView affFirst() {
+        ModelView m = new ModelView();
+        m.setView("firstView.jsp");
+        return m;
+    }
+
 }

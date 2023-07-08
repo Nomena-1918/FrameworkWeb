@@ -1,7 +1,6 @@
 package etu1918.framework.servlet;
 
 import com.google.gson.Gson;
-import com.google.gson.JsonObject;
 import etu1918.framework.annotationPerso.Auth;
 import etu1918.framework.annotationPerso.REST_API;
 import etu1918.framework.mapping.Mapping;
@@ -98,8 +97,8 @@ public class FrontServlet extends HttpServlet {
                     oTemp = this.instanceClass.get(classe);
 
                     if (oTemp != null)
-                        object = oTemp;
-                        //object = Utilitaire.resetFields(oTemp);
+                        //object = oTemp;
+                        object = Utilitaire.resetFields(oTemp);
 
                     else {
                         object = classe.cast(classe.getDeclaredConstructor().newInstance());
@@ -107,6 +106,8 @@ public class FrontServlet extends HttpServlet {
                     }
                 } else
                     object = classe.cast(classe.getDeclaredConstructor().newInstance());
+
+                out.println("\nInstanciation object Ok\n");
 
 
                 Enumeration<String> nomsParam = req.getParameterNames();
@@ -275,30 +276,35 @@ public class FrontServlet extends HttpServlet {
                 session.setAttribute("nbr", 5);
 
                 String varProfil = this.getInitParameter("session_profil");
-                String profilCourant = "admin";
-                session.setAttribute(varProfil, profilCourant);
+                //String profilCourant = "admin";
+                //session.setAttribute(varProfil, profilCourant);
 
-                if (Objects.equals(classe.getDeclaredField("session").getType(), HashMap.class)) {
-                    Field fieldSession = classe.getDeclaredField("session");
+                boolean bol = Utilitaire.isClassAttribute(classe, "_session");
+                out.println(bol);
 
-                    // Create a HashMap to store the keys and values
-                    HashMap<String, Object> sessionData = new HashMap<>();
+                if (bol) {
+                    Field fieldSession = classe.getDeclaredField("_session");
 
-                    // Get all the attribute names in the HttpSession
-                    Enumeration<String> attributeNames = session.getAttributeNames();
+                    if (fieldSession.getType().equals(HashMap.class)) {
+                        // Create a HashMap to store the keys and values
+                        HashMap<String, Object> sessionData = new HashMap<>();
 
-                    // Loop through each attribute and put it in the HashMap
-                    while (attributeNames.hasMoreElements()) {
-                        String attributeName = attributeNames.nextElement();
-                        Object attributeValue = session.getAttribute(attributeName);
-                        sessionData.put(attributeName, attributeValue);
+                        // Get all the attribute names in the HttpSession
+                        Enumeration<String> attributeNames = session.getAttributeNames();
+
+                        // Loop through each attribute and put it in the HashMap
+                        while (attributeNames.hasMoreElements()) {
+                            String attributeName = attributeNames.nextElement();
+                            Object attributeValue = session.getAttribute(attributeName);
+                            sessionData.put(attributeName, attributeValue);
+                        }
+
+                        fieldSession.setAccessible(true);
+                        fieldSession.set(object, sessionData);
                     }
-
-                    fieldSession.setAccessible(true);
-                    fieldSession.set(object, sessionData);
                 }
-//===============================================
 
+//===============================================
                 boolean access = true;
                 String valAnnot;
                 if (method.isAnnotationPresent(Auth.class)) {
@@ -337,6 +343,7 @@ public class FrontServlet extends HttpServlet {
 
                 if (access) {
                     out.println("\nNb params méthode : "+count);
+
                     if (count == 0) {
                         out.println(method);
                         out.println(object);
@@ -379,18 +386,20 @@ public class FrontServlet extends HttpServlet {
                         Object[] valParamArr = valParam.toArray();
                         out.println(Arrays.toString(valParamArr));
 
-                        out.println("\nNb params : "+count+"\n");
+                        //out.println("\nNb params : "+count+"\n");
 
                         if (!isJson) {
+                            out.println("\nObject : "+object);
+
                             // Appel de la méthode
                             if (count == 1)
                                 modelView = (ModelView) method.invoke(object, valParamArr[0]);
-
                             else
                                 modelView = (ModelView) method.invoke(object, valParamArr);
 
-                            out.println(modelView);
 
+                            //out.println("\nmodelview : "+method.invoke(object, valParamArr));
+                            //out.println(modelView);
                         }
                         else {
                             Object o = method.invoke(object, valParamArr);
@@ -433,6 +442,19 @@ public class FrontServlet extends HttpServlet {
                             session.setAttribute(m.getKey(), m.getValue());
                         }
 
+
+                        // Enlever des variables de session
+                        List<String> sessionToRemove = modelView.getSessionToRemove();
+
+                        for (String m : sessionToRemove) {
+                            session.removeAttribute(m);
+                        }
+
+                        // Tout supprimer
+                        if (modelView.isSessionInvalidate())
+                            session.invalidate();
+
+
                         out.println("\n\nVue pour dispatch : " + view);
 
                         //Dispatch vers la vue correspondante
@@ -441,12 +463,12 @@ public class FrontServlet extends HttpServlet {
                     }
                 }
                 else
-                    throw new Exception("Accès refusé pour "+session.getAttribute(varProfil));
+                    out.println("Accès refusé pour "+session.getAttribute(varProfil));
             } else
-                throw new Exception("URL non supportée");
+                out.println("URL non supportée");
         }
         catch (Exception e) {
-            throw new RuntimeException(e);
+            out.println(e.getMessage());
         }
     }
     public void doGet(HttpServletRequest req, HttpServletResponse res) {

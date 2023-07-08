@@ -12,6 +12,7 @@
 <body>
 
 <p><%="Profil :  "+session.getAttribute("profil")%></p>
+<p><%="varSession :  "+session.getAttribute("varSession")%></p>
 
     <h1>Bienvenue dans ce projet test !</h1>
     <h2>Les liens disponibles actuellement :  </h2>
@@ -20,11 +21,13 @@
     <ul>
         <li><h3><a href="form-emp.run">formEmp pour FileUpload</a></h3></li>
         <li><h3><a href="nbr/mistery.run?num=42&&num1=1">mistery.run?num=42&&num1=1</a></h3></li>
+        <li><h3><a href="invalidate-session.run">invalidate-session.run</a></h3></li>
     </ul>
 
     <p>Pour utilisateurs authentifiés</p>
     <ul>
         <li><h3><a href="list-emp.run">list-emp-test.run</a></h3></li>
+        <li><h3><a href="logout.run">logout.run</a></h3>
     </ul>
 
     <p>Pour tout le monde</p>

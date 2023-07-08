@@ -3,26 +3,24 @@ package root.classesTest;
 import etu1918.framework.annotationPerso.*;
 import etu1918.framework.mapping.ModelView;
 import utilPerso.FileUpload;
-
-import java.time.LocalDate;
 import java.util.*;
 
 @Model
 @Scope("singleton")
 public class Emp {
     Integer matricule;
-    Boolean isBoss = false;
+    Boolean isBoss;
     Date dtn;
     String nom;
     String[] prenoms;
     FileUpload fichier;
-    Integer count = 0;
-    HashMap<String, Object> session;
+    Integer count;
+    HashMap<String, Object> _session;
 
     @Auth
     @URLMapping(value = "/list-emp.run")
     public ModelView listView() {
-        count++;
+
         ModelView m = new ModelView();
 
         List<Emp> listEmp = new ArrayList<>();
@@ -30,9 +28,14 @@ public class Emp {
         listEmp.add(new Emp(2, "Rasoa"));
         listEmp.add(new Emp(3, "Bema"));
 
-        m.addItem("count", count);
-        m.addItem("list-emp", listEmp);
+        int c = 0;
+        if (count!=null) {
+            count++;
+            c += count;
+        }
 
+        m.addItem("count", c);
+        m.addItem("list-emp", listEmp);
 
         m.setView("listEmp.jsp");
         return m;
@@ -42,7 +45,13 @@ public class Emp {
     @URLMapping(value = "/form-emp.run")
     public ModelView formView() {
         ModelView m = new ModelView();
-        m.addItem("count", count);
+        int c = 0;
+        if (count!=null) {
+            count++;
+            c += count;
+        }
+
+        m.addItem("count", c);
         m.setView("formEmp.jsp");
         return m;
     }
@@ -50,10 +59,15 @@ public class Emp {
 
     @URLMapping(value = "/form-data.run")
     public ModelView affFormData() {
-        count++;
         ModelView m = new ModelView();
 
-        m.addItem("count", count);
+        int c = 0;
+        if (count!=null) {
+            count++;
+            c += count;
+        }
+
+        m.addItem("count", c);
         m.addItem("formData", this);
         m.setView("formDataView.jsp");
 
@@ -62,10 +76,14 @@ public class Emp {
 ////////////////////////////
     @URLMapping(value = "/login.run")
     public ModelView Login() {
-        count++;
         ModelView m = new ModelView();
+        int c = 0;
+        if (count!=null) {
+            count++;
+            c += count;
+        }
 
-        m.addItem("count", count);
+        m.addItem("count", c);
         //m.setView("viewTest/login.jsp");
 
         /// SESSION
@@ -73,6 +91,8 @@ public class Emp {
         String valProfil = "admin";
 
         m.addSession(varProfil, valProfil);
+        m.addSession("varSession", "just a simple string");
+
         m.setView("index.jsp");
 
         return m;
@@ -102,11 +122,29 @@ public class Emp {
     }
     */
 
+    @Auth
+    @URLMapping(value = "/logout.run")
+    public ModelView RemoveOneSession() {
+        ModelView m = new ModelView();
+        m.removeSession("profil");
+        m.setView("index.jsp");
+        return m;
+    }
+
+    @Auth("admin")
+    @URLMapping(value = "/invalidate-session.run")
+    public ModelView RemoveAllSession() {
+        ModelView m = new ModelView();
+        m.InvalidateSession();
+        m.setView("index.jsp");
+        return m;
+    }
+
 //////////////////////////
     @Auth("admin")
     @URLMapping(value = "/nbr/mistery.run")
     public ModelView methodWithSeveralArg(@ParamValue(value = "num") Integer number, @ParamValue(value = "num1") Integer number1) {
-        count++;
+
         ModelView m = new ModelView();
 
         if (number == null)
@@ -115,9 +153,16 @@ public class Emp {
         if (number1 == null)
             number1 = 24;
 
-        Integer somme = number+number1+(Integer)session.get("nbr");
+        int c = 0;
+        if (count!=null) {
+            count++;
+            c += count;
+        }
 
-        m.addItem("count", count);
+        Integer somme = number+number1+(Integer)_session.get("nbr");
+
+        m.addItem("count", c);
+
         m.addItem("numberMistery", somme);
 
         m.setJson(true);
@@ -135,11 +180,19 @@ public class Emp {
         emp.setNom("Jay");
         emp.setPrenoms(new String[]{"Son"});
         emp.setDtn(new Date());
+        emp.setSession(this._session);
         return emp;
     }
 
+    public Emp() {
+        this.isBoss = false;
+        this.count = 0;
+        this._session = new HashMap<>();
+    }
 
     public Emp(Integer matricule, String nom) {
+        this.isBoss = false;
+        this.count = 0;
         setMatricule(matricule);
         setNom(nom);
     }
@@ -153,15 +206,13 @@ public class Emp {
     }
 
     public HashMap<String, Object> getSession() {
-        return session;
+        return _session;
     }
 
     public void setSession(HashMap<String, Object> session) {
-        this.session = session;
+        this._session = session;
     }
 
-    public Emp() {
-    }
 
     public Integer getCount() {
         return count;

@@ -33,19 +33,24 @@ public class Utilitaire {
 
         for (Field field : fields) {
             field.setAccessible(true);
-            Class<?> fieldType = field.getType();
-
-            if (fieldType.isPrimitive()) {
-                if (fieldType == int.class) {
-                    field.setInt(object, 0);
-                } else if (fieldType == boolean.class) {
-                    field.setBoolean(object, false);
-                }
-            } else {
-                field.set(object, null);
-            }
+            Object defaultValue = getDefaultValue(field.getType());
+            field.set(object, defaultValue);
         }
         return object;
+    }
+
+    private static Object getDefaultValue(Class<?> type) {
+        if (type == boolean.class) {
+            return false;
+        } else if (type == byte.class || type == short.class || type == int.class || type == long.class) {
+            return 0;
+        } else if (type == float.class || type == double.class) {
+            return 0.0;
+        } else if (type == char.class) {
+            return '\u0000';
+        } else {
+            return null;
+        }
     }
 
 // ===================== COMMUN : SETTERS et GETTERS ===================== //
