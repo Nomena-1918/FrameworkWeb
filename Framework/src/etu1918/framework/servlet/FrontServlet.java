@@ -1,6 +1,7 @@
 package etu1918.framework.servlet;
 
 import com.google.gson.Gson;
+import com.google.gson.JsonObject;
 import etu1918.framework.annotationPerso.Auth;
 import etu1918.framework.mapping.Mapping;
 import etu1918.framework.mapping.ModelView;
@@ -55,12 +56,10 @@ public class FrontServlet extends HttpServlet {
     }
 
     public void ProcessRequest(HttpServletRequest req, HttpServletResponse res) throws Exception {
-
-        res.setContentType("text/plain");
-        PrintWriter out = res.getWriter();
+       res.setContentType("application/json");
+       PrintWriter out = res.getWriter();
 
         try {
-
             out.println("Bienvenue dans la page de debug : " + this.getClass().getSimpleName());
 
             String url = req.getServletPath();
@@ -275,9 +274,9 @@ public class FrontServlet extends HttpServlet {
                 session.setAttribute("nbr", 5);
 
                 String varProfil = this.getInitParameter("session_profil");
-                /*String profilCourant = "admin";
+                String profilCourant = "admin";
                 session.setAttribute(varProfil, profilCourant);
-                 */
+
                 if (Objects.equals(classe.getDeclaredField("session").getType(), HashMap.class)) {
                     Field fieldSession = classe.getDeclaredField("session");
 
@@ -385,34 +384,21 @@ public class FrontServlet extends HttpServlet {
 
                     // Prendre les data dans le ModelView
                     if (dataHsh != null) {
-
+                        out.println("JSON : "+modelView.isJson());
 
                         // Les mettre dans les attributs de la requête
                         if(modelView.isJson()) {
 
-                            //out.println("eto");
-                            for (Map.Entry<String, Object> m : dataHsh.entrySet()) {
-                                out.println(" "+m.getKey()+" : "+m.getValue());
-                            }
-
-                            /*
                             Gson gson = new Gson();
-                            out.println(gson);
-
                             String json = gson.toJson(dataHsh);
 
-                            res.setContentType("application/json");
-
-                            // Write the JSON string to the response
-                            PrintWriter outs = res.getWriter();
-                            outs.print(json);
-                            outs.flush();
-
-                            outs.close();
+                            out.println(json);
 
                             req.setAttribute("dataJson", json);
-                            */
 
+                            //Dispatch vers la vue correspondante
+                            RequestDispatcher dispat = req.getRequestDispatcher(view);
+                            dispat.forward(req, res);
 
                         }
                         else

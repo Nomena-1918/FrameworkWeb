@@ -123,10 +123,7 @@ public class Emp {
         m.addItem("numberMistery", somme);
 
         m.setJson(true);
-
-
         m.setView("/view/affNumberMistery.jsp");
-
 
         return m;
     }

@@ -5,24 +5,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="81a34661-66e0-4489-b53f-c569ec92fcf5" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/gson_2_8_2.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Framework/gson-2.8.2.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/servlet_api1.xml" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/Test-framework-webapp/config-webapp/gson-2.8.2.jar" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Framework/Framework.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Framework/Framework.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Framework/src/etu1918/framework/mapping/ModelView.java" beforeDir="false" afterPath="$PROJECT_DIR$/Framework/src/etu1918/framework/mapping/ModelView.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Framework/src/etu1918/framework/servlet/FrontServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/Framework/src/etu1918/framework/servlet/FrontServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Framework/src/main/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/Framework/src/main/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Test-framework-webapp/src/root/classesTest/Emp.java" beforeDir="false" afterPath="$PROJECT_DIR$/Test-framework-webapp/src/root/classesTest/Emp.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Test-framework-webapp/views/view/affNumberMistery.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/Test-framework-webapp/views/view/affNumberMistery.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/archives_java/Test-webapp.war" beforeDir="false" afterPath="$PROJECT_DIR$/archives_java/Test-webapp.war" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/archives_java/framework.jar" beforeDir="false" afterPath="$PROJECT_DIR$/archives_java/framework.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/binFramework/etu1918/framework/mapping/ModelView.class" beforeDir="false" afterPath="$PROJECT_DIR$/binFramework/etu1918/framework/mapping/ModelView.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/binFramework/etu1918/framework/servlet/FrontServlet.class" beforeDir="false" afterPath="$PROJECT_DIR$/binFramework/etu1918/framework/servlet/FrontServlet.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/binTest/root/classesTest/Emp.class" beforeDir="false" afterPath="$PROJECT_DIR$/binTest/root/classesTest/Emp.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/compileFramework.sh" beforeDir="false" afterPath="$PROJECT_DIR$/compileFramework.sh" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/compileTest.sh" beforeDir="false" afterPath="$PROJECT_DIR$/compileTest.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/deployTomcat.sh" beforeDir="false" afterPath="$PROJECT_DIR$/deployTomcat.sh" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -68,7 +61,7 @@
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "WebServerToolWindowFactoryState": "false",
     "jdk.selected.JAVA_MODULE": "17",
-    "last_opened_file_path": "/Users/nomena/TAFF-S4-PC-ITU/S4/Web_Dynamique/FrameworkWeb/Test-framework-webapp/views/viewTest",
+    "last_opened_file_path": "/Users/nomena/TAFF-S4-PC-ITU/S4/Web_Dynamique/FrameworkWeb/Test-framework-webapp/config-webapp",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -84,6 +77,7 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/Test-framework-webapp/config-webapp" />
       <recent name="$PROJECT_DIR$/Test-framework-webapp/Test-framework/WEB-INF/lib" />
       <recent name="$PROJECT_DIR$/FrameworkWeb-webapp/WEB-INF/classes" />
       <recent name="$PROJECT_DIR$/src/classPerso" />
