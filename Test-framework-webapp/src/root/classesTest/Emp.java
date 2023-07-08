@@ -4,10 +4,8 @@ import etu1918.framework.annotationPerso.*;
 import etu1918.framework.mapping.ModelView;
 import utilPerso.FileUpload;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
+import java.time.LocalDate;
+import java.util.*;
 
 @Model
 @Scope("singleton")
@@ -126,6 +124,18 @@ public class Emp {
         m.setView("/view/affNumberMistery.jsp");
 
         return m;
+    }
+
+    @REST_API
+    @URLMapping(value = "/rest-api.run")
+    public Emp methodJson(@ParamValue(value = "arg") Boolean isBoss) {
+        Emp emp = new Emp();
+        emp.setMatricule(1);
+        emp.setBoss(Objects.requireNonNullElse(isBoss, false));
+        emp.setNom("Jay");
+        emp.setPrenoms(new String[]{"Son"});
+        emp.setDtn(new Date());
+        return emp;
     }
 
 

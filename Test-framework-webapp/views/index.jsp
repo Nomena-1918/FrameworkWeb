@@ -29,6 +29,7 @@
 
     <p>Pour tout le monde</p>
     <ul>
+        <li><h3><a href="rest-api.run?arg=true">rest-api.run</a></h3></li>
         <li><h3><a href="first-test.run">first-test.run</a></h3></li>
         <li><h3><a href="login.run">login.run (devient admin)</a></h3></li>
     </ul>

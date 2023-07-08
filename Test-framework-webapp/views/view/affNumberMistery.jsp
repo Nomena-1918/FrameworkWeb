@@ -18,7 +18,7 @@
 <body>
 
 <h1>  Bienvenue dans affNumberMistery.jsp  </h1>
-<h2> Le nombre mistery est : <%=  data %></h2>
+<h2> DataJSON : <%=  data %></h2>
 
 </body>
 </html>

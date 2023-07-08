@@ -3,6 +3,7 @@ package etu1918.framework.servlet;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import etu1918.framework.annotationPerso.Auth;
+import etu1918.framework.annotationPerso.REST_API;
 import etu1918.framework.mapping.Mapping;
 import etu1918.framework.mapping.ModelView;
 import utilPerso.FileUpload;
@@ -328,17 +329,29 @@ public class FrontServlet extends HttpServlet {
                 out.println("\nAccès autorisé "+session.getAttribute(varProfil)+" : "+access);
 // ==============================================
                 // Prendre la view dans le ModelView retourné
-                ModelView modelView;
+                ModelView modelView = null;
 
                 int count = method.getParameterCount();
+
+                boolean isJson = method.isAnnotationPresent(REST_API.class);
 
                 if (access) {
                     out.println("\nNb params méthode : "+count);
                     if (count == 0) {
                         out.println(method);
                         out.println(object);
-                        modelView = (ModelView) method.invoke(object);
-                        out.println(modelView);
+
+                        if (!isJson){
+                            modelView = (ModelView) method.invoke(object);
+                            out.println(modelView);
+                        }
+                        else {
+                            Object o = method.invoke(object);
+                            Gson gson = new Gson();
+                            String json = gson.toJson(o);
+                            out.println("\nREST-API");
+                            out.println("\n\n"+json);
+                        }
                     }
                     // count >= 1
                     else {
@@ -368,60 +381,67 @@ public class FrontServlet extends HttpServlet {
 
                         out.println("\nNb params : "+count+"\n");
 
-                        // Appel de la méthode
-                        if (count == 1)
-                            modelView = (ModelView) method.invoke(object, valParamArr[0]);
+                        if (!isJson) {
+                            // Appel de la méthode
+                            if (count == 1)
+                                modelView = (ModelView) method.invoke(object, valParamArr[0]);
 
-                        else
-                            modelView = (ModelView) method.invoke(object, valParamArr);
+                            else
+                                modelView = (ModelView) method.invoke(object, valParamArr);
 
-                        out.println(modelView);
-                    }
-
-                    String view = modelView.getView();
-                    HashMap<String, Object> dataHsh = modelView.getData();
-                    HashMap<String, Object> sessionHsh = modelView.getSessionToAdd();
-
-                    // Prendre les data dans le ModelView
-                    if (dataHsh != null) {
-                        out.println("JSON : "+modelView.isJson());
-
-                        // Les mettre dans les attributs de la requête
-                        if(modelView.isJson()) {
-
-                            Gson gson = new Gson();
-                            String json = gson.toJson(dataHsh);
-
-                            out.println(json);
-
-                            req.setAttribute("dataJson", json);
-
-                            //Dispatch vers la vue correspondante
-                            RequestDispatcher dispat = req.getRequestDispatcher(view);
-                            dispat.forward(req, res);
+                            out.println(modelView);
 
                         }
-                        else
-                            for (Map.Entry<String, Object> m : dataHsh.entrySet()) {
-                                req.setAttribute(m.getKey(), m.getValue());
-                            }
+                        else {
+                            Object o = method.invoke(object, valParamArr);
+                            Gson gson = new Gson();
+                            String json = gson.toJson(o);
+                            out.println("\nREST-API");
+                            out.println(json+"\n\n");
+                        }
                     }
 
-                    // Prendre les sessions dans le ModelView, mettre dans HttpSession
+                    if (!isJson) {
+                        String view = modelView.getView();
+                        HashMap<String, Object> dataHsh = modelView.getData();
+                        HashMap<String, Object> sessionHsh = modelView.getSessionToAdd();
+
+                        // Prendre les data dans le ModelView
+                        if (dataHsh != null) {
+                            out.println("JSON : " + modelView.isJson());
+
+                            // Les mettre dans les attributs de la requête
+                            if (modelView.isJson()) {
+                                Gson gson = new Gson();
+                                String json = gson.toJson(dataHsh);
+                                out.println(json);
+                                req.setAttribute("dataJson", json);
+
+                                //Dispatch vers la vue correspondante
+                                RequestDispatcher dispat = req.getRequestDispatcher(view);
+                                dispat.forward(req, res);
+
+                            } else
+                                for (Map.Entry<String, Object> m : dataHsh.entrySet()) {
+                                    req.setAttribute(m.getKey(), m.getValue());
+                                }
+                        }
+
+                        // Prendre les sessions dans le ModelView, mettre dans HttpSession
 // Les mettre dans les attributs de la requête
-                    for (Map.Entry<String, Object> m : sessionHsh.entrySet()) {
-                        session.setAttribute(m.getKey(), m.getValue());
-                    }
-                    
-                    out.println("\n\nVue pour dispatch : "+view);
+                        for (Map.Entry<String, Object> m : sessionHsh.entrySet()) {
+                            session.setAttribute(m.getKey(), m.getValue());
+                        }
 
-                    //Dispatch vers la vue correspondante
-                    RequestDispatcher dispat = req.getRequestDispatcher(view);
-                    dispat.forward(req, res);
+                        out.println("\n\nVue pour dispatch : " + view);
+
+                        //Dispatch vers la vue correspondante
+                        RequestDispatcher dispat = req.getRequestDispatcher(view);
+                        dispat.forward(req, res);
+                    }
                 }
-                else {
+                else
                     throw new Exception("Accès refusé pour "+session.getAttribute(varProfil));
-                }
             } else
                 throw new Exception("URL non supportée");
         }
