@@ -1,90 +1,77 @@
 package root.classesTest;
 
+import database.ConnectionPerso;
 import etu1918.framework.annotationPerso.*;
 import etu1918.framework.mapping.ModelView;
 import utilPerso.FileUpload;
+
+import java.sql.Connection;
 import java.util.*;
 
 @Model
 @Scope("singleton")
 public class Emp {
-    Integer matricule;
-    Boolean isBoss;
-    Date dtn;
-    String nom;
-    String[] prenoms;
+    Integer id;
+    Date date;
+    Integer idPlat;
+    Integer idEmp;
     FileUpload fichier;
-    Integer count;
     HashMap<String, Object> _session;
 
-    @Auth
-    @URLMapping(value = "/list-emp.run")
-    public ModelView listView() {
 
+    @Auth("admin")
+    @URLMapping(value = "/form-emp.run")
+    public ModelView formView() throws Exception {
+        ModelView m = new ModelView();
+        Connection c = ConnectionPerso.getConnection();
+
+        Plat plat = new Plat();
+        List<Object> listPlat = new ArrayList<>();
+                //plat.select(c);
+
+        EmpModel emp = new EmpModel();
+        List<Object> listEmp = new ArrayList<>();
+                //emp.select(c);
+
+        m.addItem("list-emp", listEmp);
+        m.addItem("list-plat", listPlat);
+
+        m.setView("formEmp.jsp");
+        c.close();
+
+        return m;
+    }
+
+
+    @URLMapping(value = "/list-emp-plat.run")
+    public ModelView listView() throws Exception {
         ModelView m = new ModelView();
 
-        List<Emp> listEmp = new ArrayList<>();
-        listEmp.add(new Emp(1, "Jeanne"));
-        listEmp.add(new Emp(2, "Rasoa"));
-        listEmp.add(new Emp(3, "Bema"));
+        List<Object> listEmpPlat = new V_Empmodel_plat().select(null);
 
-        int c = 0;
-        if (count!=null) {
-            count++;
-            c += count;
-        }
-
-        m.addItem("count", c);
-        m.addItem("list-emp", listEmp);
+        m.addItem("list-emp-plat", listEmpPlat);
 
         m.setView("listEmp.jsp");
         return m;
     }
 
-    @Auth("admin")
-    @URLMapping(value = "/form-emp.run")
-    public ModelView formView() {
-        ModelView m = new ModelView();
-        int c = 0;
-        if (count!=null) {
-            count++;
-            c += count;
-        }
-
-        m.addItem("count", c);
-        m.setView("formEmp.jsp");
-        return m;
-    }
-
 
     @URLMapping(value = "/form-data.run")
-    public ModelView affFormData() {
+    public ModelView insertFormData() throws Exception {
         ModelView m = new ModelView();
 
-        int c = 0;
-        if (count!=null) {
-            count++;
-            c += count;
-        }
+        Empmodel_plat e = new Empmodel_plat(this);
+        e.save(null);
 
-        m.addItem("count", c);
-        m.addItem("formData", this);
-        m.setView("formDataView.jsp");
+        m.setView("index.jsp");
 
         return m;
     }
+
 ////////////////////////////
     @URLMapping(value = "/login.run")
     public ModelView Login() {
         ModelView m = new ModelView();
-        int c = 0;
-        if (count!=null) {
-            count++;
-            c += count;
-        }
-
-        m.addItem("count", c);
-        //m.setView("viewTest/login.jsp");
 
         /// SESSION
         String varProfil = "profil";
@@ -139,7 +126,7 @@ public class Emp {
         m.setView("index.jsp");
         return m;
     }
-
+/*
 //////////////////////////
     @Auth("admin")
     @URLMapping(value = "/nbr/mistery.run")
@@ -183,26 +170,9 @@ public class Emp {
         emp.setSession(this._session);
         return emp;
     }
-
+*/
     public Emp() {
-        this.isBoss = false;
-        this.count = 0;
         this._session = new HashMap<>();
-    }
-
-    public Emp(Integer matricule, String nom) {
-        this.isBoss = false;
-        this.count = 0;
-        setMatricule(matricule);
-        setNom(nom);
-    }
-
-    public Boolean getBoss() {
-        return isBoss;
-    }
-
-    public void setBoss(Boolean boss) {
-        isBoss = boss;
     }
 
     public HashMap<String, Object> getSession() {
@@ -213,53 +183,12 @@ public class Emp {
         this._session = session;
     }
 
-
-    public Integer getCount() {
-        return count;
+    public Date getDate() {
+        return date;
     }
 
-    public void setCount(Integer count) {
-        this.count = count;
-    }
-
-    public Integer getMatricule() {
-        return matricule;
-    }
-
-    public void setMatricule(Integer matricule) {
-        this.matricule = matricule;
-    }
-
-    public Boolean getIsBoss() {
-        return isBoss;
-    }
-
-    public void setIsBoss(Boolean boss) {
-        isBoss = boss;
-    }
-
-    public Date getDtn() {
-        return dtn;
-    }
-
-    public void setDtn(Date dtn) {
-        this.dtn = dtn;
-    }
-
-    public String getNom() {
-        return nom;
-    }
-
-    public void setNom(String nom) {
-        this.nom = nom;
-    }
-
-    public String[] getPrenoms() {
-        return prenoms;
-    }
-
-    public void setPrenoms(String[] prenoms) {
-        this.prenoms = prenoms;
+    public void setDate(Date date) {
+        this.date = date;
     }
 
     public FileUpload getFichier() {
@@ -270,4 +199,27 @@ public class Emp {
         this.fichier = fichier;
     }
 
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public Integer getIdPlat() {
+        return idPlat;
+    }
+
+    public void setIdPlat(Integer idPlat) {
+        this.idPlat = idPlat;
+    }
+
+    public Integer getIdEmp() {
+        return idEmp;
+    }
+
+    public void setIdEmp(Integer idEmp) {
+        this.idEmp = idEmp;
+    }
 }

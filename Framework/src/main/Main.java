@@ -1,14 +1,19 @@
 package main;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import database.EmpModel;
 import etu1918.framework.mapping.Mapping;
 
 import java.util.HashMap;
+import java.util.List;
 
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
 
         System.out.println("\n\tFramework built successfully ! 🚀\n");
+
+        List<Object> l = new EmpModel().select(null);
+        System.out.println(l);
 /*
         Gson gson = new Gson();
         // Create a new HashMap

@@ -345,11 +345,13 @@ public class FrontServlet extends HttpServlet {
                     out.println("\nNb params méthode : "+count);
 
                     if (count == 0) {
-                        out.println(method);
-                        out.println(object);
+                        out.println("Method : "+method);
+                        out.println("Object : "+object);
+
 
                         if (!isJson){
                             modelView = (ModelView) method.invoke(object);
+                            out.println("modelview : "+method.invoke(object));
                             out.println(modelView);
                         }
                         else {
@@ -398,7 +400,7 @@ public class FrontServlet extends HttpServlet {
                                 modelView = (ModelView) method.invoke(object, valParamArr);
 
 
-                            //out.println("\nmodelview : "+method.invoke(object, valParamArr));
+                            out.println("\nmodelview : "+method.invoke(object, valParamArr));
                             //out.println(modelView);
                         }
                         else {
@@ -454,7 +456,6 @@ public class FrontServlet extends HttpServlet {
                         if (modelView.isSessionInvalidate())
                             session.invalidate();
 
-
                         out.println("\n\nVue pour dispatch : " + view);
 
                         //Dispatch vers la vue correspondante
@@ -468,7 +469,7 @@ public class FrontServlet extends HttpServlet {
                 out.println("URL non supportée");
         }
         catch (Exception e) {
-            out.println(e.getMessage());
+            throw new RuntimeException(e);
         }
     }
     public void doGet(HttpServletRequest req, HttpServletResponse res) {
