@@ -23,21 +23,21 @@ public class Emp {
     @URLMapping(value = "/form-emp.run")
     public ModelView formView() throws Exception {
         ModelView m = new ModelView();
-        Connection c = ConnectionPerso.getConnection();
-/*
+        //Connection c = ConnectionPerso.getConnection();
+
         Plat plat = new Plat();
         List<Object> listPlat = new ArrayList<>();
-                //plat.select(c);
+                //= plat.select(c);
 
         EmpModel emp = new EmpModel();
         List<Object> listEmp = new ArrayList<>();
-                //emp.select(c);
+                //= emp.select(c);
 
         m.addItem("list-emp", listEmp);
         m.addItem("list-plat", listPlat);
-*/
+
         m.setView("formEmp.jsp");
-        c.close();
+        //c.close();
 
         return m;
     }
