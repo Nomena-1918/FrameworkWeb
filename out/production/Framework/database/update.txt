@@ -1,8 +1,0 @@
-
-
-   String query = "UPDATE students SET name = ? WHERE id = ?";
-   PreparedStatement pstmt = conn.prepareStatement(query);
-   pstmt.setString(1, "NewName");
-   pstmt.setInt(2, 21);
-   int result = pstmt.executeUpdate();
-   System.out.println(result + " records updated");
