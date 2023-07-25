@@ -3,11 +3,14 @@
 <%@ page import="java.util.List" %>
 <%@ page import="root.classesTest.EmpModel" %>
 <%@ page import="root.classesTest.Plat" %>
+<%@ page import="java.util.ArrayList" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <%
-  List<Object> listEmp = (List<Object>) request.getAttribute("list-emp");
-  List<Object> listPlat = (List<Object>) request.getAttribute("list-plat");
+  List<Object> listEmp = new ArrayList<>();
+          //(List<Object>) request.getAttribute("list-emp");
+  List<Object> listPlat = new ArrayList<>();
+          //(List<Object>) request.getAttribute("list-plat");
 %>
 
 <html>

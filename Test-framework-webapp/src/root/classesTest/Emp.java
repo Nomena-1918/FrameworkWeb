@@ -24,7 +24,7 @@ public class Emp {
     public ModelView formView() throws Exception {
         ModelView m = new ModelView();
         Connection c = ConnectionPerso.getConnection();
-
+/*
         Plat plat = new Plat();
         List<Object> listPlat = new ArrayList<>();
                 //plat.select(c);
@@ -35,7 +35,7 @@ public class Emp {
 
         m.addItem("list-emp", listEmp);
         m.addItem("list-plat", listPlat);
-
+*/
         m.setView("formEmp.jsp");
         c.close();
 
