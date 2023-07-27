@@ -350,9 +350,10 @@ public class FrontServlet extends HttpServlet {
 
 
                         if (!isJson){
+                            out.println("eto isjson: "+isJson);
+
                             modelView = (ModelView) method.invoke(object);
                             out.println("modelview : "+method.invoke(object));
-                            out.println(modelView);
                         }
                         else {
                             Object o = method.invoke(object);

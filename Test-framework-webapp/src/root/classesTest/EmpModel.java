@@ -1,6 +1,8 @@
 package root.classesTest;
 
 
+import database.BDDgeneral;
+
 public class EmpModel extends BDDgeneral {
     Integer id;
     String nom;

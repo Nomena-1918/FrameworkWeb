@@ -7,10 +7,8 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <%
-  List<Object> listEmp = new ArrayList<>();
-          //(List<Object>) request.getAttribute("list-emp");
-  List<Object> listPlat = new ArrayList<>();
-          //(List<Object>) request.getAttribute("list-plat");
+  List<Object> listEmp = (List<Object>) request.getAttribute("list-emp");
+  List<Object> listPlat = (List<Object>) request.getAttribute("list-plat");
 %>
 
 <html>
@@ -33,11 +31,9 @@
       <label>Emp</label>
       <label>
         <select name="idEmp">
-
           <% for(Object o : listEmp) { %>
             <option value="<%= ((EmpModel)o).getId() %>"> <%= ((EmpModel)o).getNom() %> </option>
           <% } %>
-
         </select>
       </label>
     </div>
@@ -46,11 +42,9 @@
       <label>PLat</label>
       <label>
         <select name="idPlat">
-
           <% for(Object o : listPlat) { %>
           <option value="<%= ((Plat)o).getId() %>"> <%= ((Plat)o).getLibelle() %> </option>
           <% } %>
-
         </select>
       </label>
     </div>

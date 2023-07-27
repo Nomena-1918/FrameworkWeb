@@ -6,7 +6,10 @@ import etu1918.framework.mapping.ModelView;
 import utilPerso.FileUpload;
 
 import java.sql.Connection;
-import java.util.*;
+import java.sql.Date;
+import java.util.HashMap;
+import java.util.List;
+
 
 @Model
 @Scope("singleton")
@@ -23,21 +26,20 @@ public class Emp {
     @URLMapping(value = "/form-emp.run")
     public ModelView formView() throws Exception {
         ModelView m = new ModelView();
-        //Connection c = ConnectionPerso.getConnection();
+        Connection c = ConnectionPerso.getConnection();
 
         Plat plat = new Plat();
-        List<Object> listPlat = new ArrayList<>();
-                //= plat.select(c);
+        List<Object> listPlat = plat.select(c);
 
         EmpModel emp = new EmpModel();
-        List<Object> listEmp = new ArrayList<>();
-                //= emp.select(c);
+        List<Object> listEmp = emp.select(c);
 
         m.addItem("list-emp", listEmp);
         m.addItem("list-plat", listPlat);
 
         m.setView("formEmp.jsp");
-        //c.close();
+
+        c.close();
 
         return m;
     }
@@ -46,23 +48,23 @@ public class Emp {
     @URLMapping(value = "/list-emp-plat.run")
     public ModelView listView() throws Exception {
         ModelView m = new ModelView();
-
         List<Object> listEmpPlat = new V_Empmodel_plat().select(null);
-
         m.addItem("list-emp-plat", listEmpPlat);
-
         m.setView("listEmp.jsp");
+
         return m;
     }
 
-
+    @Auth("admin")
     @URLMapping(value = "/form-data.run")
     public ModelView insertFormData() throws Exception {
         ModelView m = new ModelView();
 
+        // Insertion
         Empmodel_plat e = new Empmodel_plat(this);
         e.save(null);
 
+        m.addItem("emp_plat", e);
         m.setView("index.jsp");
 
         return m;
@@ -187,7 +189,7 @@ public class Emp {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(java.sql.Date date) {
         this.date = date;
     }
 

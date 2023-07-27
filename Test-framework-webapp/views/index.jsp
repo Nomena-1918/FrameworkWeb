@@ -10,6 +10,10 @@
 <p><%="Profil :  "+session.getAttribute("profil")%></p>
 <!--<p><%="varSession :  "+session.getAttribute("varSession")%></p>-->
 
+<%  if(request.getAttribute("emp_plat")!=null) {%>
+<p><%="Emp_plat :  "+request.getAttribute("emp_plat")%></p>
+<%  }   %>
+
     <h1>Bienvenue dans ce projet test !</h1>
     <h2>Les liens disponibles actuellement :  </h2>
 

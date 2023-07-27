@@ -28,17 +28,23 @@
 <h1>  Bienvenue dans listEmp.jsp  </h1>
 <h2> La liste des employés :</h2>
 
-<% for(V_Empmodel_plat e : list) { %>
-
-<ul>
-    <li><h3>Date : <%= e.getDate() %> , Emp : <%= e.getNom() %>, Plat : <%= e.getLibelle() %> </h3></li>
-</ul>
-
-<% } %>
-
-
+<table>
+    <tr>
+        <th>Date</th>
+        <th>Emp</th>
+        <th>Plat</th>
+        <th>Fichier</th>
+    </tr>
 
 
-
+    <% for(V_Empmodel_plat e : list) { %>
+    <tr>
+        <td><%= e.getDate() %></td>
+        <td><%= e.getNom() %></td>
+        <td><%= e.getLibelle() %></td>
+        <td><%= e.getNomfichier() %></td>
+    </tr>
+    <% } %>
+</table>
 </body>
 </html>

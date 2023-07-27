@@ -1,4 +1,6 @@
 package root.classesTest;
+import database.BDDgeneral;
+
 import java.sql.Date;
 
 public class V_Empmodel_plat extends BDDgeneral {
