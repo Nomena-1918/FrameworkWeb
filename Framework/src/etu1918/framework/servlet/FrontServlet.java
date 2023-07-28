@@ -15,6 +15,7 @@ import javax.servlet.http.*;
 
 import java.io.File;
 import java.io.InputStream;
+import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
@@ -31,13 +32,23 @@ import java.util.*;
 public class FrontServlet extends HttpServlet {
     HashMap<String, Mapping> mappingUrls;
     HashMap<Class, Object> instanceClass;
-    private static final String UPLOAD_DIR = "uploads";
+    private String UPLOAD_DIR;
+    String attrFileAttach;
+
+
+    PrintWriter out;
 
     @Override
     public void init() throws ServletException {
         try {
 
             String path = this.getInitParameter("classpath");
+            UPLOAD_DIR = this.getInitParameter("upload_dir");
+            attrFileAttach = this.getInitParameter("fileAttachment");
+
+            if (UPLOAD_DIR==null) UPLOAD_DIR="";
+            if (attrFileAttach==null) attrFileAttach="";
+
             Utilitaire.initHashMap(this, path);
 
         } catch (Exception e) {
@@ -48,45 +59,46 @@ public class FrontServlet extends HttpServlet {
     public HashMap<String, Mapping> getMappingUrls() {
         return mappingUrls;
     }
-
     public void setMappingUrls(HashMap<String, Mapping> mappingUrls) {
         this.mappingUrls = mappingUrls;
     }
-
     public HashMap<Class, Object> getInstanceClass() {
         return instanceClass;
     }
-
     public void setInstanceClass(HashMap<Class, Object> instanceClass) {
         this.instanceClass = instanceClass;
     }
 
     public void ProcessRequest(HttpServletRequest req, HttpServletResponse res) throws Exception {
-       res.setContentType("application/json");
-       PrintWriter out = res.getWriter();
+        res.setContentType("application/json");
+
+        if (out !=null)
+            out = res.getWriter();
 
         try {
-            out.println("Bienvenue dans la page de debug : " + this.getClass().getSimpleName());
+            System.out.println("\n\n===============================================================================");
+
+            System.out.println("\nBienvenue dans la page de debug : " + this.getClass().getSimpleName());
 
             String url = req.getServletPath();
-            out.println("\nURL : " + url);
+            System.out.println("\nURL : " + url);
 
             List<String> params = Utilitaire.getInfoURL(req);
-            out.println("\nApres decomposition : ");
+            System.out.println("\nApres decomposition : ");
 
             for (String s : params)
-                out.println(s);
+                System.out.println(s);
 
-            out.println("\n\nMappingUrls :");
+            System.out.println("\n\nMappingUrls :");
             for (Map.Entry<String, Mapping> me : this.mappingUrls.entrySet())
-                out.println("URL : " + me.getKey() + ", Classe : " + me.getValue().getClassName() + ", Méthode : " + me.getValue().getMethod());
+                System.out.println("URL : " + me.getKey() + ", Classe : " + me.getValue().getClassName() + ", Méthode : " + me.getValue().getMethod());
 
-            out.println("\n\nInstanceClass :");
+            System.out.println("\n\nInstanceClass :");
             for (Map.Entry<Class, Object> me : this.instanceClass.entrySet())
-                out.println("Classe : " + me.getKey() + ", Instance : " + me.getValue());
+                System.out.println("Classe : " + me.getKey() + ", Instance : " + me.getValue());
 
 
-            out.println("\n\nL'URL est supportée : " + this.mappingUrls.containsKey(url));
+            System.out.println("\n\nL'URL est supportée : " + this.mappingUrls.containsKey(url));
 
             // Chargement d'une view
             if (this.mappingUrls.containsKey(url)) {
@@ -113,7 +125,7 @@ public class FrontServlet extends HttpServlet {
                 } else
                     object = classe.cast(classe.getDeclaredConstructor().newInstance());
 
-                out.println("\nInstanciation object Ok\n");
+                System.out.println("\nInstanciation object Ok\n");
 
 
                 Enumeration<String> nomsParam = req.getParameterNames();
@@ -123,14 +135,14 @@ public class FrontServlet extends HttpServlet {
 
 
                 // Association pairs (name, value) du formulaire avec les setters de object
-                out.println("\n\nParamètres du formulaire :\n");
+                System.out.println("\n\nParamètres du formulaire :\n");
 
                 while (nomsParam.hasMoreElements()) {
 
                     // Paramètre du formulaire
                     nomParam = nomsParam.nextElement();
 
-                    out.println(nomParam);
+                    System.out.println(nomParam);
 
                     // Arg setter
                     valeurParam = req.getParameterValues(nomParam);
@@ -138,7 +150,7 @@ public class FrontServlet extends HttpServlet {
                     // Check, c'est un attribut de classe sinon Continue
                     if (Utilitaire.isClassAttribute(classe, nomParam)) {
 
-                        out.println("\n-> " + nomParam + " = {\n");
+                        System.out.println("\n-> " + nomParam + " = {\n");
 
                         // Rendre la 1ère lettre du paramétre majuscule, pour le setter
                         lo = nomParam.substring(0, 1).toUpperCase();
@@ -146,17 +158,17 @@ public class FrontServlet extends HttpServlet {
 
                         // Création du setter
                         setter = "set".concat(Param);
-                        out.println("     setter : " + setter);
+                        System.out.println("     setter : " + setter);
 
                         // Paramater type du setter
                         fieldC = object.getClass().getDeclaredField(nomParam).getType();
-                        out.println("     Type du param : " + fieldC.getSimpleName());
+                        System.out.println("     Type du param : " + fieldC.getSimpleName());
 
                         Object o;
 
                         if (valeurParam.length == 1) {
 
-                            out.println("     arg : " + valeurParam[0]);
+                            System.out.println("     arg : " + valeurParam[0]);
 
                             // ================== CAST ===================== //
 
@@ -166,23 +178,23 @@ public class FrontServlet extends HttpServlet {
 
                             // Appel setter généralisé
                             Utilitaire.toSet(setter, object, o, fieldC);
-                            out.println("\n\t-> Setter appelé avec succès !\n");
+                            System.out.println("\n\t-> Setter appelé avec succès !\n");
 
                             // Test setter avec getter
                             geTest = "get" + Param;
 
                             if (Utilitaire.toGet(geTest, object) != null)
-                                out.println("\t-> Test setter : " + geTest + " = " + Utilitaire.toGet(geTest, object).toString() + "\n");
+                                System.out.println("\t-> Test setter : " + geTest + " = " + Utilitaire.toGet(geTest, object).toString() + "\n");
 
                             else
-                                out.println("\t-> Test setter : " + geTest + " = null\n");
+                                System.out.println("\t-> Test setter : " + geTest + " = null\n");
 
-                            out.println("    }\n");
+                            System.out.println("    }\n");
                             continue;
                         }
 
                         if (valeurParam.length > 1) {
-                            out.println("     arg : " + Arrays.toString(valeurParam));
+                            System.out.println("     arg : " + Arrays.toString(valeurParam));
 
 
                             // ================== CAST ===================== //
@@ -194,20 +206,20 @@ public class FrontServlet extends HttpServlet {
                             // Appel setter généralisé
                             Utilitaire.toSet(setter, object, tab, fieldC);
 
-                            out.println("\n\t-> Setter appelé avec succès !\n");
+                            System.out.println("\n\t-> Setter appelé avec succès !\n");
 
                             // Test setter avec getter
                             geTest = "get" + Param;
                             if (Utilitaire.toGet(geTest, object) != null)
-                                out.println("\t-> Test setter : " + geTest + " = " + Arrays.toString((String[]) Utilitaire.toGet(geTest, object)) + "\n");
+                                System.out.println("\t-> Test setter : " + geTest + " = " + Arrays.toString((String[]) Utilitaire.toGet(geTest, object)) + "\n");
                             else
-                                out.println("\t-> Test setter : " + geTest + " = null\n");
+                                System.out.println("\t-> Test setter : " + geTest + " = null\n");
 
-                            out.println("    }\n");
+                            System.out.println("    }\n");
 
                         }
                     } else
-                        out.println("!(class attr) - Nom param : " + nomParam + ", Valeur param : " + valeurParam[0]);
+                        System.out.println("!(class attr) - Nom param : " + nomParam + ", Valeur param : " + valeurParam[0]);
 
                 }
 
@@ -225,7 +237,7 @@ public class FrontServlet extends HttpServlet {
                     if (nameAttrFile != null && req.getPart(nameAttrFile) != null) {
                         Part part = req.getPart(nameAttrFile);
 
-                        out.println("Part : " + part);
+                        System.out.println("Part : " + part);
 
                         /*
                          * Il faut déterminer s'il s'agit d'un champ classique
@@ -234,14 +246,14 @@ public class FrontServlet extends HttpServlet {
                          */
 
                         String nomFichier = Utilitaire.getNomFichier(part);
-                        out.println("nomFichier : " + nomFichier);
+                        System.out.println("nomFichier : " + nomFichier);
 
                         if (nomFichier != null) {
 
                             InputStream in = part.getInputStream();
                             byte[] bytes = in.readAllBytes();
 
-                            out.println("Bytes : " + bytes);
+                            System.out.println("Bytes : " + bytes);
 
                             FileUpload file = new FileUpload(nomFichier, bytes);
 
@@ -252,7 +264,7 @@ public class FrontServlet extends HttpServlet {
 
                                 // Création du setter
                                 setter = "set".concat(Param);
-                                out.println("     setter : " + setter);
+                                System.out.println("     setter : " + setter);
 
                                 // Appel setter généralisé
                                 Utilitaire.toSet(setter, object, file, FileUpload.class);
@@ -274,7 +286,8 @@ public class FrontServlet extends HttpServlet {
                                 System.out.println("Upload File Directory="+fileSaveDir.getAbsolutePath());
 
                                 // Ecriture du fichier sur le serveur
-                                part.write(uploadFilePath + File.separator + file.getNom());
+                                String fullPath = uploadFilePath + File.separator + file.getNom();
+                                part.write(fullPath.replaceAll("\"", ""));
                                 ////////////////////////////////////////////////////////////
 
                             } catch (Exception e) {
@@ -286,12 +299,12 @@ public class FrontServlet extends HttpServlet {
                                     field.set(object, file);
                                 } else throw e;
                             }
-                            out.println("\n\t-> Setter FileUpload appelé avec succès !\n");
+                            System.out.println("\n\t-> Setter FileUpload appelé avec succès !\n");
                             in.close();
                         }
                     }
                 } else
-                    out.println("pas de fichier");
+                    System.out.println("pas de fichier");
 
                 //La méthode d'action correspondant à l'URL
                 Method method = Utilitaire.getMethodeByAnnotation("URLMapping", url, Class.forName(mapping.getClassName()));
@@ -308,7 +321,7 @@ public class FrontServlet extends HttpServlet {
                 //session.setAttribute(varProfil, profilCourant);
 
                 boolean bol = Utilitaire.isClassAttribute(classe, "_session");
-                out.println(bol);
+                System.out.println(bol);
 
                 if (bol) {
                     Field fieldSession = classe.getDeclaredField("_session");
@@ -336,18 +349,18 @@ public class FrontServlet extends HttpServlet {
                 boolean access = true;
                 String valAnnot;
                 if (method.isAnnotationPresent(Auth.class)) {
-                    out.println("\nPrésence authorisation\n");
+                    System.out.println("\nPrésence authorisation\n");
 
                     Annotation annot = method.getAnnotation(Auth.class);
                     Method annotMeth = annot.annotationType().getDeclaredMethod("value");
 
                     // Accès
                     valAnnot = (String) annotMeth.invoke(annot);
-                    out.println("\nAccès méthode :" + valAnnot);
+                    System.out.println("\nAccès méthode :" + valAnnot);
 
                     // Nom profil dans session
                     String valSession = (String) session.getAttribute(varProfil);
-                    out.println("Valeur session :" + valSession);
+                    System.out.println("Valeur session :" + valSession);
                     
                     // Utilisateurs authentifiés
                     if (valAnnot.equalsIgnoreCase("")) {
@@ -360,7 +373,7 @@ public class FrontServlet extends HttpServlet {
                             access = false;
                     }
                 }
-                out.println("\nAccès autorisé "+session.getAttribute(varProfil)+" : "+access);
+                System.out.println("\nAccès autorisé "+session.getAttribute(varProfil)+" : "+access);
 // ==============================================
                 // Prendre la view dans le ModelView retourné
                 ModelView modelView = null;
@@ -370,25 +383,25 @@ public class FrontServlet extends HttpServlet {
                 boolean isJson = method.isAnnotationPresent(REST_API.class);
 
                 if (access) {
-                    out.println("\nNb params méthode : "+count);
+                    System.out.println("\nNb params méthode : "+count);
 
                     if (count == 0) {
-                        out.println("Method : "+method);
-                        out.println("Object : "+object);
+                        System.out.println("Method : "+method);
+                        System.out.println("Object : "+object);
 
 
                         if (!isJson){
-                            out.println("eto isjson: "+isJson);
-
                             modelView = (ModelView) method.invoke(object);
-                            out.println("modelview : "+method.invoke(object));
+                            System.out.println("modelview : "+modelView);
                         }
                         else {
                             Object o = method.invoke(object);
                             Gson gson = new Gson();
                             String json = gson.toJson(o);
-                            out.println("\nREST-API");
+                            System.out.println("\nREST-API");
+
                             out.println("\n\n"+json);
+                            System.out.println("\n\n"+json);
                         }
                     }
                     // count >= 1
@@ -396,9 +409,9 @@ public class FrontServlet extends HttpServlet {
                         // Liste des noms des vrais paramètres de la méthode d'action
                         List<String> trueParams = Utilitaire.getTrueParams(method);
 
-                        out.println(" \n Noms paramètres méthode d'action :");
+                        System.out.println(" \n Noms paramètres méthode d'action :");
                         for (String string : trueParams)
-                            out.println(string);
+                            System.out.println(string);
 
                         // Prendre la valeur de chacun de ces parameters -> List<Object>
                         List<Object> valParam = new ArrayList<>();
@@ -407,20 +420,20 @@ public class FrontServlet extends HttpServlet {
                         List<Class> listParamType = Utilitaire.getParamType(trueParams, method);
 
                         // Cast des paramètres String -> vraie valeur
-                        out.println("\n Valeurs paramètres de requête pour la méthode d'action :");
+                        System.out.println("\n Valeurs paramètres de requête pour la méthode d'action :");
                         for (int i = 0; i < trueParams.size(); i++) {
                             valParam.add(Utilitaire.convert(req.getParameterValues(trueParams.get(i))[0], listParamType.get(i)));
-                            out.println(Utilitaire.convert(req.getParameterValues(trueParams.get(i))[0], listParamType.get(i)));
+                            System.out.println(Utilitaire.convert(req.getParameterValues(trueParams.get(i))[0], listParamType.get(i)));
                         }
 
                         // Cast List<Object> en Object[]
                         Object[] valParamArr = valParam.toArray();
-                        out.println(Arrays.toString(valParamArr));
+                        System.out.println(Arrays.toString(valParamArr));
 
-                        //out.println("\nNb params : "+count+"\n");
+                        //System.out.println("\nNb params : "+count+"\n");
 
                         if (!isJson) {
-                            out.println("\nObject : "+object);
+                            System.out.println("\nObject : "+object);
 
                             // Appel de la méthode
                             if (count == 1)
@@ -429,14 +442,16 @@ public class FrontServlet extends HttpServlet {
                                 modelView = (ModelView) method.invoke(object, valParamArr);
 
 
-                            //out.println("\nmodelview : "+method.invoke(object, valParamArr));
-                            out.println("\nmodelview : "+modelView);
+                            //System.out.println("\nmodelview : "+method.invoke(object, valParamArr));
+                            System.out.println("\nmodelview : "+modelView);
                         }
                         else {
                             Object o = method.invoke(object, valParamArr);
                             Gson gson = new Gson();
                             String json = gson.toJson(o);
-                            out.println("\nREST-API");
+                            System.out.println("\nREST-API");
+
+
                             out.println(json+"\n\n");
                         }
                     }
@@ -448,7 +463,7 @@ public class FrontServlet extends HttpServlet {
 
                         // Prendre les data dans le ModelView
                         if (dataHsh != null) {
-                            out.println("JSON : " + modelView.isJson());
+                            System.out.println("JSON : " + modelView.isJson());
 
                             // Les mettre dans les attributs de la requête
                             if (modelView.isJson()) {
@@ -473,7 +488,6 @@ public class FrontServlet extends HttpServlet {
                             session.setAttribute(m.getKey(), m.getValue());
                         }
 
-
                         // Enlever des variables de session
                         List<String> sessionToRemove = modelView.getSessionToRemove();
 
@@ -485,7 +499,36 @@ public class FrontServlet extends HttpServlet {
                         if (modelView.isSessionInvalidate())
                             session.invalidate();
 
-                        out.println("\n\nVue pour dispatch : " + view);
+                        System.out.println("\n\nVue pour dispatch : " + view);
+
+
+                        //////// Téléchargement de fichiers ///
+                        // Nom attribut : fileAttachment
+                        if(req.getAttribute(attrFileAttach)!=null)
+                        {
+                            String fileToDownload = (String) req.getAttribute(attrFileAttach);
+
+                            // constructs path of the directory to save uploaded file
+                            String uploadFilePath = UPLOAD_DIR + File.separator + fileToDownload;
+
+                            res.setContentType("text/plain");
+                            res.setHeader("Content-disposition", "attachment; filename="+fileToDownload);
+
+                            final int ARBITARY_SIZE = 1048;
+
+                            System.out.println("fileToDownload : "+fileToDownload);
+                            System.out.println("uploadFilePath : "+uploadFilePath);
+
+                            try(InputStream in = req.getServletContext().getResourceAsStream(uploadFilePath);
+                                OutputStream outp = res.getOutputStream()) {
+                                byte[] buffer = new byte[ARBITARY_SIZE];
+
+                                int numBytesRead;
+                                while ((numBytesRead = in.read(buffer)) > 0) {
+                                    outp.write(buffer, 0, numBytesRead);
+                                }
+                            }
+                        }
 
                         //Dispatch vers la vue correspondante
                         RequestDispatcher dispat = req.getRequestDispatcher(view);
@@ -493,9 +536,9 @@ public class FrontServlet extends HttpServlet {
                     }
                 }
                 else
-                    out.println("Accès refusé pour "+session.getAttribute(varProfil));
+                    System.out.println("Accès refusé pour "+session.getAttribute(varProfil));
             } else
-                out.println("URL non supportée");
+                System.out.println("URL non supportée");
         }
         catch (Exception e) {
             System.out.println(e.getMessage());

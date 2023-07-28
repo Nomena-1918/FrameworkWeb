@@ -445,10 +445,10 @@ public static Object execMethod(Object objet, String nomMethode, Object[] parame
 public static String getNomFichier(Part part) {
 
     /* Boucle sur chacun des paramètres de l'en-tête "content-disposition". */
-    for ( String contentDisposition : part.getHeader("content-disposition").split( ";" ) ) {
+    for (String contentDisposition : part.getHeader("content-disposition").split( ";" )) {
 
         /* Recherche de l'éventuelle présence du paramètre "filename". */
-        if ( contentDisposition.trim().startsWith("filename") ) {
+        if (contentDisposition.trim().startsWith("filename")) {
 
             /* Si "filename" est présent, alors renvoi de sa valeur, c'est-à-dire du nom de fichier. */
             return contentDisposition.substring( contentDisposition.indexOf( '=' ) + 1 );

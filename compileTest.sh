@@ -1,8 +1,8 @@
 #!/bin/bash
 
 # Specify the source and destination directories
-source_dir="Test-framework-webapp/src"
-destination_dir="/Users/nomena/TAFF-S4-PC-ITU/S4/Web_Dynamique/FrameworkWeb/binTest"
+source_dir=
+destination_dir=
 jar_file="/Users/nomena/TAFF-S4-PC-ITU/S4/Web_Dynamique/FrameworkWeb/archives_java/framework.jar:Test-framework-webapp/config-webapp/gson-2.8.2.jar:Test-framework-webapp/config-webapp/postgresql-42.6.0.jar"
 
 # Find all Java files recursively and write their paths to a text file
