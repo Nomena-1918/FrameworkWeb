@@ -8,11 +8,10 @@
       <servlet-name>FrontServlet</servlet-name>
       <servlet-class>etu1918.framework.servlet.FrontServlet</servlet-class>
 
-<!--Paramètre upload de fichiers-->
-      <multipart-config>
-        <max-file-size>10485760</max-file-size> <!-- 10 Mo -->
-        <max-request-size>52428800</max-request-size> <!-- 5 x 10 Mo -->
-      </multipart-config>
+        <context-param>
+            <param-name>tempfile.dir</param-name>
+            <param-value>tmpfiles</param-value>
+        </context-param>
 
         <init-param>
             <!-- Package racine pour scan -->

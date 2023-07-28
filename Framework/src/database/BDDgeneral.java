@@ -263,6 +263,8 @@ public class BDDgeneral {
                 }
             }
 
+            System.out.println(sql);
+
             ///////////////////
             ResultSet results = stat.executeQuery(sql);
 

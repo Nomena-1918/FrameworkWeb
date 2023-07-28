@@ -47,6 +47,8 @@ public class Emp {
 
     @URLMapping(value = "/list-emp-plat.run")
     public ModelView listView() throws Exception {
+        System.out.println("list-view");
+
         ModelView m = new ModelView();
         List<Object> listEmpPlat = new V_Empmodel_plat().select(null);
         m.addItem("list-emp-plat", listEmpPlat);
@@ -60,6 +62,8 @@ public class Emp {
     public ModelView insertFormData(@ParamValue(value = "dtn") Date date) throws Exception {
         ModelView m = new ModelView();
 
+        System.out.println("form-data");
+
         Connection c = ConnectionPerso.getConnection();
 
         // Insertion
@@ -70,7 +74,7 @@ public class Emp {
         c.commit();
         c.close();
 
-        m.setView("index.jsp");
+        m.setView("list-emp-plat.run");
         return m;
     }
 
@@ -78,6 +82,7 @@ public class Emp {
     @URLMapping(value = "/login.run")
     public ModelView Login() {
         ModelView m = new ModelView();
+        System.out.println("Login");
 
         /// SESSION
         String varProfil = "profil";

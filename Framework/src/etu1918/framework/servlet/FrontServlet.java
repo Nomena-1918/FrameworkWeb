@@ -13,6 +13,7 @@ import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.*;
 
+import java.io.File;
 import java.io.InputStream;
 import java.io.PrintWriter;
 import java.lang.annotation.Annotation;
@@ -22,10 +23,15 @@ import java.lang.reflect.Method;
 import java.util.*;
 
 
-@MultipartConfig
+@MultipartConfig(
+        fileSizeThreshold=1024*1024*10, 	// 10 MB
+        maxFileSize=1024*1024*50*2,         // 100 MB
+        maxRequestSize=1024*1024*100*2      // 200 MB
+)
 public class FrontServlet extends HttpServlet {
     HashMap<String, Mapping> mappingUrls;
     HashMap<Class, Object> instanceClass;
+    private static final String UPLOAD_DIR = "uploads";
 
     @Override
     public void init() throws ServletException {
@@ -212,6 +218,7 @@ public class FrontServlet extends HttpServlet {
                  * Les données reçues sont multipart, on doit donc utiliser la méthode
                  * getPart() pour traiter le champ d'envoi de fichiers.
                  */
+
                 if (req.getContentType() != null && req.getContentType().startsWith("multipart/")) {
                     String nameAttrFile = Utilitaire.getNameFileUploadAttribute(classe);
 
@@ -225,6 +232,7 @@ public class FrontServlet extends HttpServlet {
                          * ou d'un champ de type fichier : on délègue cette opération
                          * à la méthode utilitaire getNomFichier().
                          */
+
                         String nomFichier = Utilitaire.getNomFichier(part);
                         out.println("nomFichier : " + nomFichier);
 
@@ -237,7 +245,6 @@ public class FrontServlet extends HttpServlet {
 
                             FileUpload file = new FileUpload(nomFichier, bytes);
 
-
                             // Rendre la 1ère lettre du paramétre majuscule, pour le setter
                             try {
                                 lo = nameAttrFile.substring(0, 1).toUpperCase();
@@ -249,6 +256,27 @@ public class FrontServlet extends HttpServlet {
 
                                 // Appel setter généralisé
                                 Utilitaire.toSet(setter, object, file, FileUpload.class);
+
+
+                                /////////// Stockage du fichier sur le serveur /////////////
+
+                                // gets absolute path of the web application
+                                String applicationPath = req.getServletContext().getRealPath("");
+
+                                // constructs path of the directory to save uploaded file
+                                String uploadFilePath = applicationPath + File.separator + UPLOAD_DIR;
+
+                                // creates the save directory if it does not exists
+                                File fileSaveDir = new File(uploadFilePath);
+                                if (!fileSaveDir.exists()) {
+                                    fileSaveDir.mkdirs();
+                                }
+                                System.out.println("Upload File Directory="+fileSaveDir.getAbsolutePath());
+
+                                // Ecriture du fichier sur le serveur
+                                part.write(uploadFilePath + File.separator + file.getNom());
+                                ////////////////////////////////////////////////////////////
+
                             } catch (Exception e) {
                                 if (e.getMessage().equalsIgnoreCase("Setter : " + setter + " invalide")) {
 
@@ -401,8 +429,8 @@ public class FrontServlet extends HttpServlet {
                                 modelView = (ModelView) method.invoke(object, valParamArr);
 
 
-                            out.println("\nmodelview : "+method.invoke(object, valParamArr));
-                            //out.println(modelView);
+                            //out.println("\nmodelview : "+method.invoke(object, valParamArr));
+                            out.println("\nmodelview : "+modelView);
                         }
                         else {
                             Object o = method.invoke(object, valParamArr);
@@ -470,21 +498,21 @@ public class FrontServlet extends HttpServlet {
                 out.println("URL non supportée");
         }
         catch (Exception e) {
-            throw new RuntimeException(e);
+            System.out.println(e.getMessage());
         }
     }
     public void doGet(HttpServletRequest req, HttpServletResponse res) {
         try {
             ProcessRequest(req, res);
         } catch (Exception e) {
-            throw new RuntimeException(e);
+           System.out.println(e.getMessage());
         }
     }
     public void doPost(HttpServletRequest req, HttpServletResponse res) {
         try {
             ProcessRequest(req, res);
         } catch (Exception e) {
-            throw new RuntimeException(e);
+            System.out.println(e.getMessage());
         }
     }
 }
