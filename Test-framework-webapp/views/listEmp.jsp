@@ -11,9 +11,9 @@
 
     if (o != null)
         if (o instanceof ArrayList<?>)
-            if (((ArrayList<?>)o).get(0) instanceof V_Empmodel_plat)
-                list = (List<V_Empmodel_plat>) o;
-
+            if (((ArrayList<?>) o).size() >0)
+                if (((ArrayList<?>)o).get(0) instanceof V_Empmodel_plat)
+                    list = (List<V_Empmodel_plat>) o;
 
 %>
 
@@ -30,6 +30,7 @@
 
 <table>
     <tr>
+        <th>ID</th>
         <th>Date</th>
         <th>Emp</th>
         <th>Plat</th>
@@ -39,6 +40,7 @@
 
     <% for(V_Empmodel_plat e : list) { %>
     <tr>
+        <td><%= e.getId() %></td>
         <td><%= e.getDate() %></td>
         <td><%= e.getNom() %></td>
         <td><%= e.getLibelle() %></td>

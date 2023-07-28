@@ -11,9 +11,8 @@ public class BDDgeneral {
     Integer id;
     List<String> tables;
     public BDDgeneral() throws Exception {
-        ConnectionPerso co = new ConnectionPerso();
         try {
-            Connection c = co.getConnection();
+            Connection c = ConnectionPerso.getConnection();
             Statement stat = c.createStatement();
             setAllTables(stat);
             stat.close();
@@ -60,12 +59,7 @@ public class BDDgeneral {
     }
 
     public boolean isTableHere() {
-        boolean state = false;
-
-        if(tables.contains(this.getClass().getSimpleName().toLowerCase()) == true) {
-            state = true;
-        }
-        return state;
+        return tables.contains(this.getClass().getSimpleName().toLowerCase());
     }
 
     /// Methods GET valides
@@ -75,22 +69,10 @@ public class BDDgeneral {
         Method[] methods = this.getClass().getDeclaredMethods();
         List<String> getMethods = new ArrayList<String>();
 
-        for(int i = 0; i < methods.length; i++) {
-            if (methods[i].getName().equalsIgnoreCase("getStats"))
-                continue;
-            if (methods[i].getName().equalsIgnoreCase("getListJoueurs"))
-                continue;
-            if (methods[i].getName().equalsIgnoreCase("getPos"))
-                continue;
-            if (methods[i].getName().equalsIgnoreCase("getCanShoot"))
-                continue;
-            if (methods[i].getName().equalsIgnoreCase("getPoss"))
-                continue;
-            if (methods[i].getName().equalsIgnoreCase("getTempsEq"))
-                continue;
+        for (Method method : methods) {
 
-            if(methods[i].getName().startsWith("get") == true) {
-                getMethods.add(methods[i].getName());
+            if (method.getName().startsWith("get")) {
+                getMethods.add(method.getName());
             }
         }
 
@@ -106,7 +88,7 @@ public class BDDgeneral {
 
             getFieldS[i] = "get".concat(s2);
 
-            if(getMethods.contains(getFieldS[i]) == true) {
+            if(getMethods.contains(getFieldS[i])) {
                 getMethodOk.add(getFieldS[i]);
             }
         }
@@ -120,8 +102,7 @@ public class BDDgeneral {
 
         try {
             if (connect == null) {
-                ConnectionPerso co = new ConnectionPerso();
-                connect = co.getConnection();
+                connect = ConnectionPerso.getConnection();
                 isNewConnect = true;
             }
 
@@ -134,24 +115,24 @@ public class BDDgeneral {
                 seq = rs.getInt(1);
             }
 
+            assert seq != null;
             String seqs = seq.toString();
             int seqslen = seqs.length();
 
-            String zeros = "0";
-            for (int i=0; i < (length-seqslen-1); i++) {
-                zeros += "0";
-            }
+            StringBuilder zeros = new StringBuilder("0");
+            zeros.append("0".repeat(Math.max(0, (length - seqslen - 1))));
 
             String zeroSeq = zeros + seqs;
             id += zeroSeq;
             connect.commit();
         }
         catch (Exception e) {
+            assert connect != null;
             connect.rollback();
             throw e;
         }
         finally {
-            if (isNewConnect==true) {
+            if (isNewConnect) {
                 try {
                     connect.close();
                 } catch (SQLException e) {
@@ -166,12 +147,11 @@ public class BDDgeneral {
     public void save(Connection connect) throws Exception {
         String nomTable = this.getClass().getSimpleName().toLowerCase();
         boolean isNewConnect=false;
-
-        if(isTableHere() == true ) {
+        StringBuilder sql;
+        if(isTableHere()) {
             try {
                 if (connect==null) {
-                    ConnectionPerso co = new ConnectionPerso();
-                    connect=co.getConnection();
+                    connect= ConnectionPerso.getConnection();
                     isNewConnect=true;
                 }
                 Statement stat = connect.createStatement();
@@ -182,45 +162,39 @@ public class BDDgeneral {
                 Object o = null;
                 String obj = null;
 
-                String sql="insert into "+nomTable+" values(";
+                sql = new StringBuilder("insert into " + nomTable + " values(");
 
                 for(int i = 0; i < getMethodOk.size(); i++) {
 
                     m = this.getClass().getDeclaredMethod(getMethodOk.get(i));
                     o = m.invoke(this);
 
-                    /*
-                    if (getMethodOk.get(i).equalsIgnoreCase("getId")) {
-                        if (o == null) {
-                            this.setId((Integer) o);
-                        }
-                    }
-*/
-                    if (o != null)
+                    if (o != null) {
                         obj = o.toString();
-
+                        o = "'"+obj+"'";
+                    }
                     else
-                        obj="null";
+                        o="default";
 
-                    o = "'"+obj+"'";
-
-                    sql += o;
+                    sql.append(o);
                     if(i<getMethodOk.size()-1)
-                        sql += ",";
+                        sql.append(",");
                 }
-                sql += ")";
+                sql.append(")");
 
                 System.out.println(sql);
-                stat.executeUpdate(sql);
+                stat.executeUpdate(sql.toString());
+                System.out.println("executed !");
 
-                connect.commit();
             }
             catch(Exception e) {
+                assert connect != null;
                 connect.rollback();
                 throw e;
             }
             finally {
-                if (isNewConnect==true) {
+                if (isNewConnect) {
+                    connect.commit();
                     connect.close();
                 }
             }
@@ -276,7 +250,7 @@ public class BDDgeneral {
 
             String sql = "select * from " + nomTable + " ";
 
-            if (condition.isEmpty() == false) {
+            if (!condition.isEmpty()) {
                 sql += " where ";
                 int j = 0;
                 for (String i : condition.keySet()) {
@@ -295,18 +269,6 @@ public class BDDgeneral {
             while (results.next()) {
                 Object object = this.getClass().getDeclaredConstructor().newInstance();
                 for (int i = 0; i < this.getClass().getDeclaredFields().length; i++) {
-                    if (this.getClass().getDeclaredFields()[i].getName().equalsIgnoreCase("Stats"))
-                        continue;
-                    if (this.getClass().getDeclaredFields()[i].getName().equalsIgnoreCase("listJoueurs"))
-                        continue;
-                    if (this.getClass().getDeclaredFields()[i].getName().equalsIgnoreCase("Pos"))
-                        continue;
-                    if (this.getClass().getDeclaredFields()[i].getName().equalsIgnoreCase("canShoot"))
-                        continue;
-                    if (this.getClass().getDeclaredFields()[i].getName().equalsIgnoreCase("poss"))
-                        continue;
-                    if (this.getClass().getDeclaredFields()[i].getName().equalsIgnoreCase("tempsEq"))
-                        continue;
 
                     if (this.getClass().getDeclaredFields()[i].getType().getSimpleName().compareToIgnoreCase("String") == 0)
                         object.getClass().getDeclaredMethod("set" + upperFirstL(object.getClass().getDeclaredFields()[i].getName()), String.class).invoke(object, results.getString(object.getClass().getDeclaredFields()[i].getName()));
@@ -331,7 +293,7 @@ public class BDDgeneral {
             connect.rollback();
             throw e;
         } finally {
-            if (isNewConnect == true) {
+            if (isNewConnect) {
                 try {
                     connect.close();
                 } catch (SQLException e) {
@@ -372,46 +334,6 @@ public class BDDgeneral {
         return valeur;
     }
 
-/*
-    ///////// Fonction insertHisto //////////
-    public void insertHisto(Connection connect, String action) throws Exception {
-        boolean isNewConnect = false;
-
-        try {
-            if (connect == null) {
-                ConnectionPerso co = new ConnectionPerso();
-                connect = co.getConnection();
-                isNewConnect = true;
-            }
-            Statement stat = connect.createStatement();
-
-            Historique h = new Historique();
-            String sql="insert into historique values('"+generateId(h,connect)+"','"
-                    +this.getClass().getSimpleName()+"','"+getValeurHisto()+ "','"+action +
-                    "','"+ getId()+"', (select localtimestamp))";
-
-
-            //System.out.println(action);
-            //System.out.println(sql);
-
-            stat.executeUpdate(sql);
-            stat.close();
-        }
-        catch (Exception e){
-            connect.rollback();
-            throw e;
-        }
-        finally {
-            if (isNewConnect == true) {
-                try {
-                    connect.close();
-                } catch (SQLException e) {
-                    throw e;
-                }
-            }
-        }
-    }
-*/
 /// Fonction Update
 
 
@@ -425,8 +347,7 @@ public class BDDgeneral {
         int result = 0;
         try {
             if (connect == null) {
-                ConnectionPerso co = new ConnectionPerso();
-                connect = co.getConnection();
+                connect = ConnectionPerso.getConnection();
                 isNewConnect = true;
             }
 
@@ -476,7 +397,7 @@ public class BDDgeneral {
             connect.rollback();
             throw e;
         } finally {
-            if (isNewConnect == true) {
+            if (isNewConnect) {
                 try {
                     connect.close();
                 } catch (SQLException e) {

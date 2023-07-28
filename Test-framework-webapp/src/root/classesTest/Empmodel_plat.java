@@ -17,7 +17,7 @@ public class Empmodel_plat extends BDDgeneral {
 
     public Empmodel_plat(Emp e) throws Exception {
         this.id = e.getId();
-        this.date=new Date(e.getDate().getTime());
+        this.date= Date.valueOf(e.getDate().toString());
         this.idPlat=e.getIdPlat();
         this.idEmp=e.getIdEmp();
         this.nomfichier=e.getFichier().getNom();

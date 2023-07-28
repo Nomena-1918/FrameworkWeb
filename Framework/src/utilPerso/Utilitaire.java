@@ -69,8 +69,11 @@ public class Utilitaire {
                 o = Integer.parseInt((String) valeurParam);
             else throw new Exception("Divergence de type entre le paramètre de la requête et l'attribut de l'objet");
         }
-        else if (fieldC.equals(Date.class)) {
+        else if (fieldC.equals(java.util.Date.class)) {
             o = new SimpleDateFormat("yyyy-MM-dd").parse((String) valeurParam);
+        }
+        else if (fieldC.equals(java.sql.Date.class)) {
+            o = java.sql.Date.valueOf(valeurParam.toString());
         }
         else if (fieldC.equals(String[].class)) {
             return valeurParam;

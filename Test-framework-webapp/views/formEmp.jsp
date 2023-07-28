@@ -26,7 +26,6 @@
       <input type="date" id="dtn" name="dtn">
     </div>
 
-
     <div>
       <label>Emp</label>
       <label>

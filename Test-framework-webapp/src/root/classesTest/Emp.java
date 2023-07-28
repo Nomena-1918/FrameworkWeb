@@ -57,16 +57,20 @@ public class Emp {
 
     @Auth("admin")
     @URLMapping(value = "/form-data.run")
-    public ModelView insertFormData() throws Exception {
+    public ModelView insertFormData(@ParamValue(value = "dtn") Date date) throws Exception {
         ModelView m = new ModelView();
 
+        Connection c = ConnectionPerso.getConnection();
+
         // Insertion
+        this.date = date;
         Empmodel_plat e = new Empmodel_plat(this);
-        e.save(null);
+        e.save(c);
 
-        m.addItem("emp_plat", e);
+        c.commit();
+        c.close();
+
         m.setView("index.jsp");
-
         return m;
     }
 
