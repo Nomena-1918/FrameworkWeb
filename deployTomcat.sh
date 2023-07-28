@@ -1,7 +1,11 @@
 #!/bin/bash
 
 # Compilation du projet test
+#bash compileTest.sh --source_dir  --destination_dir  --lib_dir "Test-framework-webapp/lib"
+
+# Compilation du Framework
 bash compile.sh --source_dir "Test-framework-webapp/src" --destination_dir "binTest" --lib_dir "Test-framework-webapp/lib"
+
 
 
 # Déclaration des variables

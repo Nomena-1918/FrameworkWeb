@@ -41,6 +41,8 @@ for jar in "$lib_dir"/*.jar; do
   classpath="$classpath:$jar"
 done
 
+#echo "$classpath"
+
 # Find all Java files recursively and write their paths to a text file
 find "$source_dir" -name "*.java" > java_files.txt
 

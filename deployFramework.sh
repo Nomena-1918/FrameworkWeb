@@ -38,7 +38,7 @@ fi
 
 # shellcheck disable=SC2034
 #Clean
-find $pathJar -mindepth 1 -delete
+#find $pathJar -mindepth 1 -delete
 
 # Exportation project Framework -> framework.jar
 jar cmf  $manifestFile  $pathJar/framework.jar   $repertoireClass/*;
