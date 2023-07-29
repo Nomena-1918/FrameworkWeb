@@ -4,26 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="81a34661-66e0-4489-b53f-c569ec92fcf5" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Framework/lib/jackson-annotations-2.15.2.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Framework/lib/jackson-core-2.15.2.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Framework/lib/jackson-databind-2.15.2.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Framework/lib/jackson-dataformat-xml-2.15.2.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Framework/lib/stax2-api-4.2.1.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Framework/lib/woodstox-core-6.5.1.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Test-framework-webapp/lib/framework.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Test-framework-webapp/lib/gson-2.8.2.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Test-framework-webapp/lib/postgresql-42.6.0.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Test-framework-webapp/config-webapp/gson-2.8.2.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Test-framework-webapp/config-webapp/postgresql-42.6.0.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/archives_java/Test-framework-webapp.war" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/archives_java/Test-webapp.war" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/compile.sh" beforeDir="false" afterPath="$PROJECT_DIR$/compile.sh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/compileTest.sh" beforeDir="false" afterPath="$PROJECT_DIR$/compileTest.sh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/deployFramework.sh" beforeDir="false" afterPath="$PROJECT_DIR$/deployFramework.sh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/deployTomcat.sh" beforeDir="false" afterPath="$PROJECT_DIR$/deployTomcat.sh" afterDir="false" />
-    </list>
+    <list default="true" id="81a34661-66e0-4489-b53f-c569ec92fcf5" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
