@@ -8,15 +8,16 @@
       <servlet-name>FrontServlet</servlet-name>
       <servlet-class>etu1918.framework.servlet.FrontServlet</servlet-class>
 
-        <context-param>
-            <param-name>tempfile.dir</param-name>
-            <param-value>tmpfiles</param-value>
-        </context-param>
-
         <init-param>
             <!-- Package racine pour scan -->
             <param-name>classpath</param-name>
             <param-value>root</param-value>
+        </init-param>
+
+        <init-param>
+            <!-- Package racine pour scan -->
+            <param-name>upload_dir</param-name>
+            <param-value>uploads</param-value>
         </init-param>
 
         <init-param>
