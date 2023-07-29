@@ -8,7 +8,7 @@ destination_dir="binTest"
 jar_file=""
 
 # Directory containing the jar files
-jar_dir="Test-framework-webapp//lib"
+jar_dir="Test-framework-webapp/lib"
 
 # Loop through each jar file in the directory
 for file in "$jar_dir"/*.jar
@@ -23,10 +23,6 @@ do
         jar_file="$jar_file:$file"
     fi
 done
-
-# Print the 'jar_file' variable
-echo "$jar_file"
-
 
 # Find all Java files recursively and write their paths to a text file
 find "$source_dir" -name "*.java" > java_files.txt
