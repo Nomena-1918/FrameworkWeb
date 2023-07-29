@@ -11,10 +11,10 @@ public class Main {
     public static void main(String[] args) throws Exception {
 
         System.out.println("\n\tFramework built successfully ! 🚀\n");
-
+/*
         List<Object> l = new EmpModel().select(null);
         System.out.println(l);
-/*
+
         Gson gson = new Gson();
         // Create a new HashMap
         HashMap<String, Integer> hashMap = new HashMap<>();
@@ -27,5 +27,6 @@ public class Main {
         String json = gson.toJson(hashMap);
         System.out.println(json);
 */
+
     }
 }

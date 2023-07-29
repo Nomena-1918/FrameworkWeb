@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Framework -> jar
-bash deployFramework.sh --repertoireClass "binFramework" --manifestFile "Framework/manifest.mf" --pathJar "Test-framework-webapp/lib"
+bash deployFramework.sh --repertoireClass "binFramework"  --pathJar "Test-framework-webapp/lib"
 
 
 # Préparation projet de test : dossier temporaire

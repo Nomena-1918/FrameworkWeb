@@ -11,7 +11,7 @@ import java.time.LocalDate;
 public class Main {
     public static void main(String[] args) throws Exception {
         System.out.println("\n\tTest-framework-webapp built successfully ! 🚀\n\n");
-
+/*
         Emp emp = new Emp();
         emp.setId(11);
         emp.setDate(Date.valueOf(LocalDate.now()));
@@ -21,5 +21,6 @@ public class Main {
 
         Empmodel_plat e = new Empmodel_plat(emp);
         e.save(null);
+ */
     }
 }

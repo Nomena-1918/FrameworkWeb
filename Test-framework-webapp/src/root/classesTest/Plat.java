@@ -1,5 +1,6 @@
 package root.classesTest;
 
+
 import database.BDDgeneral;
 
 public class Plat extends BDDgeneral {

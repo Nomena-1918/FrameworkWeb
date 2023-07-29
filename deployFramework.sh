@@ -5,7 +5,6 @@ bash compile.sh --source_dir "Framework/src" --destination_dir "binFramework" --
 
 # Initialize our own variables
 repertoireClass=""
-manifestFile=""
 pathJar=""
 
 # Parse command line options
@@ -31,17 +30,13 @@ while (( "$#" )); do
 done
 
 # Check if variables are set
-if [ -z "$repertoireClass" ] || [ -z "$manifestFile" ] || [ -z "$pathJar" ]; then
-  echo "Both --repertoireClass, --manifestFile and --pathJar options must be provided" >&2
+if [ -z "$repertoireClass" ]  || [ -z "$pathJar" ]; then
+  echo "Both --repertoireClass and --pathJar options must be provided" >&2
   exit 1
 fi
 
-# shellcheck disable=SC2034
-#Clean
-#find $pathJar -mindepth 1 -delete
-
 # Exportation project Framework -> framework.jar
-jar cmf  $manifestFile  $pathJar/framework.jar   $repertoireClass/*;
+jar cfe   $pathJar/framework.jar  $repertoireClass/*;
 
 
 

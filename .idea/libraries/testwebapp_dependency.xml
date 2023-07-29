@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="testwebapp-dependency">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/Test-framework-webapp/lib/framework.jar!/" />
+      <root url="jar://$PROJECT_DIR$/Test-framework-webapp/lib/postgresql-42.6.0.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

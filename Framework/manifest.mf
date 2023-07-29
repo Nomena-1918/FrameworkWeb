@@ -1,4 +1,0 @@
-Manifest-Version: 1.0
-Name: framework.jar
-Specification-Title: My Web Framework in Java
-Created-By: etu1918-Nomena
