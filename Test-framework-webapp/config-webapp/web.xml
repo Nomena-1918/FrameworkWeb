@@ -20,6 +20,12 @@
         </init-param>
 
         <init-param>
+            <!-- Nom attribut pour download de fichiers -->
+            <param-name>fileAttachment</param-name>
+            <param-value>filename</param-value>
+        </init-param>
+
+        <init-param>
             <!-- Nom variable de session pour authorisation -->
             <param-name>session_profil</param-name>
             <param-value>profil</param-value>

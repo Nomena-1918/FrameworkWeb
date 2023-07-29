@@ -2,14 +2,8 @@
   <library name="framewor-dependency">
     <CLASSES>
       <root url="jar://$PROJECT_DIR$/Framework/lib/gson-2.8.2.jar!/" />
-      <root url="jar://$PROJECT_DIR$/Framework/lib/jackson-annotations-2.15.2.jar!/" />
-      <root url="jar://$PROJECT_DIR$/Framework/lib/jackson-core-2.15.2.jar!/" />
-      <root url="jar://$PROJECT_DIR$/Framework/lib/jackson-databind-2.15.2.jar!/" />
-      <root url="jar://$PROJECT_DIR$/Framework/lib/jackson-dataformat-xml-2.15.2.jar!/" />
       <root url="jar://$PROJECT_DIR$/Framework/lib/javaee-api-6.0-6.jar!/" />
       <root url="jar://$PROJECT_DIR$/Framework/lib/postgresql-42.6.0.jar!/" />
-      <root url="jar://$PROJECT_DIR$/Framework/lib/stax2-api-4.2.1.jar!/" />
-      <root url="jar://$PROJECT_DIR$/Framework/lib/woodstox-core-6.5.1.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />

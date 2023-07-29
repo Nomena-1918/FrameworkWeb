@@ -44,7 +44,7 @@
         <td><%= e.getDate() %></td>
         <td><%= e.getNom() %></td>
         <td><%= e.getLibelle() %></td>
-        <td><%= e.getNomfichier() %></td>
+        <td><a href="download-file.run?filename=<%= e.getNomfichier().replaceAll("\"", "") %>"><%= e.getNomfichier() %></a></td>
     </tr>
     <% } %>
 </table>

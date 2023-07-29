@@ -183,6 +183,15 @@ public class Emp {
         return emp;
     }
 */
+
+    @URLMapping(value = "/download-file.run")
+    public ModelView DownloadFile(@ParamValue(value = "filename") String filename) {
+        ModelView m = new ModelView();
+        m.addItem("filename", filename);
+        m.setView("index.jsp");
+        return m;
+    }
+
     public Emp() {
         this._session = new HashMap<>();
     }
