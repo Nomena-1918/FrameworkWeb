@@ -1,8 +1,7 @@
 #!/bin/bash
 
 # Framework -> jar
-bash deployFramework.sh --repertoireClass "binFramework"  --pathJar "Test-framework-webapp/lib"
-
+bash deployFramework.sh;
 
 # Préparation projet de test : dossier temporaire
 # Test-framework -> war et déploiement tomcat

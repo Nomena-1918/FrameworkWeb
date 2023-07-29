@@ -1,14 +1,14 @@
 #!/bin/bash
 
 # Specify the source and destination directories
-source_dir="Test-framework-webapp/src"
-destination_dir="binTest"
+source_dir="Framework/src"
+destination_dir="binFramework"
 
 # Initialize the 'jar_file' variable
 jar_file=""
 
 # Directory containing the jar files
-jar_dir="Test-framework-webapp//lib"
+jar_dir="Framework/lib"
 
 # Loop through each jar file in the directory
 for file in "$jar_dir"/*.jar
