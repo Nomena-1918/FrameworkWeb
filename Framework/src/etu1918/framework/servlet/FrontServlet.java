@@ -21,6 +21,8 @@ import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 import java.util.*;
 
 
@@ -516,7 +518,8 @@ public class FrontServlet extends HttpServlet {
                             String contentType = "application/octet-stream";
 
                             res.setContentType(contentType);
-                            res.setHeader("Content-Disposition", "attachment; filename=" + fileToDownload);
+                            String encodedFileName = URLEncoder.encode(fileToDownload, StandardCharsets.UTF_8);
+                            res.setHeader("Content-Disposition", "attachment; filename*=UTF-8''" + encodedFileName);
 
                             final int ARBITARY_SIZE = 1048;
 
