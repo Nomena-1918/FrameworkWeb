@@ -21,7 +21,7 @@ create table empmodel_plat(
     idempmodel int,
     idplat int,
     date date default now(),
-    nomfichier varchar(30),
+    nomfichier varchar(100),
     FOREIGN KEY (idempmodel) references empmodel(id),
     foreign key (idplat) references plat(id)
 );

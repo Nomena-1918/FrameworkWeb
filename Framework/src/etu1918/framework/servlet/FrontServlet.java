@@ -504,20 +504,24 @@ public class FrontServlet extends HttpServlet {
 
                         //////// Téléchargement de fichiers ///
                         // Nom attribut : fileAttachment
-                        if(req.getAttribute(attrFileAttach)!=null)
-                        {
+                        if(req.getAttribute(attrFileAttach) != null) {
                             String fileToDownload = (String) req.getAttribute(attrFileAttach);
 
                             // constructs path of the directory to save uploaded file
                             String uploadFilePath = UPLOAD_DIR + File.separator + fileToDownload;
 
-                            res.setContentType("text/plain");
-                            res.setHeader("Content-disposition", "attachment; filename="+fileToDownload);
+                            String[] parts = fileToDownload.split("\\.");
+                            String extension = parts[parts.length - 1];
+
+                            String contentType = "application/octet-stream";
+
+                            res.setContentType(contentType);
+                            res.setHeader("Content-Disposition", "attachment; filename=" + fileToDownload);
 
                             final int ARBITARY_SIZE = 1048;
 
-                            System.out.println("fileToDownload : "+fileToDownload);
-                            System.out.println("uploadFilePath : "+uploadFilePath);
+                            System.out.println("fileToDownload : " + fileToDownload);
+                            System.out.println("uploadFilePath : " + uploadFilePath);
 
                             try(InputStream in = req.getServletContext().getResourceAsStream(uploadFilePath);
                                 OutputStream outp = res.getOutputStream()) {
@@ -529,6 +533,7 @@ public class FrontServlet extends HttpServlet {
                                 }
                             }
                         }
+
 
                         //Dispatch vers la vue correspondante
                         RequestDispatcher dispat = req.getRequestDispatcher(view);
