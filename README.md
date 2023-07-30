@@ -140,3 +140,13 @@ Suivi de la creation d'un framework web en Java en S4 à ITUniversity
         }
   - Cette méthode peut, par exemple, être appelée par l'URL nbr/mistery.run?num=27
 
+## Singleton
+<br>
+
+## Manipulation de sessions
+<br>
+
+## Autorisation sur les méthodes d'actions
+<br>
+
+## Réponse aux requêtes au formats json

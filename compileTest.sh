@@ -2,14 +2,33 @@
 
 # Specify the source and destination directories
 source_dir="Test-framework-webapp/src"
-destination_dir="/Users/nomena/TAFF-S4-PC-ITU/S4/Web_Dynamique/FrameworkWeb/binTest"
-jar_file="/Users/nomena/TAFF-S4-PC-ITU/S4/Web_Dynamique/FrameworkWeb/archives_java/framework.jar"
+destination_dir="binTest"
+
+# Initialize the 'jar_file' variable
+jar_file=""
+
+# Directory containing the jar files
+jar_dir="Test-framework-webapp/lib"
+
+# Loop through each jar file in the directory
+for file in "$jar_dir"/*.jar
+do
+    # Check if 'jar_file' is empty
+    if [ -z "$jar_file" ]
+    then
+        # If 'jar_file' is empty, simply add the file path
+        jar_file="$file"
+    else
+        # Otherwise, add a colon and the file path
+        jar_file="$jar_file:$file"
+    fi
+done
 
 # Find all Java files recursively and write their paths to a text file
 find "$source_dir" -name "*.java" > java_files.txt
 
 # Compile all Java files using 'javac' with the filelist option and classpath
-javac -cp "$jar_file" @java_files.txt -d "$destination_dir"
+javac -cp "$jar_file" @java_files.txt -d "$destination_dir" #-Xlint:unchecked
 
 # Clean up: remove the temporary file
 rm java_files.txt

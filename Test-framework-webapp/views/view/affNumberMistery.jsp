@@ -7,8 +7,8 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
-    Integer num = (Integer) request.getAttribute("numberMistery");
-    Integer countAppel = (Integer) request.getAttribute("count");
+    String data = request.getAttribute("dataJson").toString();
+    //Integer countAppel = (Integer) request.getAttribute("count");
 
 %>
 <html>
@@ -17,11 +17,8 @@
 </head>
 <body>
 
-<h3>Count nbr appel objet : <%= countAppel %></h3>
-
-
 <h1>  Bienvenue dans affNumberMistery.jsp  </h1>
-<h2> Le nombre mistery est : <%= num %></h2>
+<h2> DataJSON : <%=  data %></h2>
 
 </body>
 </html>

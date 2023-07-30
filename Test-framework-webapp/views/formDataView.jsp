@@ -27,7 +27,7 @@
       <li><h3>Fichier : <%= e.getFichier().getNom() + "  :  "+ e.getFichier().getFile().length %></h3></li>
       <li><h3>Matricule : <%= e.getMatricule() %></h3></li>
       <li><h3>Nom : <%= e.getNom() %></h3></li>
-      <li><h3>Date de naissance : <%= e.getDtn() %></h3></li>
+      <li><h3>Date de naissance : <%= e.getDate() %></h3></li>
       <li><h3>Is boss : <%= e.getIsBoss() %></h3></li>
       <li><h3>Prénoms : </h3>
         <h3>

@@ -10,6 +10,8 @@ import javax.servlet.http.Part;
 
 import dataStructure.Pair;
 import etu1918.framework.servlet.FrontServlet;
+import org.simpleframework.xml.Serializer;
+import org.simpleframework.xml.core.Persister;
 
 import java.io.*;
 import java.lang.annotation.Annotation;
@@ -26,6 +28,16 @@ import java.lang.reflect.Modifier;
 
 public class Utilitaire {
 
+    // Transformer un objet en String XML
+    public static String toXML(Object object) throws Exception {
+        // Sérialisation de l'objet en XML
+        Serializer serializer = new Persister();
+        StringWriter result = new StringWriter();
+        serializer.write(object, result);
+
+        return result.toString();
+    }
+
     // RESET UN OBJET
     public static Object resetFields(Object object) throws IllegalAccessException {
         Class<?> clazz = object.getClass();
@@ -33,19 +45,24 @@ public class Utilitaire {
 
         for (Field field : fields) {
             field.setAccessible(true);
-            Class<?> fieldType = field.getType();
-
-            if (fieldType.isPrimitive()) {
-                if (fieldType == int.class) {
-                    field.setInt(object, 0);
-                } else if (fieldType == boolean.class) {
-                    field.setBoolean(object, false);
-                }
-            } else {
-                field.set(object, null);
-            }
+            Object defaultValue = getDefaultValue(field.getType());
+            field.set(object, defaultValue);
         }
         return object;
+    }
+
+    private static Object getDefaultValue(Class<?> type) {
+        if (type == boolean.class) {
+            return false;
+        } else if (type == byte.class || type == short.class || type == int.class || type == long.class) {
+            return 0;
+        } else if (type == float.class || type == double.class) {
+            return 0.0;
+        } else if (type == char.class) {
+            return '\u0000';
+        } else {
+            return null;
+        }
     }
 
 // ===================== COMMUN : SETTERS et GETTERS ===================== //
@@ -64,8 +81,11 @@ public class Utilitaire {
                 o = Integer.parseInt((String) valeurParam);
             else throw new Exception("Divergence de type entre le paramètre de la requête et l'attribut de l'objet");
         }
-        else if (fieldC.equals(Date.class)) {
+        else if (fieldC.equals(java.util.Date.class)) {
             o = new SimpleDateFormat("yyyy-MM-dd").parse((String) valeurParam);
+        }
+        else if (fieldC.equals(java.sql.Date.class)) {
+            o = java.sql.Date.valueOf(valeurParam.toString());
         }
         else if (fieldC.equals(String[].class)) {
             return valeurParam;
@@ -437,10 +457,10 @@ public static Object execMethod(Object objet, String nomMethode, Object[] parame
 public static String getNomFichier(Part part) {
 
     /* Boucle sur chacun des paramètres de l'en-tête "content-disposition". */
-    for ( String contentDisposition : part.getHeader("content-disposition").split( ";" ) ) {
+    for (String contentDisposition : part.getHeader("content-disposition").split( ";" )) {
 
         /* Recherche de l'éventuelle présence du paramètre "filename". */
-        if ( contentDisposition.trim().startsWith("filename") ) {
+        if (contentDisposition.trim().startsWith("filename")) {
 
             /* Si "filename" est présent, alors renvoi de sa valeur, c'est-à-dire du nom de fichier. */
             return contentDisposition.substring( contentDisposition.indexOf( '=' ) + 1 );
