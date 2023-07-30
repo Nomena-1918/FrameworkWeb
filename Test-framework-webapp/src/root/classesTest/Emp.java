@@ -97,12 +97,25 @@ public class Emp {
         return m;
     }
 
-    /*
+    @XML
+    @URLMapping(value = "/export-xml.run")
+    public Plats ExportXML() throws Exception {
+
+        // Create a list and add the V_Empmodel_plat instances
+        List<Object> listV_Empmodel_plat = new V_Empmodel_plat().select(null);
+
+        // Create an instance of Plats and set the list
+        Plats plats = new Plats();
+        plats.setListV_Empmodel_plat(listV_Empmodel_plat);
+
+        return plats;
+
+    }
+
+
     @URLMapping(value = "/process-login.run")
     public ModelView processFormLogin(@ParamValue(value = "mdp") String mdp) {
-        count++;
         ModelView m = new ModelView();
-        m.addItem("count", count);
 
         /// SESSION
         String varProfil = "profil";
@@ -119,7 +132,6 @@ public class Emp {
 
         return m;
     }
-    */
 
     @Auth
     @URLMapping(value = "/logout.run")
@@ -138,7 +150,7 @@ public class Emp {
         m.setView("index.jsp");
         return m;
     }
-/*
+
 //////////////////////////
     @Auth("admin")
     @URLMapping(value = "/nbr/mistery.run")
@@ -152,15 +164,8 @@ public class Emp {
         if (number1 == null)
             number1 = 24;
 
-        int c = 0;
-        if (count!=null) {
-            count++;
-            c += count;
-        }
 
         Integer somme = number+number1+(Integer)_session.get("nbr");
-
-        m.addItem("count", c);
 
         m.addItem("numberMistery", somme);
 
@@ -172,17 +177,13 @@ public class Emp {
 
     @REST_API
     @URLMapping(value = "/rest-api.run")
-    public Emp methodJson(@ParamValue(value = "arg") Boolean isBoss) {
-        Emp emp = new Emp();
-        emp.setMatricule(1);
-        emp.setBoss(Objects.requireNonNullElse(isBoss, false));
-        emp.setNom("Jay");
-        emp.setPrenoms(new String[]{"Son"});
-        emp.setDtn(new Date());
-        emp.setSession(this._session);
-        return emp;
+    public V_Empmodel_plat methodJson(@ParamValue(value = "arg") Boolean isBoss) throws Exception {
+        if (isBoss)
+            return new V_Empmodel_plat(3, Date.valueOf("2023-07-30"), "Bob Smith", "Libelle3", "File3");
+        else
+            return new V_Empmodel_plat(4, Date.valueOf("2023-07-30"), "Alice Johnson", "Libelle4", "File4");
     }
-*/
+
 
     @URLMapping(value = "/download-file.run")
     public ModelView DownloadFile(@ParamValue(value = "filename") String filename) {

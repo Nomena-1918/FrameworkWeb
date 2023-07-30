@@ -5,20 +5,26 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="81a34661-66e0-4489-b53f-c569ec92fcf5" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Framework/lib/simple-xml-2.7.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Framework/src/etu1918/framework/annotationPerso/XML.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/framewor_dependency.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/framewor_dependency.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Test-framework-webapp/lib/gson-2.8.2.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Test-framework-webapp/lib/simple-xml-2.7.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Test-framework-webapp/src/root/classesTest/Plats.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/testwebapp_dependency.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/testwebapp_dependency.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Framework/lib/activation-1.1.1.jar" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Framework/src/etu1918/framework/mapping/ModelView.java" beforeDir="false" afterPath="$PROJECT_DIR$/Framework/src/etu1918/framework/mapping/ModelView.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Framework/src/etu1918/framework/servlet/FrontServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/Framework/src/etu1918/framework/servlet/FrontServlet.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Framework/src/main/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/Framework/src/main/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Framework/src/utilPerso/Utilitaire.java" beforeDir="false" afterPath="$PROJECT_DIR$/Framework/src/utilPerso/Utilitaire.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Test-framework-webapp/Test-framework-webapp.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Test-framework-webapp/Test-framework-webapp.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Test-framework-webapp/lib/framework.jar" beforeDir="false" afterPath="$PROJECT_DIR$/Test-framework-webapp/lib/framework.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/archives_java/Test-webapp.war" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/archives_java/framework.jar" beforeDir="false" afterPath="$PROJECT_DIR$/archives_java/framework.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/deployFramework.sh" beforeDir="false" afterPath="$PROJECT_DIR$/deployFramework.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Test-framework-webapp/src/root/classesTest/Emp.java" beforeDir="false" afterPath="$PROJECT_DIR$/Test-framework-webapp/src/root/classesTest/Emp.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Test-framework-webapp/src/root/classesTest/V_Empmodel_plat.java" beforeDir="false" afterPath="$PROJECT_DIR$/Test-framework-webapp/src/root/classesTest/V_Empmodel_plat.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Test-framework-webapp/src/root/main/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/Test-framework-webapp/src/root/main/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Test-framework-webapp/views/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/Test-framework-webapp/views/index.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Framework/etu1918/framework/mapping/ModelView.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Framework/etu1918/framework/mapping/ModelView.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Framework/etu1918/framework/servlet/FrontServlet.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Framework/etu1918/framework/servlet/FrontServlet.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Framework/main/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Framework/main/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Framework/main/Person.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Framework/main/Persons.class" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -32,8 +38,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Jsp File" />
-        <option value="Class" />
         <option value="AnnotationType" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -65,15 +71,15 @@
     "WebServerToolWindowFactoryState": "false",
     "extract.method.default.visibility": "private",
     "jdk.selected.JAVA_MODULE": "17",
-    "last_opened_file_path": "/Users/nomena/TAFF-S4-PC-ITU/S4/Web_Dynamique/FrameworkWeb/Test-framework-webapp/config-webapp",
+    "last_opened_file_path": "/Users/nomena/TAFF-S4-PC-ITU/S4/Web_Dynamique/FrameworkWeb/Test-framework-webapp/lib",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
     "project.structure.last.edited": "Libraries",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2",
+    "project.structure.proportion": "0.09341398",
+    "project.structure.side.proportion": "0.12908012",
     "ruby.rails.projectView.checked": "true",
     "settings.editor.selected.configurable": "terminal",
     "vue.rearranger.settings.migration": "true"
@@ -81,11 +87,11 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/Test-framework-webapp/lib" />
       <recent name="$PROJECT_DIR$/Test-framework-webapp/config-webapp" />
       <recent name="$PROJECT_DIR$/Test-framework-webapp/src/root/classesTest" />
       <recent name="$PROJECT_DIR$/Test-framework-webapp/Test-framework/WEB-INF/lib" />
       <recent name="$PROJECT_DIR$/FrameworkWeb-webapp/WEB-INF/classes" />
-      <recent name="$PROJECT_DIR$/src/classPerso" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/Test-framework-webapp/lib" />
@@ -98,7 +104,7 @@
       <recent name="database" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.framework">
+  <component name="RunManager" selected="Application.web-app">
     <configuration name="framework" type="Application" factoryName="Application">
       <option name="ALTERNATIVE_JRE_PATH" value="19" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
@@ -142,5 +148,12 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+  </component>
+  <component name="XDebuggerManager">
+    <watches-manager>
+      <configuration name="Application">
+        <watch expression="plats" language="JAVA" />
+      </configuration>
+    </watches-manager>
   </component>
 </project>

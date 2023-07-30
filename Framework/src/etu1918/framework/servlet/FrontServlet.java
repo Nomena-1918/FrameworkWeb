@@ -38,9 +38,6 @@ public class FrontServlet extends HttpServlet {
     private String UPLOAD_DIR;
     String attrFileAttach;
 
-
-    PrintWriter out;
-
     @Override
     public void init() throws ServletException {
         try {
@@ -74,9 +71,7 @@ public class FrontServlet extends HttpServlet {
 
     public void ProcessRequest(HttpServletRequest req, HttpServletResponse res) throws Exception {
         res.setContentType("application/json");
-
-        if (out !=null)
-            out = res.getWriter();
+        PrintWriter out = res.getWriter();
 
         try {
             System.out.println("\n\n===============================================================================");
@@ -395,6 +390,7 @@ public class FrontServlet extends HttpServlet {
 
                         Object o = method.invoke(object);
 
+
                         if (isJson) {
                             Gson gson = new Gson();
                             String json = gson.toJson(o);
@@ -406,13 +402,8 @@ public class FrontServlet extends HttpServlet {
                             res.setContentType("application/xml");
                             out = res.getWriter();
 
-                            // Sérialisation de l'objet en XML
-                            Serializer serializer = new Persister();
-                            StringWriter result = new StringWriter();
-                            serializer.write(o, result);
-
                             // Obtention de la représentation XML en tant que String
-                            String xmlString = result.toString();
+                            String xmlString = Utilitaire.toXML(o);
 
                             // Affichage de la représentation XML
                             System.out.println("\nXML");
@@ -465,13 +456,8 @@ public class FrontServlet extends HttpServlet {
                             res.setContentType("application/xml");
                             out = res.getWriter();
 
-                            // Sérialisation de l'objet en XML
-                            Serializer serializer = new Persister();
-                            StringWriter result = new StringWriter();
-                            serializer.write(o, result);
-
                             // Obtention de la représentation XML en tant que String
-                            String xmlString = result.toString();
+                            String xmlString = Utilitaire.toXML(object);
 
                             // Affichage de la représentation XML
                             System.out.println("\nXML");
@@ -505,12 +491,19 @@ public class FrontServlet extends HttpServlet {
                         if (modelView.isJson()) {
                             Gson gson = new Gson();
                             String json = gson.toJson(dataHsh);
-                            out.println(json);
+                            System.out.println(json);
                             req.setAttribute("dataJson", json);
                         }
 
                         if (modelView.isXml()){
+                            Serializer serializer = new Persister();
+                            StringWriter result = new StringWriter();
+                            serializer.write(modelView, result);
 
+                            // Get the XML string
+                            String xmlString = result.toString();
+                            System.out.println(xmlString);
+                            req.setAttribute("dataXml", xmlString);
                         }
 
                         else
@@ -548,9 +541,6 @@ public class FrontServlet extends HttpServlet {
                         // constructs path of the directory to save uploaded file
                         String uploadFilePath = UPLOAD_DIR + File.separator + fileToDownload;
 
-                        String[] parts = fileToDownload.split("\\.");
-                        String extension = parts[parts.length - 1];
-
                         String contentType = "application/octet-stream";
 
                         res.setContentType(contentType);
@@ -571,20 +561,27 @@ public class FrontServlet extends HttpServlet {
                                 outp.write(buffer, 0, numBytesRead);
                             }
                         }
-                    }
 
+                    }
 
                     //Dispatch vers la vue correspondante
                     RequestDispatcher dispat = req.getRequestDispatcher(view);
                     dispat.forward(req, res);
                 }
-                else
-                    System.out.println("Accès refusé pour "+session.getAttribute(varProfil));
-            } else
-                System.out.println("URL non supportée");
+                else {
+                    String mess= "Accès refusé pour " + session.getAttribute(varProfil);
+                    System.out.println(mess);
+                    throw new RuntimeException(mess);
+                }
+            } else {
+                String mess = "URL non supportée";
+                System.out.println(mess);
+                throw new RuntimeException(mess);
+            }
         }
         catch (Exception e) {
             System.out.println(e.getMessage());
+            throw new RuntimeException(e.getMessage());
         }
     }
     public void doGet(HttpServletRequest req, HttpServletResponse res) {

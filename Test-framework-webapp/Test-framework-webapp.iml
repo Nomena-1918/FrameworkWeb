@@ -33,5 +33,6 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module" module-name="Framework" />
     <orderEntry type="library" name="testwebapp-dependency" level="project" />
+    <orderEntry type="library" name="framewor-dependency" level="project" />
   </component>
 </module>

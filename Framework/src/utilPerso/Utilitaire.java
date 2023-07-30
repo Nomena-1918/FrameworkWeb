@@ -10,6 +10,8 @@ import javax.servlet.http.Part;
 
 import dataStructure.Pair;
 import etu1918.framework.servlet.FrontServlet;
+import org.simpleframework.xml.Serializer;
+import org.simpleframework.xml.core.Persister;
 
 import java.io.*;
 import java.lang.annotation.Annotation;
@@ -25,6 +27,16 @@ import java.util.*;
 import java.lang.reflect.Modifier;
 
 public class Utilitaire {
+
+    // Transformer un objet en String XML
+    public static String toXML(Object object) throws Exception {
+        // Sérialisation de l'objet en XML
+        Serializer serializer = new Persister();
+        StringWriter result = new StringWriter();
+        serializer.write(object, result);
+
+        return result.toString();
+    }
 
     // RESET UN OBJET
     public static Object resetFields(Object object) throws IllegalAccessException {

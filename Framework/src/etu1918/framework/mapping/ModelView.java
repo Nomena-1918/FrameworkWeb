@@ -1,5 +1,6 @@
 package etu1918.framework.mapping;
 
+import org.simpleframework.xml.Attribute;
 import org.simpleframework.xml.ElementMap;
 import org.simpleframework.xml.Root;
 
@@ -10,12 +11,11 @@ import java.util.List;
 @Root
 public class ModelView {
     String view;
-
+    @Attribute
     @ElementMap(entry = "element", key = "key", attribute = true, inline = true)
     HashMap<String, Object> data;
     HashMap<String, Object> sessionToAdd;
     boolean isJson = false;
-
     boolean isXml = false;
     boolean invalidateSession = false;
     List<String> sessionToRemove;
