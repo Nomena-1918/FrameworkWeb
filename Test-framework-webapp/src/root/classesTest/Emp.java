@@ -114,7 +114,7 @@ public class Emp {
 
 
     @URLMapping(value = "/process-login.run")
-    public ModelView processFormLogin(@ParamValue(value = "mdp") String mdp) {
+    public ModelView processFormfLogin(@ParamValue(value = "mdp") String mdp) {
         ModelView m = new ModelView();
 
         /// SESSION
@@ -189,7 +189,7 @@ public class Emp {
     public ModelView DownloadFile(@ParamValue(value = "filename") String filename) {
         ModelView m = new ModelView();
         m.addItem("filename", filename);
-        m.setView("index.jsp");
+        m.setView("list-emp-plat.run");
         return m;
     }
 

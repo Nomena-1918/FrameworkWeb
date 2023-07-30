@@ -589,6 +589,7 @@ public class FrontServlet extends HttpServlet {
             ProcessRequest(req, res);
         } catch (Exception e) {
            System.out.println(e.getMessage());
+            throw new RuntimeException(e.getMessage());
         }
     }
     public void doPost(HttpServletRequest req, HttpServletResponse res) {
@@ -596,6 +597,7 @@ public class FrontServlet extends HttpServlet {
             ProcessRequest(req, res);
         } catch (Exception e) {
             System.out.println(e.getMessage());
+            throw new RuntimeException(e.getMessage());
         }
     }
 }
