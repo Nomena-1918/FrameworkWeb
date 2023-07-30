@@ -1,14 +1,22 @@
 package etu1918.framework.mapping;
 
+import org.simpleframework.xml.ElementMap;
+import org.simpleframework.xml.Root;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+@Root
 public class ModelView {
     String view;
+
+    @ElementMap(entry = "element", key = "key", attribute = true, inline = true)
     HashMap<String, Object> data;
     HashMap<String, Object> sessionToAdd;
     boolean isJson = false;
+
+    boolean isXml = false;
     boolean invalidateSession = false;
     List<String> sessionToRemove;
 
@@ -23,6 +31,14 @@ public class ModelView {
         this.data = new HashMap<>();
         this.sessionToAdd = new HashMap<>();
         this.sessionToRemove = new ArrayList<>();
+    }
+
+    public boolean isXml() {
+        return isXml;
+    }
+
+    public void setXml(boolean xml) {
+        isXml = xml;
     }
 
     public void InvalidateSession() {

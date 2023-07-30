@@ -5,8 +5,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="81a34661-66e0-4489-b53f-c569ec92fcf5" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/Framework/lib/simple-xml-2.7.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Framework/src/etu1918/framework/annotationPerso/XML.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/framewor_dependency.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/framewor_dependency.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Framework/lib/activation-1.1.1.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Framework/src/etu1918/framework/mapping/ModelView.java" beforeDir="false" afterPath="$PROJECT_DIR$/Framework/src/etu1918/framework/mapping/ModelView.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Framework/src/etu1918/framework/servlet/FrontServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/Framework/src/etu1918/framework/servlet/FrontServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Framework/src/main/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/Framework/src/main/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Test-framework-webapp/lib/framework.jar" beforeDir="false" afterPath="$PROJECT_DIR$/Test-framework-webapp/lib/framework.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/archives_java/Test-webapp.war" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/archives_java/framework.jar" beforeDir="false" afterPath="$PROJECT_DIR$/archives_java/framework.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/deployFramework.sh" beforeDir="false" afterPath="$PROJECT_DIR$/deployFramework.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Framework/etu1918/framework/servlet/FrontServlet.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Framework/etu1918/framework/servlet/FrontServlet.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Framework/main/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Framework/main/Main.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -20,8 +32,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Jsp File" />
-        <option value="AnnotationType" />
         <option value="Class" />
+        <option value="AnnotationType" />
       </list>
     </option>
   </component>
@@ -59,7 +71,7 @@
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Modules",
+    "project.structure.last.edited": "Libraries",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
     "ruby.rails.projectView.checked": "true",
@@ -86,7 +98,7 @@
       <recent name="database" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.web-app">
+  <component name="RunManager" selected="Application.framework">
     <configuration name="framework" type="Application" factoryName="Application">
       <option name="ALTERNATIVE_JRE_PATH" value="19" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />

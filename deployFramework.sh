@@ -18,7 +18,7 @@ cd $repertoireClass;
 # shellcheck disable=SC2035
 jar cmf  $manifestFile  $pathJar/framework.jar   *;
 
-cp -r -f $pathJar/framework.jar "/Users/nomena/TAFF-S4-PC-ITU/S4/Web_Dynamique/FrameworkWeb/Test-framework-webapp/lib/"
+cp -r -f $pathJar/framework.jar     "/Users/nomena/TAFF-S4-PC-ITU/S4/Web_Dynamique/FrameworkWeb/Test-framework-webapp/lib/"
 
 
 

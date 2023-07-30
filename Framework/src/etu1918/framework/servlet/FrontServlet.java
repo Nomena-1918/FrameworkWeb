@@ -3,8 +3,11 @@ package etu1918.framework.servlet;
 import com.google.gson.Gson;
 import etu1918.framework.annotationPerso.Auth;
 import etu1918.framework.annotationPerso.REST_API;
+import etu1918.framework.annotationPerso.XML;
 import etu1918.framework.mapping.Mapping;
 import etu1918.framework.mapping.ModelView;
+import org.simpleframework.xml.Serializer;
+import org.simpleframework.xml.core.Persister;
 import utilPerso.FileUpload;
 import utilPerso.Utilitaire;
 
@@ -13,14 +16,12 @@ import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.*;
 
-import java.io.File;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.io.PrintWriter;
+import java.io.*;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 
+import java.net.StandardSocketOptions;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.*;
@@ -383,6 +384,7 @@ public class FrontServlet extends HttpServlet {
                 int count = method.getParameterCount();
 
                 boolean isJson = method.isAnnotationPresent(REST_API.class);
+                boolean isXml = method.isAnnotationPresent(XML.class);
 
                 if (access) {
                     System.out.println("\nNb params méthode : "+count);
@@ -391,19 +393,36 @@ public class FrontServlet extends HttpServlet {
                         System.out.println("Method : "+method);
                         System.out.println("Object : "+object);
 
+                        Object o = method.invoke(object);
 
-                        if (!isJson){
-                            modelView = (ModelView) method.invoke(object);
-                            System.out.println("modelview : "+modelView);
-                        }
-                        else {
-                            Object o = method.invoke(object);
+                        if (isJson) {
                             Gson gson = new Gson();
                             String json = gson.toJson(o);
                             System.out.println("\nREST-API");
-
                             out.println("\n\n"+json);
-                            System.out.println("\n\n"+json);
+                            return;
+                        }
+                        if (isXml) {
+                            res.setContentType("application/xml");
+                            out = res.getWriter();
+
+                            // Sérialisation de l'objet en XML
+                            Serializer serializer = new Persister();
+                            StringWriter result = new StringWriter();
+                            serializer.write(o, result);
+
+                            // Obtention de la représentation XML en tant que String
+                            String xmlString = result.toString();
+
+                            // Affichage de la représentation XML
+                            System.out.println("\nXML");
+                            out.println("\n\n"+xmlString);
+                            System.out.println("\n\n"+xmlString);
+                            return;
+                        }
+                        else {
+                            modelView = (ModelView) method.invoke(object);
+                            System.out.println("modelview : "+modelView);
                         }
                     }
                     // count >= 1
@@ -432,9 +451,35 @@ public class FrontServlet extends HttpServlet {
                         Object[] valParamArr = valParam.toArray();
                         System.out.println(Arrays.toString(valParamArr));
 
-                        //System.out.println("\nNb params : "+count+"\n");
+                        Object o = method.invoke(object, valParamArr);
 
-                        if (!isJson) {
+                        if (isJson) {
+                            Gson gson = new Gson();
+                            String json = gson.toJson(o);
+                            System.out.println("\nREST-API");
+                            out.println(json+"\n\n");
+                            System.out.println(json+"\n\n");
+                            return;
+                        }
+                        if (isXml) {
+                            res.setContentType("application/xml");
+                            out = res.getWriter();
+
+                            // Sérialisation de l'objet en XML
+                            Serializer serializer = new Persister();
+                            StringWriter result = new StringWriter();
+                            serializer.write(o, result);
+
+                            // Obtention de la représentation XML en tant que String
+                            String xmlString = result.toString();
+
+                            // Affichage de la représentation XML
+                            System.out.println("\nXML");
+                            out.println("\n\n"+xmlString);
+                            System.out.println("\n\n"+xmlString);
+                            return;
+                        }
+                        else {
                             System.out.println("\nObject : "+object);
 
                             // Appel de la méthode
@@ -443,105 +488,95 @@ public class FrontServlet extends HttpServlet {
                             else
                                 modelView = (ModelView) method.invoke(object, valParamArr);
 
-
                             //System.out.println("\nmodelview : "+method.invoke(object, valParamArr));
                             System.out.println("\nmodelview : "+modelView);
                         }
-                        else {
-                            Object o = method.invoke(object, valParamArr);
-                            Gson gson = new Gson();
-                            String json = gson.toJson(o);
-                            System.out.println("\nREST-API");
-
-
-                            out.println(json+"\n\n");
-                        }
                     }
 
-                    if (!isJson) {
-                        String view = modelView.getView();
-                        HashMap<String, Object> dataHsh = modelView.getData();
-                        HashMap<String, Object> sessionHsh = modelView.getSessionToAdd();
+                    String view = modelView.getView();
+                    HashMap<String, Object> dataHsh = modelView.getData();
+                    HashMap<String, Object> sessionHsh = modelView.getSessionToAdd();
 
-                        // Prendre les data dans le ModelView
-                        if (dataHsh != null) {
-                            System.out.println("JSON : " + modelView.isJson());
+                    // Prendre les data dans le ModelView
+                    if (dataHsh != null) {
+                        System.out.println("JSON : " + modelView.isJson());
 
-                            // Les mettre dans les attributs de la requête
-                            if (modelView.isJson()) {
-                                Gson gson = new Gson();
-                                String json = gson.toJson(dataHsh);
-                                out.println(json);
-                                req.setAttribute("dataJson", json);
-
-                                //Dispatch vers la vue correspondante
-                                RequestDispatcher dispat = req.getRequestDispatcher(view);
-                                dispat.forward(req, res);
-
-                            } else
-                                for (Map.Entry<String, Object> m : dataHsh.entrySet()) {
-                                    req.setAttribute(m.getKey(), m.getValue());
-                                }
+                        // Les mettre dans les attributs de la requête
+                        if (modelView.isJson()) {
+                            Gson gson = new Gson();
+                            String json = gson.toJson(dataHsh);
+                            out.println(json);
+                            req.setAttribute("dataJson", json);
                         }
 
-                        // Prendre les sessions dans le ModelView, mettre dans HttpSession
+                        if (modelView.isXml()){
+
+                        }
+
+                        else
+                            for (Map.Entry<String, Object> m : dataHsh.entrySet()) {
+                                req.setAttribute(m.getKey(), m.getValue());
+                            }
+                    }
+
+
+                    // Prendre les sessions dans le ModelView, mettre dans HttpSession
 // Les mettre dans les attributs de la requête
-                        for (Map.Entry<String, Object> m : sessionHsh.entrySet()) {
-                            session.setAttribute(m.getKey(), m.getValue());
-                        }
+                    for (Map.Entry<String, Object> m : sessionHsh.entrySet()) {
+                        session.setAttribute(m.getKey(), m.getValue());
+                    }
 
-                        // Enlever des variables de session
-                        List<String> sessionToRemove = modelView.getSessionToRemove();
+                    // Enlever des variables de session
+                    List<String> sessionToRemove = modelView.getSessionToRemove();
 
-                        for (String m : sessionToRemove) {
-                            session.removeAttribute(m);
-                        }
+                    for (String m : sessionToRemove) {
+                        session.removeAttribute(m);
+                    }
 
-                        // Tout supprimer
-                        if (modelView.isSessionInvalidate())
-                            session.invalidate();
+                    // Tout supprimer
+                    if (modelView.isSessionInvalidate())
+                        session.invalidate();
 
-                        System.out.println("\n\nVue pour dispatch : " + view);
+                    System.out.println("\n\nVue pour dispatch : " + view);
 
 
-                        //////// Téléchargement de fichiers ///
-                        // Nom attribut : fileAttachment
-                        if(req.getAttribute(attrFileAttach) != null) {
-                            String fileToDownload = (String) req.getAttribute(attrFileAttach);
+                    //////// Téléchargement de fichiers ///
+                    // Nom attribut : fileAttachment
+                    if(req.getAttribute(attrFileAttach) != null) {
+                        String fileToDownload = (String) req.getAttribute(attrFileAttach);
 
-                            // constructs path of the directory to save uploaded file
-                            String uploadFilePath = UPLOAD_DIR + File.separator + fileToDownload;
+                        // constructs path of the directory to save uploaded file
+                        String uploadFilePath = UPLOAD_DIR + File.separator + fileToDownload;
 
-                            String[] parts = fileToDownload.split("\\.");
-                            String extension = parts[parts.length - 1];
+                        String[] parts = fileToDownload.split("\\.");
+                        String extension = parts[parts.length - 1];
 
-                            String contentType = "application/octet-stream";
+                        String contentType = "application/octet-stream";
 
-                            res.setContentType(contentType);
-                            String encodedFileName = URLEncoder.encode(fileToDownload, StandardCharsets.UTF_8);
-                            res.setHeader("Content-Disposition", "attachment; filename*=UTF-8''" + encodedFileName);
+                        res.setContentType(contentType);
+                        String encodedFileName = URLEncoder.encode(fileToDownload, StandardCharsets.UTF_8);
+                        res.setHeader("Content-Disposition", "attachment; filename*=UTF-8''" + encodedFileName);
 
-                            final int ARBITARY_SIZE = 1048;
+                        final int ARBITARY_SIZE = 1048;
 
-                            System.out.println("fileToDownload : " + fileToDownload);
-                            System.out.println("uploadFilePath : " + uploadFilePath);
+                        System.out.println("fileToDownload : " + fileToDownload);
+                        System.out.println("uploadFilePath : " + uploadFilePath);
 
-                            try(InputStream in = req.getServletContext().getResourceAsStream(uploadFilePath);
-                                OutputStream outp = res.getOutputStream()) {
-                                byte[] buffer = new byte[ARBITARY_SIZE];
+                        try(InputStream in = req.getServletContext().getResourceAsStream(uploadFilePath);
+                            OutputStream outp = res.getOutputStream()) {
+                            byte[] buffer = new byte[ARBITARY_SIZE];
 
-                                int numBytesRead;
-                                while ((numBytesRead = in.read(buffer)) > 0) {
-                                    outp.write(buffer, 0, numBytesRead);
-                                }
+                            int numBytesRead;
+                            while ((numBytesRead = in.read(buffer)) > 0) {
+                                outp.write(buffer, 0, numBytesRead);
                             }
                         }
-
-
-                        //Dispatch vers la vue correspondante
-                        RequestDispatcher dispat = req.getRequestDispatcher(view);
-                        dispat.forward(req, res);
                     }
+
+
+                    //Dispatch vers la vue correspondante
+                    RequestDispatcher dispat = req.getRequestDispatcher(view);
+                    dispat.forward(req, res);
                 }
                 else
                     System.out.println("Accès refusé pour "+session.getAttribute(varProfil));
