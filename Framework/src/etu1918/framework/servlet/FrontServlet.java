@@ -281,6 +281,7 @@ public class FrontServlet extends HttpServlet {
                                 if (!fileSaveDir.exists()) {
                                     fileSaveDir.mkdirs();
                                 }
+
                                 System.out.println("Upload File Directory="+fileSaveDir.getAbsolutePath());
 
                                 // Ecriture du fichier sur le serveur
@@ -380,11 +381,12 @@ public class FrontServlet extends HttpServlet {
 
                 boolean isJson = method.isAnnotationPresent(REST_API.class);
                 boolean isXml = method.isAnnotationPresent(XML.class);
+                PrintWriter outx = null;
 
-                if (isXml)
+                if (isXml) {
                     res.setContentType("application/xml");
-                    PrintWriter outx = res.getWriter();
-
+                    outx = res.getWriter();
+                }
 
                 if (access) {
                     System.out.println("\nNb params méthode : "+count);
@@ -542,12 +544,12 @@ public class FrontServlet extends HttpServlet {
                         String encodedFileName = URLEncoder.encode(fileToDownload, StandardCharsets.UTF_8);
                         res.setHeader("Content-Disposition", "attachment; filename*=UTF-8''" + encodedFileName);
 
-                        final int ARBITARY_SIZE = 16;
+                        final int ARBITARY_SIZE = 1048;
 
                         System.out.println("fileToDownload : " + fileToDownload);
                         System.out.println("uploadFilePath : " + uploadFilePath);
 
-                        try(InputStream in = req.getServletContext().getResourceAsStream(uploadFilePath)) {
+                        try(InputStream in = req.getServletContext().getResourceAsStream("\""+uploadFilePath)) {
                             OutputStream outp = res.getOutputStream();
                             byte[] buffer = new byte[ARBITARY_SIZE];
 
@@ -555,6 +557,7 @@ public class FrontServlet extends HttpServlet {
                             while ((numBytesRead = in.read(buffer)) > 0) {
                                 outp.write(buffer, 0, numBytesRead);
                             }
+                            System.out.println("\nEcriture fichier achevée");
                         }
 
                     }
