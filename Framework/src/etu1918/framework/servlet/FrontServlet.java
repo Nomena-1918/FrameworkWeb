@@ -359,7 +359,7 @@ public class FrontServlet extends HttpServlet {
                     // Nom profil dans session
                     String valSession = (String) session.getAttribute(varProfil);
                     System.out.println("Valeur session :" + valSession);
-                    
+
                     // Utilisateurs authentifiés
                     if (valAnnot.equalsIgnoreCase("")) {
                         if (valSession == null) {
@@ -381,6 +381,11 @@ public class FrontServlet extends HttpServlet {
                 boolean isJson = method.isAnnotationPresent(REST_API.class);
                 boolean isXml = method.isAnnotationPresent(XML.class);
 
+                if (isXml)
+                    res.setContentType("application/xml");
+                    PrintWriter outx = res.getWriter();
+
+
                 if (access) {
                     System.out.println("\nNb params méthode : "+count);
 
@@ -399,22 +404,18 @@ public class FrontServlet extends HttpServlet {
                             return;
                         }
                         if (isXml) {
-                            res.setContentType("application/xml");
-                            out = res.getWriter();
-
                             // Obtention de la représentation XML en tant que String
                             String xmlString = Utilitaire.toXML(o);
 
                             // Affichage de la représentation XML
                             System.out.println("\nXML");
-                            out.println("\n\n"+xmlString);
+                            outx.println("\n\n"+xmlString);
                             System.out.println("\n\n"+xmlString);
                             return;
                         }
-                        else {
-                            modelView = (ModelView) method.invoke(object);
-                            System.out.println("modelview : "+modelView);
-                        }
+                        else
+                            modelView = (ModelView)o;
+
                     }
                     // count >= 1
                     else {
@@ -453,15 +454,13 @@ public class FrontServlet extends HttpServlet {
                             return;
                         }
                         if (isXml) {
-                            res.setContentType("application/xml");
-                            out = res.getWriter();
 
                             // Obtention de la représentation XML en tant que String
                             String xmlString = Utilitaire.toXML(object);
 
                             // Affichage de la représentation XML
                             System.out.println("\nXML");
-                            out.println("\n\n"+xmlString);
+                            outx.println("\n\n"+xmlString);
                             System.out.println("\n\n"+xmlString);
                             return;
                         }
@@ -469,12 +468,8 @@ public class FrontServlet extends HttpServlet {
                             System.out.println("\nObject : "+object);
 
                             // Appel de la méthode
-                            if (count == 1)
-                                modelView = (ModelView) method.invoke(object, valParamArr[0]);
-                            else
-                                modelView = (ModelView) method.invoke(object, valParamArr);
+                            modelView = (ModelView) o;
 
-                            //System.out.println("\nmodelview : "+method.invoke(object, valParamArr));
                             System.out.println("\nmodelview : "+modelView);
                         }
                     }
@@ -588,8 +583,7 @@ public class FrontServlet extends HttpServlet {
         try {
             ProcessRequest(req, res);
         } catch (Exception e) {
-           System.out.println(e.getMessage());
-            throw new RuntimeException(e.getMessage());
+            System.out.println(e.getMessage());
         }
     }
     public void doPost(HttpServletRequest req, HttpServletResponse res) {
@@ -597,7 +591,6 @@ public class FrontServlet extends HttpServlet {
             ProcessRequest(req, res);
         } catch (Exception e) {
             System.out.println(e.getMessage());
-            throw new RuntimeException(e.getMessage());
         }
     }
 }
