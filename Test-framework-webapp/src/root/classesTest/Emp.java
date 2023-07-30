@@ -68,7 +68,7 @@ public class Emp {
         Connection c = ConnectionPerso.getConnection();
 
         // Insertion
-        this.date = date;
+        this.setDate(date);
         Empmodel_plat e = new Empmodel_plat(this);
         e.save(c);
 
@@ -109,7 +109,6 @@ public class Emp {
         plats.setListV_Empmodel_plat(listV_Empmodel_plat);
 
         return plats;
-
     }
 
 
@@ -189,7 +188,7 @@ public class Emp {
     public ModelView DownloadFile(@ParamValue(value = "filename") String filename) {
         ModelView m = new ModelView();
         m.addItem("filename", filename);
-        m.setView("list-emp-plat.run");
+        m.setView("index.jsp");
         return m;
     }
 

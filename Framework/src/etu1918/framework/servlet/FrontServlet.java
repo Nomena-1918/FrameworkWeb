@@ -542,13 +542,13 @@ public class FrontServlet extends HttpServlet {
                         String encodedFileName = URLEncoder.encode(fileToDownload, StandardCharsets.UTF_8);
                         res.setHeader("Content-Disposition", "attachment; filename*=UTF-8''" + encodedFileName);
 
-                        final int ARBITARY_SIZE = 1048;
+                        final int ARBITARY_SIZE = 16;
 
                         System.out.println("fileToDownload : " + fileToDownload);
                         System.out.println("uploadFilePath : " + uploadFilePath);
 
-                        try(InputStream in = req.getServletContext().getResourceAsStream(uploadFilePath);
-                            OutputStream outp = res.getOutputStream()) {
+                        try(InputStream in = req.getServletContext().getResourceAsStream(uploadFilePath)) {
+                            OutputStream outp = res.getOutputStream();
                             byte[] buffer = new byte[ARBITARY_SIZE];
 
                             int numBytesRead;
@@ -558,6 +558,8 @@ public class FrontServlet extends HttpServlet {
                         }
 
                     }
+
+
 
                     //Dispatch vers la vue correspondante
                     RequestDispatcher dispat = req.getRequestDispatcher(view);

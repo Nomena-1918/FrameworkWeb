@@ -6,6 +6,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.StringJoiner;
 
 public class BDDgeneral {
     Integer id;
@@ -146,13 +147,13 @@ public class BDDgeneral {
     // Insertion dans la base si la table associee existe
     public void save(Connection connect) throws Exception {
         String nomTable = this.getClass().getSimpleName().toLowerCase();
-        boolean isNewConnect=false;
+        boolean isNewConnect = false;
         StringBuilder sql;
-        if(isTableHere()) {
+        if (isTableHere()) {
             try {
-                if (connect==null) {
-                    connect= ConnectionPerso.getConnection();
-                    isNewConnect=true;
+                if (connect == null) {
+                    connect = ConnectionPerso.getConnection();
+                    isNewConnect = true;
                 }
                 Statement stat = connect.createStatement();
 
@@ -162,47 +163,47 @@ public class BDDgeneral {
                 Object o = null;
                 String obj = null;
 
-                sql = new StringBuilder("insert into " + nomTable + " values(");
+                // Initialize the StringJoiner with comma as a delimiter.
+                StringJoiner joiner = new StringJoiner(",");
 
-                for(int i = 0; i < getMethodOk.size(); i++) {
-
-                    m = this.getClass().getDeclaredMethod(getMethodOk.get(i));
+                for (String method : getMethodOk) {
+                    m = this.getClass().getDeclaredMethod(method);
                     o = m.invoke(this);
 
                     if (o != null) {
                         obj = o.toString();
                         o = "'"+obj+"'";
+                    } else {
+                        o = "default";
                     }
-                    else
-                        o="default";
-
-                    sql.append(o);
-                    if(i<getMethodOk.size()-1)
-                        sql.append(",");
+                    // Add the values to the StringJoiner.
+                    joiner.add(o.toString());
                 }
-                sql.append(")");
+
+                // Build the SQL command with sql.
+                sql = new StringBuilder();
+                sql.append("insert into ").append(nomTable).append(" values(")
+                        .append(joiner.toString()).append(")");
 
                 System.out.println(sql);
                 stat.executeUpdate(sql.toString());
                 System.out.println("executed !");
 
-            }
-            catch(Exception e) {
+            } catch(Exception e) {
                 assert connect != null;
                 connect.rollback();
                 throw e;
-            }
-            finally {
+            } finally {
                 if (isNewConnect) {
                     connect.commit();
                     connect.close();
                 }
             }
-        }
-        else {
+        } else {
             throw new Exception("Table "+nomTable+" inexistante");
         }
     }
+
 
     public String upperFirstL(String s) {
         String s1;
@@ -248,20 +249,19 @@ public class BDDgeneral {
                 }
             }
 
-            String sql = "select * from " + nomTable + " ";
+            StringBuilder sqlBuilder = new StringBuilder();
+            sqlBuilder.append("select * from ").append(nomTable);
 
             if (!condition.isEmpty()) {
-                sql += " where ";
-                int j = 0;
+                sqlBuilder.append(" where ");
+                StringJoiner joiner = new StringJoiner(" and ");
                 for (String i : condition.keySet()) {
-                    sql += i + " = '" + condition.get(i) + "' ";
-
-                    if (j < condition.size() - 1) {
-                        sql += " and ";
-                    }
-                    j++;
+                    joiner.add(i + " = '" + condition.get(i) + "'" );
                 }
+                sqlBuilder.append(joiner);
             }
+
+            String sql = sqlBuilder.toString();
 
             System.out.println(sql);
 
