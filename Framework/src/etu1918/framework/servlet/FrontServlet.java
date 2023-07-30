@@ -513,7 +513,6 @@ public class FrontServlet extends HttpServlet {
                             String uploadFilePath = UPLOAD_DIR + File.separator + fileToDownload;
 
                             String[] parts = fileToDownload.split("\\.");
-                            String extension = parts[parts.length - 1];
 
                             String contentType = "application/octet-stream";
 
