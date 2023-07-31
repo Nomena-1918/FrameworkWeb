@@ -24,6 +24,60 @@ import java.lang.reflect.Modifier;
 
 public class Utilitaire {
 
+    public static String toCSV(Object o, String delimiter, boolean header) throws IllegalAccessException {
+        if (delimiter == null) {
+            delimiter = ",";
+        }
+
+        StringBuilder sb = new StringBuilder();
+        StringJoiner sj = new StringJoiner(delimiter);
+        Field[] fields = o.getClass().getDeclaredFields();
+
+        if (header) {
+            for (Field field : fields) {
+                sj.add(field.getName());
+            }
+            sb.append(sj).append("\n");
+        }
+
+        sj = new StringJoiner(delimiter);
+        for (Field field : fields) {
+            field.setAccessible(true);
+            try {
+                sj.add(field.get(o).toString());
+            } catch (IllegalAccessException e) {
+                throw e;
+            }
+        }
+        sb.append(sj);
+
+        return sb.toString();
+    }
+
+    public static String listToCSV(List<Object> list, String delimiter, boolean header) throws IllegalAccessException {
+        if (list == null || list.isEmpty()) {
+            return "";
+        }
+
+        Class<?> type = list.get(0).getClass();
+        for (Object o : list) {
+            if (!o.getClass().equals(type)) {
+                throw new IllegalArgumentException("All objects must be of the same type");
+            }
+        }
+
+        StringBuilder sb = new StringBuilder();
+        for (Object o : list) {
+            sb.append(toCSV(o, delimiter, header)).append("\n");
+            header = false; // Only add header for the first object
+        }
+
+        return sb.toString();
+    }
+
+
+
+
     // Transformer un objet en String XML
     public static String toXML(Object object) throws Exception {
 

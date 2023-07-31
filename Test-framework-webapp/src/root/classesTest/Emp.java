@@ -111,6 +111,16 @@ public class Emp {
         return plats;
     }
 
+    @CSV
+    @URLMapping(value = "/export-csv.run")
+    public List<Object> ExportCSV() throws Exception {
+
+        // Create a list and add the V_Empmodel_plat instances
+        return new V_Empmodel_plat().select(null);
+    }
+
+
+
     @URLMapping(value = "/export-xml-modelview.run")
     public ModelView ExportXMLModelview() throws Exception {
 

@@ -1,9 +1,7 @@
 package etu1918.framework.servlet;
 
 import com.google.gson.Gson;
-import etu1918.framework.annotationPerso.Auth;
-import etu1918.framework.annotationPerso.REST_API;
-import etu1918.framework.annotationPerso.XML;
+import etu1918.framework.annotationPerso.*;
 import etu1918.framework.mapping.Mapping;
 import etu1918.framework.mapping.ModelView;
 import utilPerso.FileUpload;
@@ -372,11 +370,12 @@ public class FrontServlet extends HttpServlet {
             System.out.println("\nAccès autorisé "+session.getAttribute(varProfil)+" : "+access);
 // ==============================================
             // Prendre la view dans le ModelView retourné
-            ModelView modelView;
+            ModelView modelView = null;
 
             int count = method.getParameterCount();
             boolean isJson = method.isAnnotationPresent(REST_API.class);
             boolean isXml = method.isAnnotationPresent(XML.class);
+            boolean isCSV = method.isAnnotationPresent(CSV.class);
 
             if (isJson) {
                 res.setContentType("application/json");
@@ -384,6 +383,27 @@ public class FrontServlet extends HttpServlet {
             }
             if (isXml) {
                 res.setContentType("application/xml");
+                out = res.getWriter();
+            }
+
+            String csv = "";
+            String delimiter = "";
+            boolean header = true;
+            if (isCSV) {
+
+                // Récupération de l'annotation recherchée
+                Annotation annot = method.getAnnotation(CSV.class);
+
+                // Récupération de la valeur d'un attribut de l'annotation
+                Method annotMeth = annot.annotationType().getDeclaredMethod("delimiter");
+                delimiter = annotMeth.invoke(annot).toString();
+
+                // Récupération de la valeur d'un attribut de l'annotation
+                annotMeth = annot.annotationType().getDeclaredMethod("header");
+                header = (boolean) annotMeth.invoke(annot);
+
+
+                res.setContentType("text/plain");
                 out = res.getWriter();
             }
 
@@ -405,13 +425,25 @@ public class FrontServlet extends HttpServlet {
                         System.out.println("\n"+json);
                         return;
                     }
-
                     if (isXml){
                         String xml = Utilitaire.toXML(o);
                         System.out.println("\nXML :");
 
                         out.println("\n"+xml);
                         System.out.println("\n\n"+xml);
+                        return;
+                    }
+                    if (isCSV){
+                        String expcsv;
+                        if (o instanceof List<?>)
+                            expcsv = Utilitaire.listToCSV((List<Object>) o, delimiter, header);
+                        else
+                            expcsv = Utilitaire.toCSV(o, delimiter, header);
+
+                        System.out.println("\nCSV :");
+
+                        out.println("\n"+expcsv);
+                        System.out.println("\n\n"+expcsv);
                         return;
                     }
 
@@ -463,6 +495,20 @@ public class FrontServlet extends HttpServlet {
 
                         out.println("\n"+xml);
                         System.out.println("\n\n"+xml);
+                        return;
+                    }
+
+                    if (isCSV){
+                        String expcsv;
+                        if (o instanceof List<?>)
+                            expcsv = Utilitaire.listToCSV((List<Object>) o, delimiter, header);
+                        else
+                            expcsv = Utilitaire.toCSV(o, delimiter, header);
+
+                        System.out.println("\nCSV :");
+
+                        out.println("\n"+expcsv);
+                        System.out.println("\n\n"+expcsv);
                         return;
                     }
 
@@ -576,6 +622,8 @@ public class FrontServlet extends HttpServlet {
         } else
             throw new Exception("URL non supportée");
     }
+
+
     public void doGet(HttpServletRequest req, HttpServletResponse res) {
         try {
             ProcessRequest(req, res);
