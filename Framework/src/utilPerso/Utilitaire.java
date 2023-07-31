@@ -2,13 +2,10 @@ package utilPerso;
 
 import etu1918.framework.annotationPerso.*;
 import etu1918.framework.mapping.Mapping;
-import etu1918.framework.mapping.ModelView;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
 
-import dataStructure.Pair;
 import etu1918.framework.servlet.FrontServlet;
 import org.simpleframework.xml.Serializer;
 import org.simpleframework.xml.core.Persister;
@@ -21,7 +18,6 @@ import java.lang.reflect.Method;
 import java.lang.reflect.Parameter;
 import java.net.URI;
 import java.net.URL;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 import java.lang.reflect.Modifier;
@@ -37,6 +33,18 @@ public class Utilitaire {
         serializer.write(object, result);
 
         return result.toString();
+    }
+
+    public static <K, V> StringBuilder mapToXML(HashMap<K, V> map) throws Exception {
+
+        StringBuilder xml = new StringBuilder();
+
+        for (Map.Entry<K, V> entry : map.entrySet()) {
+            xml.append("\n");
+            xml.append(toXML(entry.getValue()));
+        }
+
+        return xml;
     }
 
     // RESET UN OBJET

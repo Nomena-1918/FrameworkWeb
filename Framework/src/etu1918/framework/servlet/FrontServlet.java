@@ -402,9 +402,19 @@ public class FrontServlet extends HttpServlet {
                         System.out.println("\nREST-API");
 
                         out.println("\n\n"+json);
-                        System.out.println("\n\n"+json);
+                        System.out.println("\n"+json);
                         return;
                     }
+
+                    if (isXml){
+                        String xml = Utilitaire.toXML(o);
+                        System.out.println("\nXML :");
+
+                        out.println("\n"+xml);
+                        System.out.println("\n\n"+xml);
+                        return;
+                    }
+
                     else {
                         modelView = (ModelView) o;
                         System.out.println("modelview : "+modelView);
@@ -441,12 +451,21 @@ public class FrontServlet extends HttpServlet {
                         Gson gson = new Gson();
                         String json = gson.toJson(o);
                         System.out.println("\nREST-API");
-                        System.out.println("\n\n"+json);
 
+                        System.out.println("\n"+json);
                         out.println("\n\n"+json);
-
                         return;
                     }
+
+                    if (isXml){
+                        String xml = Utilitaire.toXML(o);
+                        System.out.println("\nXML :");
+
+                        out.println("\n"+xml);
+                        System.out.println("\n\n"+xml);
+                        return;
+                    }
+
                     else {
                         System.out.println("\nObject : "+object);
                         modelView = (ModelView) o;
@@ -483,11 +502,15 @@ public class FrontServlet extends HttpServlet {
                 if (dataHsh != null) {
                     System.out.println("JSON modelview : " + modelView.isJson());
 
+                    for (Map.Entry<String, Object> m : dataHsh.entrySet()) {
+                        req.setAttribute(m.getKey(), m.getValue());
+                    }
+
                     // Les mettre dans les attributs de la requête
                     if (modelView.isJson()) {
                         Gson gson = new Gson();
                         String json = gson.toJson(dataHsh);
-                        System.out.println(json);
+                        System.out.println("JSON Modelview : "+json);
                         req.setAttribute("dataJson", json);
 
                         //Dispatch vers la vue correspondante
@@ -495,10 +518,18 @@ public class FrontServlet extends HttpServlet {
                         dispat.forward(req, res);
                         return;
                     }
-                    else
-                        for (Map.Entry<String, Object> m : dataHsh.entrySet()) {
-                            req.setAttribute(m.getKey(), m.getValue());
-                        }
+
+                    if (modelView.isXml()) {
+                        StringBuilder xml = Utilitaire.mapToXML(dataHsh);
+
+                        System.out.println("XML Modelview : " + xml);
+                        req.setAttribute("dataXml", xml.toString());
+
+                        //Dispatch vers la vue correspondante
+                        RequestDispatcher dispat = req.getRequestDispatcher(view);
+                        dispat.forward(req, res);
+                        return;
+                    }
                 }
 
                 //////// Téléchargement de fichiers ///

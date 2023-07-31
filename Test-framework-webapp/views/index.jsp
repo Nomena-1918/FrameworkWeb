@@ -35,7 +35,8 @@
         <li><h3><a href="rest-api.run?arg=true">rest-api.run</a></h3></li>
         <li><h3><a href="first-test.run">first-test.run</a></h3></li>
         <li><h3><a href="login.run">login.run (devient admin)</a></h3></li>
-        <li><h3><a href="export-xml.run">Export xml</a></h3></li>
+        <li><h3><a href="export-xml.run">Export plats xml</a></h3></li>
+        <li><h3><a href="export-xml-modelview.run">Export plats modelview xml</a></h3></li>
     </ul>
 
 

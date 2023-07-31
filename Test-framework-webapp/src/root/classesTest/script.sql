@@ -26,8 +26,6 @@ create table empmodel_plat(
     foreign key (idplat) references plat(id)
 );
 
-insert into empmodel_plat values('10','2023-07-28','3','1','platTest.txt')
-
 insert into empmodel_plat values(default, 1, 1, default, 'plat1.txt');
 insert into empmodel_plat values(default, 2, 2, default, 'plat2.txt');
 insert into empmodel_plat values(default, 2, 1, default, 'plat3.txt');

@@ -5,6 +5,7 @@
       <root url="jar://$PROJECT_DIR$/Framework/lib/javaee-api-6.0-6.jar!/" />
       <root url="jar://$PROJECT_DIR$/Framework/lib/postgresql-42.6.0.jar!/" />
       <root url="jar://$PROJECT_DIR$/Framework/lib/simple-xml-2.7.jar!/" />
+      <root url="jar://$PROJECT_DIR$/Framework/lib/jackson-dataformat-xml-2.15.2.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />

@@ -111,6 +111,25 @@ public class Emp {
         return plats;
     }
 
+    @URLMapping(value = "/export-xml-modelview.run")
+    public ModelView ExportXMLModelview() throws Exception {
+
+        // Create a list and add the V_Empmodel_plat instances
+        List<Object> listV_Empmodel_plat = new V_Empmodel_plat().select(null);
+
+        // Create an instance of Plats and set the list
+        Plats plats = new Plats();
+        plats.setListV_Empmodel_plat(listV_Empmodel_plat);
+
+        ModelView m = new ModelView();
+        m.addItem("plats", plats);
+        m.addItem("nombre_random", 456);
+        m.setView("affXML.jsp");
+        m.setXml(true);
+
+        return m;
+    }
+
 
     @URLMapping(value = "/process-login.run")
     public ModelView processFormLogin(@ParamValue(value = "mdp") String mdp) {
