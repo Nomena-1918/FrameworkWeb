@@ -30,6 +30,7 @@ public class Utilitaire {
 
     // Transformer un objet en String XML
     public static String toXML(Object object) throws Exception {
+
         // Sérialisation de l'objet en XML
         Serializer serializer = new Persister();
         StringWriter result = new StringWriter();

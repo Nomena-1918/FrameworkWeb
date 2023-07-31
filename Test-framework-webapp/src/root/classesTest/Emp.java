@@ -113,7 +113,7 @@ public class Emp {
 
 
     @URLMapping(value = "/process-login.run")
-    public ModelView processFormfLogin(@ParamValue(value = "mdp") String mdp) {
+    public ModelView processFormLogin(@ParamValue(value = "mdp") String mdp) {
         ModelView m = new ModelView();
 
         /// SESSION
@@ -154,7 +154,6 @@ public class Emp {
     @Auth("admin")
     @URLMapping(value = "/nbr/mistery.run")
     public ModelView methodWithSeveralArg(@ParamValue(value = "num") Integer number, @ParamValue(value = "num1") Integer number1) {
-
         ModelView m = new ModelView();
 
         if (number == null)
@@ -163,9 +162,7 @@ public class Emp {
         if (number1 == null)
             number1 = 24;
 
-
         Integer somme = number+number1+(Integer)_session.get("nbr");
-
         m.addItem("numberMistery", somme);
 
         m.setJson(true);
@@ -188,7 +185,7 @@ public class Emp {
     public ModelView DownloadFile(@ParamValue(value = "filename") String filename) {
         ModelView m = new ModelView();
         m.addItem("filename", filename);
-        m.setView("index.jsp");
+        m.setView("list-emp-plat.run");
         return m;
     }
 
