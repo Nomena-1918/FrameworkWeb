@@ -1,10 +1,4 @@
-<%@ page import="root.classesTest.Emp" %><%--
-  Created by IntelliJ IDEA.
-  User: nomena
-  Date: 07/05/2023
-  Time: 16:25
-  To change this template use File | Settings | File Templates.
---%>
+<%@ page import="root.classesTest.Emp" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
     String data = request.getAttribute("dataJson").toString();

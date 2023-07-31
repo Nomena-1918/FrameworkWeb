@@ -2,13 +2,10 @@ package utilPerso;
 
 import etu1918.framework.annotationPerso.*;
 import etu1918.framework.mapping.Mapping;
-import etu1918.framework.mapping.ModelView;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
 
-import dataStructure.Pair;
 import etu1918.framework.servlet.FrontServlet;
 import org.simpleframework.xml.Serializer;
 import org.simpleframework.xml.core.Persister;
@@ -21,21 +18,87 @@ import java.lang.reflect.Method;
 import java.lang.reflect.Parameter;
 import java.net.URI;
 import java.net.URL;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 import java.lang.reflect.Modifier;
 
 public class Utilitaire {
 
+    public static String toCSV(Object o, String delimiter, boolean header) throws IllegalAccessException {
+        if (delimiter == null) {
+            delimiter = ",";
+        }
+
+        StringBuilder sb = new StringBuilder();
+        StringJoiner sj = new StringJoiner(delimiter);
+        Field[] fields = o.getClass().getDeclaredFields();
+
+        if (header) {
+            for (Field field : fields) {
+                sj.add(field.getName());
+            }
+            sb.append(sj).append("\n");
+        }
+
+        sj = new StringJoiner(delimiter);
+        for (Field field : fields) {
+            field.setAccessible(true);
+            try {
+                sj.add(field.get(o).toString());
+            } catch (IllegalAccessException e) {
+                throw e;
+            }
+        }
+        sb.append(sj);
+
+        return sb.toString();
+    }
+
+    public static String listToCSV(List<Object> list, String delimiter, boolean header) throws IllegalAccessException {
+        if (list == null || list.isEmpty()) {
+            return "";
+        }
+
+        Class<?> type = list.get(0).getClass();
+        for (Object o : list) {
+            if (!o.getClass().equals(type)) {
+                throw new IllegalArgumentException("All objects must be of the same type");
+            }
+        }
+
+        StringBuilder sb = new StringBuilder();
+        for (Object o : list) {
+            sb.append(toCSV(o, delimiter, header)).append("\n");
+            header = false; // Only add header for the first object
+        }
+
+        return sb.toString();
+    }
+
+
+
+
     // Transformer un objet en String XML
     public static String toXML(Object object) throws Exception {
+
         // Sérialisation de l'objet en XML
         Serializer serializer = new Persister();
         StringWriter result = new StringWriter();
         serializer.write(object, result);
 
         return result.toString();
+    }
+
+    public static <K, V> StringBuilder mapToXML(HashMap<K, V> map) throws Exception {
+
+        StringBuilder xml = new StringBuilder();
+
+        for (Map.Entry<K, V> entry : map.entrySet()) {
+            xml.append("\n");
+            xml.append(toXML(entry.getValue()));
+        }
+
+        return xml;
     }
 
     // RESET UN OBJET

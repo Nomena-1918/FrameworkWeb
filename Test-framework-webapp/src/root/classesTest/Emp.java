@@ -68,7 +68,7 @@ public class Emp {
         Connection c = ConnectionPerso.getConnection();
 
         // Insertion
-        this.date = date;
+        this.setDate(date);
         Empmodel_plat e = new Empmodel_plat(this);
         e.save(c);
 
@@ -109,12 +109,40 @@ public class Emp {
         plats.setListV_Empmodel_plat(listV_Empmodel_plat);
 
         return plats;
+    }
 
+    @CSV
+    @URLMapping(value = "/export-csv.run")
+    public List<Object> ExportCSV() throws Exception {
+
+        // Create a list and add the V_Empmodel_plat instances
+        return new V_Empmodel_plat().select(null);
+    }
+
+
+
+    @URLMapping(value = "/export-xml-modelview.run")
+    public ModelView ExportXMLModelview() throws Exception {
+
+        // Create a list and add the V_Empmodel_plat instances
+        List<Object> listV_Empmodel_plat = new V_Empmodel_plat().select(null);
+
+        // Create an instance of Plats and set the list
+        Plats plats = new Plats();
+        plats.setListV_Empmodel_plat(listV_Empmodel_plat);
+
+        ModelView m = new ModelView();
+        m.addItem("plats", plats);
+        m.addItem("nombre_random", 456);
+        m.setView("affXML.jsp");
+        m.setXml(true);
+
+        return m;
     }
 
 
     @URLMapping(value = "/process-login.run")
-    public ModelView processFormfLogin(@ParamValue(value = "mdp") String mdp) {
+    public ModelView processFormLogin(@ParamValue(value = "mdp") String mdp) {
         ModelView m = new ModelView();
 
         /// SESSION
@@ -155,7 +183,6 @@ public class Emp {
     @Auth("admin")
     @URLMapping(value = "/nbr/mistery.run")
     public ModelView methodWithSeveralArg(@ParamValue(value = "num") Integer number, @ParamValue(value = "num1") Integer number1) {
-
         ModelView m = new ModelView();
 
         if (number == null)
@@ -164,9 +191,7 @@ public class Emp {
         if (number1 == null)
             number1 = 24;
 
-
         Integer somme = number+number1+(Integer)_session.get("nbr");
-
         m.addItem("numberMistery", somme);
 
         m.setJson(true);

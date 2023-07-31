@@ -11,7 +11,6 @@ import java.util.List;
 @Root
 public class ModelView {
     String view;
-    @Attribute
     @ElementMap(entry = "element", key = "key", attribute = true, inline = true)
     HashMap<String, Object> data;
     HashMap<String, Object> sessionToAdd;

@@ -16,9 +16,9 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Jsp File" />
-        <option value="AnnotationType" />
         <option value="Class" />
+        <option value="AnnotationType" />
+        <option value="Jsp File" />
       </list>
     </option>
   </component>
