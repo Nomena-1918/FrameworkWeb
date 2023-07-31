@@ -17,6 +17,7 @@ public class ModelView {
     boolean isJson = false;
     boolean isXml = false;
     boolean invalidateSession = false;
+    boolean layout = true;
     List<String> sessionToRemove;
 
     public ModelView() {
@@ -30,6 +31,14 @@ public class ModelView {
         this.data = new HashMap<>();
         this.sessionToAdd = new HashMap<>();
         this.sessionToRemove = new ArrayList<>();
+    }
+
+    public boolean isLayout() {
+        return layout;
+    }
+
+    public void setLayout(boolean layout) {
+        this.layout = layout;
     }
 
     public boolean isXml() {

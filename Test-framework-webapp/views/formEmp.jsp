@@ -1,21 +1,10 @@
-<%@ page import="root.classesTest.Emp" %>
-<%@ page import="java.util.Arrays" %>
 <%@ page import="java.util.List" %>
 <%@ page import="root.classesTest.EmpModel" %>
 <%@ page import="root.classesTest.Plat" %>
-<%@ page import="java.util.ArrayList" %>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-
 <%
   List<Object> listEmp = (List<Object>) request.getAttribute("list-emp");
   List<Object> listPlat = (List<Object>) request.getAttribute("list-plat");
 %>
-
-<html>
-<head>
-    <title>Formulaire Emp</title>
-</head>
-<body>
 
 <h1>  Bienvenue dans formEmp.jsp  </h1>
 <h2> Formulaire d'insertion de plat consommé :</h2>
@@ -58,7 +47,3 @@
       <button type="submit">Valider</button>
     </div>
   </form>
-
-
-</body>
-</html>

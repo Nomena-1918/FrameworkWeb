@@ -92,7 +92,7 @@ public class Emp {
         m.addSession(varProfil, valProfil);
         m.addSession("varSession", "just a simple string");
 
-        m.setView("index.jsp");
+        m.setView("Accueil.jsp");
 
         return m;
     }
@@ -156,7 +156,7 @@ public class Emp {
         m.addSession(varProfil, valProfil);
         ////
 
-        m.setView("index.jsp");
+        m.setView("Accueil.jsp");
 
         return m;
     }
@@ -166,7 +166,7 @@ public class Emp {
     public ModelView RemoveOneSession() {
         ModelView m = new ModelView();
         m.removeSession("profil");
-        m.setView("index.jsp");
+        m.setView("Accueil.jsp");
         return m;
     }
 
@@ -175,7 +175,7 @@ public class Emp {
     public ModelView RemoveAllSession() {
         ModelView m = new ModelView();
         m.InvalidateSession();
-        m.setView("index.jsp");
+        m.setView("Accueil.jsp");
         return m;
     }
 

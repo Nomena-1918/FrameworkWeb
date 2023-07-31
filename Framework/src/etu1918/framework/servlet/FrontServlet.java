@@ -35,8 +35,6 @@ public class FrontServlet extends HttpServlet {
     HashMap<Class, Object> instanceClass;
     private String UPLOAD_DIR;
     String attrFileAttach;
-
-
     PrintWriter out;
 
     @Override
@@ -71,6 +69,7 @@ public class FrontServlet extends HttpServlet {
     }
 
     public void ProcessRequest(HttpServletRequest req, HttpServletResponse res) throws Exception {
+        req.setCharacterEncoding("UTF-8");
 
         System.out.println("\n\n===============================================================================");
 
@@ -378,15 +377,14 @@ public class FrontServlet extends HttpServlet {
             boolean isCSV = method.isAnnotationPresent(CSV.class);
 
             if (isJson) {
-                res.setContentType("application/json");
+                res.setContentType("application/json; charset=UTF-8");
                 out = res.getWriter();
             }
             if (isXml) {
-                res.setContentType("application/xml");
+                res.setContentType("application/xml; charset=UTF-8");
                 out = res.getWriter();
             }
 
-            String csv = "";
             String delimiter = "";
             boolean header = true;
             if (isCSV) {
@@ -403,7 +401,7 @@ public class FrontServlet extends HttpServlet {
                 header = (boolean) annotMeth.invoke(annot);
 
 
-                res.setContentType("text/plain");
+                res.setContentType("text/plain; charset=UTF-8");
                 out = res.getWriter();
             }
 
@@ -559,10 +557,20 @@ public class FrontServlet extends HttpServlet {
                         System.out.println("JSON Modelview : "+json);
                         req.setAttribute("dataJson", json);
 
+
                         //Dispatch vers la vue correspondante
-                        RequestDispatcher dispat = req.getRequestDispatcher(view);
-                        dispat.forward(req, res);
+                        RequestDispatcher dispatcher;
+                        if (modelView.isLayout()) {
+                            req.setAttribute("view", view);
+                            dispatcher = req.getRequestDispatcher("/index.jsp");
+                        }
+                        else
+                            dispatcher = req.getRequestDispatcher(view);
+
+                        dispatcher.forward(req, res);
                         return;
+
+
                     }
 
                     if (modelView.isXml()) {
@@ -571,9 +579,18 @@ public class FrontServlet extends HttpServlet {
                         System.out.println("XML Modelview : " + xml);
                         req.setAttribute("dataXml", xml.toString());
 
+
                         //Dispatch vers la vue correspondante
-                        RequestDispatcher dispat = req.getRequestDispatcher(view);
-                        dispat.forward(req, res);
+                        RequestDispatcher dispatcher;
+                        if (modelView.isLayout()) {
+                            req.setAttribute("view", view);
+                            dispatcher = req.getRequestDispatcher("/index.jsp");
+                        }
+                        else
+                            dispatcher = req.getRequestDispatcher(view);
+
+                        dispatcher.forward(req, res);
+
                         return;
                     }
                 }
@@ -586,7 +603,7 @@ public class FrontServlet extends HttpServlet {
                     // constructs path of the directory to save uploaded file
                     String uploadFilePath = UPLOAD_DIR + File.separator + fileToDownload;
 
-                    String contentType = "application/octet-stream";
+                    String contentType = "application/octet-stream; charset=UTF-8";
 
                     res.setContentType(contentType);
                     String encodedFileName = URLEncoder.encode(fileToDownload, StandardCharsets.UTF_8);
@@ -614,8 +631,15 @@ public class FrontServlet extends HttpServlet {
                 }
 
                 //Dispatch vers la vue correspondante
-                RequestDispatcher dispat = req.getRequestDispatcher(view);
-                dispat.forward(req, res);
+                RequestDispatcher dispatcher;
+                if (modelView.isLayout()) {
+                    req.setAttribute("view", view);
+                    dispatcher = req.getRequestDispatcher("/index.jsp");
+                }
+                else
+                    dispatcher = req.getRequestDispatcher(view);
+
+                dispatcher.forward(req, res);
             }
             else
                 throw new Exception("Accès refusé pour "+session.getAttribute(varProfil));

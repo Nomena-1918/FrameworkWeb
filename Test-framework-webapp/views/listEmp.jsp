@@ -17,14 +17,6 @@
 
 %>
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-
 <h1>  Bienvenue dans listEmp.jsp  </h1>
 <h2> La liste des employés :</h2>
 
@@ -48,5 +40,3 @@
     </tr>
     <% } %>
 </table>
-</body>
-</html>
