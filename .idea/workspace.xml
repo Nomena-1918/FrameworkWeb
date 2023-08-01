@@ -5,43 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="81a34661-66e0-4489-b53f-c569ec92fcf5" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Test-framework-webapp/views/Accueil.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Test-framework-webapp/views/Shared/css/bootstrap-grid.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Test-framework-webapp/views/Shared/css/bootstrap-grid.css.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Test-framework-webapp/views/Shared/css/bootstrap-grid.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Test-framework-webapp/views/Shared/css/bootstrap-grid.min.css.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Test-framework-webapp/views/Shared/css/bootstrap-reboot.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Test-framework-webapp/views/Shared/css/bootstrap-reboot.css.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Test-framework-webapp/views/Shared/css/bootstrap-reboot.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Test-framework-webapp/views/Shared/css/bootstrap-reboot.min.css.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Test-framework-webapp/views/Shared/css/bootstrap.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Test-framework-webapp/views/Shared/css/bootstrap.css.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Test-framework-webapp/views/Shared/css/bootstrap.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Test-framework-webapp/views/Shared/css/bootstrap.min.css.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Test-framework-webapp/views/Shared/js/bootstrap.bundle.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Test-framework-webapp/views/Shared/js/bootstrap.bundle.js.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Test-framework-webapp/views/Shared/js/bootstrap.bundle.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Test-framework-webapp/views/Shared/js/bootstrap.bundle.min.js.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Test-framework-webapp/views/Shared/js/bootstrap.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Test-framework-webapp/views/Shared/js/bootstrap.js.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Test-framework-webapp/views/Shared/js/bootstrap.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Test-framework-webapp/views/Shared/js/bootstrap.min.js.map" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Framework/src/etu1918/framework/mapping/ModelView.java" beforeDir="false" afterPath="$PROJECT_DIR$/Framework/src/etu1918/framework/mapping/ModelView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Framework/src/etu1918/framework/servlet/FrontServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/Framework/src/etu1918/framework/servlet/FrontServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Test-framework-webapp/config-webapp/web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Test-framework-webapp/config-webapp/web.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Test-framework-webapp/lib/framework.jar" beforeDir="false" afterPath="$PROJECT_DIR$/Test-framework-webapp/lib/framework.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Test-framework-webapp/src/root/classesTest/Emp.java" beforeDir="false" afterPath="$PROJECT_DIR$/Test-framework-webapp/src/root/classesTest/Emp.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Test-framework-webapp/views/affXML.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/Test-framework-webapp/views/affXML.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Test-framework-webapp/views/firstView.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/Test-framework-webapp/views/firstView.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Test-framework-webapp/views/formEmp.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/Test-framework-webapp/views/formEmp.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Test-framework-webapp/views/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/Test-framework-webapp/views/index.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Test-framework-webapp/views/listEmp.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/Test-framework-webapp/views/listEmp.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/archives_java/Test-webapp.war" beforeDir="false" afterPath="$PROJECT_DIR$/archives_java/Test-webapp.war" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/archives_java/framework.jar" beforeDir="false" afterPath="$PROJECT_DIR$/archives_java/framework.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/binFramework/etu1918/framework/mapping/ModelView.class" beforeDir="false" afterPath="$PROJECT_DIR$/binFramework/etu1918/framework/mapping/ModelView.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/binFramework/etu1918/framework/servlet/FrontServlet.class" beforeDir="false" afterPath="$PROJECT_DIR$/binFramework/etu1918/framework/servlet/FrontServlet.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/binTest/root/classesTest/Emp.class" beforeDir="false" afterPath="$PROJECT_DIR$/binTest/root/classesTest/Emp.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
